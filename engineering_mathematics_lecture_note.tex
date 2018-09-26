@@ -1,0 +1,246 @@
+\documentclass[unfonts,oneside,a4paper]{oblivoir}
+
+\usepackage{kotex}
+\usepackage{microtype}
+
+\usepackage{mathpazo}
+\setmainfont{TeX Gyre Pagella}
+\setmainhangulfont[ItalicFont={*},ItalicFeatures={FakeSlant=.167}]{NanumMyeongjo}
+
+\usepackage{amsmath,mathtools,amssymb,amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{remark}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{homework}{Homework}
+
+\renewcommand{\vec}[1]{\mathrm{\mathbf{#1}}}
+
+\title{공학 수학\\강의 노트}
+
+\author{이재호}
+
+\date{마지막 수정: \today}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{section}{6}
+\reversemarginpar{}
+\section{Linear Algebra: Matrices, Vectors, Determinants. Linear Systems}
+
+Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\small2018년 9월 3일}
+\begin{itemize}
+    \item \textbf{체體}: 실수체, 복소수체
+    \item \textbf{장場}: 전자기장, 벡터장
+\end{itemize}
+
+\begin{definition}
+    체는 $+, -, \times, \div$에 대해 닫혀 있는 수 집합을 말한다.
+\end{definition}
+
+\begin{example}
+    \leavevmode
+    \begin{itemize}
+        \item $\mathbb Q$는 조밀(dense)하다.
+        \item $\mathbb R$은 꽉차(complete)있다.
+        \item $\mathbb C$는 대수적으로 닫혀(closed)있다.
+        \item $\mathbb Q \left(\sqrt 2\right) = \left\{a + b \sqrt 2\ \middle|\ a, b \in \mathbb Q\right\}$
+        \item $\mathbb Z_p = \{0, 1, \dots, p - 1\}$
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    벡터 공간은 (roughly) 덧셈($+$)과 상수(어떤 체에 속하는)배가 정의된 집합이다.
+\end{definition}
+
+\begin{example}
+    \leavevmode
+    \begin{itemize}
+        \item $\mathbb R^2 = \left\{\begin{pmatrix} a \\ b \end{pmatrix}\ \middle|\ a, b \in \mathbb R\right\}$은 덧셈에 대해 닫혀 있고, $k \in \mathbb R$의 곱에 대해 닫혀 있으므로 실수체에 대한 벡터 공간이다.
+        \item $\mathbb R^n$과 $\mathbb C^n$은 실수체에 대한 벡터 공간이면서 유리수체에 대한 벡터 공간이다.
+            이를 각각 $\mathbb Q$--벡터 공간, $\mathbb R$--벡터 공간이라고 한다.
+        \item $\mathcal C^0_I = \{f: I \rightarrow \mathbb R\ |\ f \text{ is continuous}\}$ where $I \subset \mathbb R$ 에서는, $x \mapsto \sin x$가 하나의 벡터이다.
+        \item $\mathcal C^n_I = \{f: I \rightarrow \mathbb R\ |\ \exists f^{(n)}, f^{(n)} \text{ is continuous}\}$ where $I \subset \mathbb R$이며, $\mathcal C^0_I > \mathcal C^1_I > \dots > \mathcal C^\infty_I$이다.
+    \end{itemize}
+\end{example}
+
+\setcounter{definition}{1}
+\begin{definition}
+    체 $F$에 대한 벡터 공간 $V$의 원소 $\vec v_1, \dots, \vec v_n \in V$에 대해서,
+    \begin{enumerate}
+        \item $c_1, \dots, c_k \in F$일 때
+            \[
+                c_1 \vec v_1 + \dots + c_k \vec v_k
+            \]
+            는 $\vec v_1, \dots, \vec v_k$의 일차 결합, 혹은 선형 결합(linear combination)이라고 한다.
+        \item $\vec v_1, \dots, \vec v_k$의 선형 생성
+            \[
+                \mathrm{span} \{\vec v_1, \dots, \vec v_k\} = \left< \vec v_1, \dots, \vec v_k \right>
+            \]
+            은 모든 일차 결합의 집합이다.
+            예를 들어, 어떤 평면 상의 평행하지 않은 두 벡터는 그 평면을 선형 생성한다.
+        \item $W \subset V$이면서 $W$가 벡터 공간이면, $W$는 $V$의 부분 공간이라고 하며 $W < V$로 표기한다.
+            예를 들어, 실수 평면으로 나타내어지는 $\mathbb R^2$ 벡터 공간의 부분 집합인 원점을 지나는 직선은 벡터 공간이므로 부분 공간이다.
+            반면, 원점을 지나지 않는 직선은 부분 집합이지만 벡터 공간은 아니므로 부분 공간이 아니다.
+        \item $W = \mathrm{span} \{\vec v_1, \dots, \vec v_k\} < V$일 때, $\vec v_1, \dots, \vec v_k$는 $W$의 생성자(generator)라고 한다.
+        \item $\vec v_1, \dots, \vec v_k$가 일차 종속(linearly dependent)라는 것은 어느 하나가 다른 벡터들의 일차 결합이라는 것이다.
+            일차 종속이 아니면 일차 독립(linearly independent)이라고 한다.
+            예를 들어, $\mathbb R^3$에서 $(1, 2, 3), (4, 5, 6), (7, 8, 9)$는 일차 종속인 반면, $(1, 2, 3), (4, 5, 6)$은 일차 독립이다.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    체\marginpar{\small 2018년 9월 5일} $F$에 대한 벡터 공간 $V$의 원소들 $\vec v_1, \dots, \vec v_k$가 일차 독립이라는 것은, $c_1, \dots, c_k \in F$일 때
+    \[
+        c_1 \vec v_1 + \dots + c_k \vec v_k = \vec 0 \Rightarrow c_1 = \dots = c_k = 0
+    \]
+    이라는 것과 동치이다.
+\end{theorem}
+
+\begin{proof}
+    $(\Rightarrow)$ (Possibly 재배열되어) $c_k \neq 0$이라고 가정하자.
+    그렇다면,
+    \[
+        v_k = - \left(\frac{c_1}{c_k} \vec v_1 + \dots + \frac{c_{k - 1}}{c_k} \vec v_{k - 1}\right)
+    \]
+    이므로 일차 독립이라는 가정에 모순된다.
+
+    $(\Leftarrow)$ $\vec v_1, \dots, \vec v_k$가 일차 종속이라고 가정하자.
+    즉, (possibly 재배열되어) 어떤 $a_1, \dots, a_{k - 1} \in F$가 존재하여,
+    \[
+        \vec v_k = a_1 \vec v_1 + \dots + a_{k - 1} \vec v_{k - 1}
+    \]
+    이다.
+    그렇다면
+    \[
+        a_1 \vec v_1 + \dots + a_{k - 1} \vec v_{k - 1} + (-1) \vec v_k = \vec 0
+    \]
+    이므로 모순이다.
+\end{proof}
+
+\begin{example}
+    \leavevmode
+    \begin{itemize}
+        \item $a, b, c \in \mathbb R$에 대해
+            \[
+                a(1, 2, 3) + b(4, 5, 6) + c(7, 8, 10) = (0, 0, 0)
+            \]
+            을 만족하는 $a, b, c$는 0밖에 없으므로 $(1, 2, 3), (4, 5, 6), (7, 8, 10)$은 (일차) 독립이다.
+        \item $\vec 0, \vec v_1, \dots, \vec v_k$는 (일차) 종속이다.
+        \item $\vec v_1, \vec v_2, \vec v_3, \vec v_4$가 독립이면 $\vec v_1, \vec v_2, \vec v_3$ 또한 독립이다.
+            (왜냐하면 $\vec v_1, \vec v_2, \vec v_3$ 가 종속이면 $\vec v_3 = c_1 \vec v_1 + c_2 \vec v_2 + 0 \vec v_4$이기 때문이다.)
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    벡터 공간 $V$의 부분 공간 $W$가 일차 독립인 $\vec v_1, \dots, \vec v_k$에 의해 생성될 때, $\{ \vec v_1, \dots, \vec v_k\}$를 $W$의 기저(basis)라고 한다.
+\end{definition}
+
+\begin{theorem}
+    $W$가 유한 생성 (finitely generated) (부분) 공간이면 $W$의 기저의 원소의 개수는 동일하다.
+    이 때, 기저의 원소의 개수를 $W$의 차원(dimension)이라고 하며, $\mathrm{dim} W$로 표기한다.
+\end{theorem}
+
+\begin{example}
+    \leavevmode
+    \begin{itemize}
+        \item $\mathcal P_n = \left\{n\text{차 이하 실계수 다항식}\right\}$일 때, $\mathcal P_n$의 원소 $f$는 항상 $\mathcal B = \{1, x, \dots, x^n\}$의 원소의 상수배의 합으로 나타낼 수 있다.
+            또한,
+            \[
+                c_0 \cdot 1 + c_1 x + \dots + c_n x^n = 0
+            \]
+            이면 $c_0 = \dots c_n = 0$이므로, $\mathcal B$는 기저이다.
+        \item $\mathcal P = \left\{\text{모든 다항식}\right\}$의 기저는 $\{1, x, x^2, \dots\}$이며 $\mathrm{dim} \mathcal{P} = \infty$이다.
+    \end{itemize}
+\end{example}
+
+\begin{homework}
+    \leavevmode
+    \begin{enumerate}
+        \item $a_1, a_2, a_3$는 서로 다른 실수이다.
+            이 때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 독립임을 보여라.
+        \item $a_1, \dots, a_n$는 서로 다른 실수이다.
+            이 때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 독립임을 보여라.
+    \end{enumerate}
+\end{homework}
+
+\begin{theorem}\label{thm3}
+    체 F에 대한 벡터 공간 $V$의 독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 독립이다.
+\end{theorem}
+
+\begin{proof}
+    $c_1, \dots, c_k, a \in F$일 때,
+    \[
+        c_1 \vec v_1 + \dots + c_k \vec v_k + a \vec w = \vec 0
+    \]
+    이라고 가정하자.
+    만약 $a \neq 0$이라면 
+    \[
+        w = -\left(\frac{c_1}{a} \vec v_1 + \dots + \frac{c_k}{a} \vec v_k\right) \in \left<\vec v_1, \dots, \vec v_k\right>
+    \]
+    이므로 모순이다.
+    따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 독립이므로 $c_1 = \dots = c_k = a = 0$이다.
+    그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 독립이다.
+\end{proof}
+
+Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 독립이다.
+이에 따라 어떤 유한 생성 벡터 공간 $V$의 독립인 벡터들 $\vec v_1, \dots, \vec v_k$가 주어졌을 때, 선형 생성에 속하지 않는 벡터 $\vec w_{k + 1}, \dots, \vec w_{\mathrm{dim} V}$를 순차적으로 추가해서 기저를 구성할 수 있다.
+
+\begin{theorem}
+    체 $F$에 대한 벡터 공간 $V$의 부분 공간 $W_1, W_2$가 주어졌을 때, $W_1 \cap W_2$ 또한 $V$의 부분 공간이다.
+\end{theorem}
+
+\begin{proof}
+    $\vec v_1, \vec v_2 \in W_1$이면서 $\vec v_1, \vec v_2 \in W_2$이면, 각각 벡터 공간이므로 임의의 $c_1, c_2 \in F$에 대해서 $c_1 \vec v_1 + c_2 \vec v_2 \in W_1$이면서 $c_1 \vec v_1 + c_2 \vec v_2 \in W_2$이다.
+    즉,
+    \[
+        \vec v_1, \vec v_2 \in W_1 \cap W_2 \Rightarrow (\forall c_1, c_2 \in F)\ c_1 \vec v_1 + c_2 \vec v_2 \in W_1 \cap W_2
+    \]
+    이다.
+    따라서, $W_1 \cap W_2 < V$가 성립한다.
+\end{proof}
+
+\begin{definition}
+    벡터 공간 $V$의 부분 집합 $W_1, W_2$에 대해서 $W_1 + W_2$를 다음과 같이 정의한다:
+    \[
+        W_1 + W_2 = \{\vec v_1 + \vec v_2\ |\ \vec v_1 \in W_1, \vec v_2 \in W_2\}.
+    \]
+\end{definition}
+
+\begin{example}
+    좌표 평면으로 나타내어지는 벡터 공간 $\mathbb R^2$의 부분 집합(이면서 부분 공간인)인 원점을 지나는 직선을 $W_1$이라고 하자.
+    원점이 아닌 한 점만을 원소로 하는 집합 $W_2 \subset \mathbb R^2$가 주어졌을 때, $W_1 + W_2$는 $W_1$의 직선을 $W_2$의 (유일한) 원소의 점으로 평행 이동한 직선을 나타낸다.
+\end{example}
+
+\begin{theorem}
+    체 $F$에 대한 벡터 공간 $V$의 부분 공간 $W_1$과 $W_2$에 대해서, $W_1 + W_2$도 $V$의 부분 공간이다.
+\end{theorem}
+
+\begin{proof}
+    임의의 $\vec v_1 \in W_1 + W_2$에 대해 어떤 $\vec w_1 \in W_1$과 $\vec w_2 \in W_2$가 존재하며, 마찬가지로 임의의 $\vec v_2 \in W_1 + W_2$에 대해 어떤 $\vec u_1 \in W_1$과 $\vec u_2 \in W_2$가 존재한다.
+    $W_1$과 $W_2$는 부분 공간이므로 임의의 $c_1, c_2 \in F$에 대해
+    \begin{align*}
+        c_1 \vec w_1 + c_2 \vec w_2 &\in W_1\\
+        c_1 \vec u_1 + c_2 \vec u_2 &\in W_2
+    \end{align*}
+    이고,
+    \begin{equation*}
+        c_1 \vec v_1 + c_2 \vec v_2 = (c_1 \vec w_1 + c_2 \vec w_2) + (c_1 \vec u_1 + c_2 \vec u_2)
+    \end{equation*}
+    이므로,
+    \begin{equation*}
+        c_1 \vec v_1 + c_2 \vec v_2 \in W_1 + W_2
+    \end{equation*}
+    이다.
+    따라서 $W_1 + W_2 < V$이다.
+\end{proof}
+\end{document}
