@@ -16,6 +16,9 @@
 \newtheorem{theorem}{Theorem}
 
 \theoremstyle{remark}
+\newtheorem*{myremark}{My remark}
+
+\theoremstyle{remark}
 \newtheorem*{example}{Example}
 
 \theoremstyle{remark}
@@ -256,16 +259,8 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
 \begin{proof}
     $l = \dim (U \cap W)$, $n = \dim U - l$, $m = \dim W - l$이라 하고, $U \cap W$의 기저를 $\mathcal B_\cap = \{\vec v_1, \dots, \vec v_l\}$라고 하자.
     $\mathcal B_\cap$을 확장해 $U$의 기저 $\mathcal B_U = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n\}$와 $W$의 기저 $\mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec w_1, \dots, \vec w_m\}$을 구성할 수 있다.
-
-    우선 $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$임을 보이자.\footnote{하지만 $\mathcal B_U \setminus \mathcal B_W$는 $U \setminus W$의 기저가 아니다.
-    $\vec 0 \in U \cap W$임에 따라 $\vec 0 \notin U \setminus W$이므로, $U \setminus W$는 벡터 공간이 아니기 때문이다.}
-    먼저 $\mathcal B_\cap \subseteq \mathcal B_U \cap \mathcal B_W$임은 자명하다.
-    $\mathcal B_U \cap \mathcal B_W$에 속하는 원소 $\vec x$를 고르자.
-    $\mathcal B_U \cap \mathcal B_W \subseteq U \cap W$이므로, $\vec x \in \Span \mathcal B_\cap$이다.
-    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
-    따라서 $\mathcal B_U \cap \mathcal B_W \subseteq B_\cap$이다.
+    
     이제 $\mathcal B_U \cup \mathcal B_W$가 $U + W$의 기저임을 보이자.
-
     $U + W$의 원소 $\vec v$를 고르면, $\vec v = \vec u + \vec w$가 되는 $\vec u \in U$와 $\vec w \in W$가 존재한다.
     따라서,
     \begin{align*}
@@ -290,7 +285,7 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
         \sum_{i = 1}^l -a_i \vec v_i + \sum_{k = 1}^m -c_k \vec w_k \in \Span \mathcal B_W = W
     \end{align*}
     이므로, $\vec z \in U \cap W = \Span \mathcal B_\cap = \left<\vec v_1, \dots, \vec v_l\right>$이다.
-    따라서 $j \in \{1, \dots, l\}$에 대해 $b_j = 0$이고 $k \in \{1, \dots, m\}$에 대해 $c_k = 0$이다.
+    그런데 $\mathcal B_U$와 $\mathcal B_W$는 일차 독립이므로 $j \in \{1, \dots, l\}$에 대해 $b_j = 0$이고 $k \in \{1, \dots, m\}$에 대해 $c_k = 0$이다.
     이에 따라 $\vec z = \vec 0$이 되어 $i \in \{1, \dots, l\}$에 대해서도 $a_i = 0$이다.
     그러므로 $\mathcal B_U \cup \mathcal B_W$은 일차 독립이다.
 
@@ -298,8 +293,20 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
     결국
     \begin{align*}
         \dim (U + W) &= |\mathcal B_U \cup \mathcal B_W|\\
-                     &= |\mathcal B_U| + |\mathcal B_W| - |\mathcal B_U \cap \mathcal B_W|\\
+                     &= l + n + m\\
+                     &= (l + n) + (l + m) - l\\
                      &= \dim U + \dim W - \dim (U \cap W)
     \end{align*}
 \end{proof}
+
+\begin{myremark}
+    위 증명에서 $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$임을 보이자.\footnote{$\mathcal B_U \setminus \mathcal B_W$는 $U \setminus W$의 기저가 아니다.
+    $\vec 0 \in U \cap W$임에 따라 $\vec 0 \notin U \setminus W$이므로, $U \setminus W$는 벡터 공간이 아니기 때문이다.}
+    위 증명이 성립하기 위해서는 $\{\vec u_1, \dots, \vec u_n\}$와 $\{\vec w_1, \dots, \vec w_m\}$의 모든 원소가 달라야하기 때문이다.
+    먼저 $\mathcal B_\cap \subseteq \mathcal B_U \cap \mathcal B_W$임은 자명하다.
+    $\mathcal B_U \cap \mathcal B_W$에 속하는 원소 $\vec x$를 고르자.
+    $\mathcal B_U \cap \mathcal B_W \subseteq U \cap W$이므로, $\vec x \in \Span \mathcal B_\cap$이다.
+    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
+    따라서 $\mathcal B_U \cap \mathcal B_W \subseteq B_\cap$이다.
+\end{myremark}
 \end{document}
