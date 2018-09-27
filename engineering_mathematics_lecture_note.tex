@@ -160,7 +160,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
                 c_0 \cdot 1 + c_1 x + \dots + c_n x^n = 0
             \]
             이면 $c_0 = \dots c_n = 0$이므로, $\mathcal B$는 기저이다.
-        \item $\mathcal P = \left\{\text{모든 다항식}\right\}$의 기저는 $\{1, x, x^2, \dots\}$이며 $\dim \mathcal{P} = \infty$이다.
+        \item $\mathcal P = \left\{\text{모든 다항식}\right\}$의 기저는 $\left\{1, x, x^2, \dots\right\}$이며 $\dim \mathcal{P} = \infty$이다.
     \end{itemize}
 \end{example}
 
@@ -186,7 +186,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     이라고 가정하자.
     만약 $a \neq 0$이라면 
     \[
-        w = -\left(\frac{c_1}{a} \vec v_1 + \dots + \frac{c_k}{a} \vec v_k\right) \in \left<\vec v_1, \dots, \vec v_k\right>
+        \vec w = -\left(\frac{c_1}{a} \vec v_1 + \dots + \frac{c_k}{a} \vec v_k\right) \in \left<\vec v_1, \dots, \vec v_k\right>
     \]
     이므로 모순이다.
     따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 독립이므로 $c_1 = \dots = c_k = a = 0$이다.
@@ -256,7 +256,14 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
 \begin{proof}
     $l = \dim (U \cap W)$, $n = \dim U - l$, $m = \dim W - l$이라 하고, $U \cap W$의 기저를 $\mathcal B_\cap = \{\vec v_1, \dots, \vec v_l\}$라고 하자.
     $\mathcal B_\cap$을 확장해 $U$의 기저 $\mathcal B_U = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n\}$와 $W$의 기저 $\mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec w_1, \dots, \vec w_m\}$을 구성할 수 있다.
-    이 때, $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$임도 알 수 있다.
+
+    우선 $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$임을 보이자.\footnote{하지만 $\mathcal B_U \setminus \mathcal B_W$는 $U \setminus W$의 기저가 아니다.
+    $\vec 0 \in U \cap W$임에 따라 $\vec 0 \notin U \setminus W$이므로, $U \setminus W$는 벡터 공간이 아니기 때문이다.}
+    먼저 $\mathcal B_\cap \subseteq \mathcal B_U \cap \mathcal B_W$임은 자명하다.
+    $\mathcal B_U \cap \mathcal B_W$에 속하는 원소 $\vec x$를 고르자.
+    $\mathcal B_U \cap \mathcal B_W \subseteq U \cap W$이므로, $\vec x \in \Span \mathcal B_\cap$이다.
+    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
+    따라서 $\mathcal B_U \cap \mathcal B_W \subseteq B_\cap$이다.
     이제 $\mathcal B_U \cup \mathcal B_W$가 $U + W$의 기저임을 보이자.
 
     $U + W$의 원소 $\vec v$를 고르면, $\vec v = \vec u + \vec w$가 되는 $\vec u \in U$와 $\vec w \in W$가 존재한다.
