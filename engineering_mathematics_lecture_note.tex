@@ -170,7 +170,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     벡터 공간 $V$의 부분 공간 $W$가 일차 독립인 $\vec v_1, \dots, \vec v_k$에 의해 생성될 때, $\{ \vec v_1, \dots, \vec v_k\}$를 $W$의 기저(basis)라고 한다.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}[차원(dimension) 정리]
     $W$가 유한 생성 (finitely generated) (부분) 공간이면 $W$의 기저의 원소의 개수는 동일하다.
     이 때, 기저의 원소의 개수를 $W$의 차원(dimension)이라고 하며, $\dim W$로 표기한다.
 \end{theorem}
@@ -270,7 +270,7 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
     따라서 $W_1 + W_2 < V$이다.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[그라스만(Graßmann) 공식]
     체\marginpar{\small 2018년 9월 10일} $F$에 대한 유한 생성 벡터 공간 $U$와 $W$에 대해, 다음이 성립한다:
     \begin{equation*}
         \dim (U + W) = \dim U + \dim W - \dim (U \cap W).
@@ -393,11 +393,11 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
 \begin{definition}
     두 벡터 공간 $V$와 $W$ 간의 선형 변환 $L: V \rightarrow W$에 대해 다음이 정의된다:
     \begin{enumerate}
-        \item $L$의 핵(kernel) 혹은 영 공간(null space)
+        \item $L$의 핵(kernel) 혹은 영 공간(null space)\footnote{영 공간이라는 용어는 보통 행렬에 국한되어 사용되고, 핵은 추상적인 선형 변환에 대해 많이 사용된다.}
             \begin{equation*}
                 \ker L = \Null (L) = \{\vec v \in V \mid L(\vec v) = \vecz\}.
             \end{equation*} 
-        \item $L$의 치역(range) 혹은 상(image)
+        \item $L$의 치역(range) 혹은 상(image)\footnote{치역은 정의역의 상이다. 상은 정의역의 부분 집합에 대해서도 정의될 수 있다.}
             \begin{equation*}
                 \Range (L) = \Image (L) = \{L(\vec v) \mid \vec v \in V\}.
             \end{equation*}
@@ -415,44 +415,78 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
 \begin{example}
     \leavevmode
     \begin{enumerate}
-        \item $L \begin{pmatrix}
-                x \\ y \\ z
-                \end{pmatrix} = \begin{pmatrix}
-                1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
-                \end{pmatrix} \begin{pmatrix}
-                x \\ y \\ z
-            \end{pmatrix}$일 때 $\Null (L)$을 구하시오.
+        \item $L \begin{pmatrix}x \\ y \\ z\end{pmatrix} = \begin{pmatrix}1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9\end{pmatrix} \begin{pmatrix}x \\ y \\ z\end{pmatrix}$일 때 $\ker L\ \bigl(= \Null (L)\bigr)$을 구하시오.
             \begin{solution}
                 \begin{align*}
                     &\begin{pmatrix}
-                    1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
-                \end{pmatrix}
-                &\rightarrow &\begin{pmatrix}
-                1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -6 & -12
-            \end{pmatrix}\\
-            \xrightarrow{\text{Echelon}} &\begin{pmatrix}
-                1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 0
-            \end{pmatrix}
-            &\xrightarrow{\text{Reduce}} &\begin{pmatrix}
-            1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
-        \end{pmatrix}
-    \end{align*}
-    즉
-    \begin{equation*}
-        \begin{pmatrix}
-            1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                        1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+                    \end{pmatrix}&\rightarrow &\begin{pmatrix}
+                        1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -6 & -12
+                    \end{pmatrix}\\
+                    \xrightarrow{\text{Echelon}} &\begin{pmatrix}
+                        1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                    \end{pmatrix}&\xrightarrow{\text{Reduce}} &\begin{pmatrix}
+                        1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                    \end{pmatrix}
+                \end{align*}
+                즉
+                \begin{equation*}
+                    \begin{pmatrix}
+                        1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                        \end{pmatrix} \begin{pmatrix}
+                        x \\ y \\ z
+                        \end{pmatrix} = \begin{pmatrix}
+                        0 \\ 0 \\ 0
+                        \end{pmatrix} \ \Rightarrow \ \begin{pmatrix}
+                        x \\ y \\ z
+                        \end{pmatrix} = \begin{pmatrix}
+                        1 \\ -2 \\ 1
+                    \end{pmatrix} z
+                \end{equation*}
+                이 되어, $\Null (L) = \left<(1, -2, 1)\right>$이다.
+            \end{solution}
+
+        \item $\Range (L)\ \bigl(= \Image(L)\bigr)$을 구하시오.
+        \begin{solution}
+            $L \begin{pmatrix}
+                x \\ y \\ z
+            \end{pmatrix} = \begin{pmatrix}
+                1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
             \end{pmatrix} \begin{pmatrix}
-            x \\ y \\ z
-            \end{pmatrix} = \begin{pmatrix}
-            0 \\ 0 \\ 0
-            \end{pmatrix} \ \Rightarrow \ \begin{pmatrix}
-            x \\ y \\ z
-            \end{pmatrix} = \begin{pmatrix}
-            1 \\ -2 \\ 1
-        \end{pmatrix} z
-    \end{equation*}
-    이 되어, $\Null (L) = \left<(1, -2, 1)\right>$이다.
-\end{solution}
+                x \\ y \\ z
+            \end{pmatrix}$이므로,
+            \begin{align*}
+                L(\vec e_1) &= (1, 4, 7)\\
+                L(\vec e_2) &= (2, 5, 8)\\
+                L(\vec e_3) &= (3, 6, 9)
+            \end{align*}
+            가 된다.
+            따라서
+            \begin{align*}
+                \Range (L) &= \{L(x, y, z) \mid (x, y, z) \in V\}\\
+                           &= \{L(x \vec e_1 + y \vec e_2 + z \vec e_3) \mid (x, y, z) \in V\}\\
+                           &= \{x L(\vec e_1) + y L(\vec e_2) + z L(\vec e_3) \mid (x, y, z) \in V\}\\
+                           &= \Span \{L(\vec e_1), L(\vec e_2), L(\vec e_3)\}\\
+                           &= \left<(1, 4, 7), (2, 5, 8), (3, 6, 9)\right>\\
+                           &= \left<(1, 4, 7), (2, 5, 8)\right>
+            \end{align*}
+            이다.
+        \end{solution}
     \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
+\end{theorem}
+
+\begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리\footnote{계수와 퇴화 차수에 대해서는 다음 강좌에 정의한다.}]
+    벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 다음이 성립한다:
+    \begin{equation*}
+        \dim \Null (L) + \dim \Range (L) = \dim V.
+    \end{equation*}
+\end{theorem}
+
+\begin{example}
+    위의 예시에서 본 $L$에 대해 $\Null (L) = \left<(1, -2, 1)\right>$이고 $\Range (L) = \left<(1, 4, 7), (2, 5, 8)\right>$이어서, $\dim \Null (L) + \dim \Range (L) = 1 + 2 = 3$이 성립한다.
 \end{example}
 \end{document}
