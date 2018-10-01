@@ -17,6 +17,9 @@
 \newtheorem{theorem}{Theorem}
 
 \theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{remark}
 \newtheorem*{myremark}{My remark}
 
 \theoremstyle{remark}
@@ -419,40 +422,40 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
             \begin{solution}
                 \begin{align*}
                     &\begin{pmatrix}
-                        1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+                    1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
                     \end{pmatrix}&\rightarrow &\begin{pmatrix}
-                        1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -6 & -12
-                    \end{pmatrix}\\
-                    \xrightarrow{\text{Echelon}} &\begin{pmatrix}
-                        1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                    1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -6 & -12
+                \end{pmatrix}\\
+                \xrightarrow{\text{Echelon}} &\begin{pmatrix}
+                    1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 0
                     \end{pmatrix}&\xrightarrow{\text{Reduce}} &\begin{pmatrix}
-                        1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
-                    \end{pmatrix}
-                \end{align*}
-                즉
-                \begin{equation*}
-                    \begin{pmatrix}
-                        1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
-                        \end{pmatrix} \begin{pmatrix}
-                        x \\ y \\ z
-                        \end{pmatrix} = \begin{pmatrix}
-                        0 \\ 0 \\ 0
-                        \end{pmatrix} \ \Rightarrow \ \begin{pmatrix}
-                        x \\ y \\ z
-                        \end{pmatrix} = \begin{pmatrix}
-                        1 \\ -2 \\ 1
-                    \end{pmatrix} z
-                \end{equation*}
-                이 되어, $\Null (L) = \left<(1, -2, 1)\right>$이다.
-            \end{solution}
+                    1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                \end{pmatrix}
+            \end{align*}
+            즉
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0 & -1 \\ 0 & 1 & 2 \\ 0 & 0 & 0
+                    \end{pmatrix} \begin{pmatrix}
+                    x \\ y \\ z
+                    \end{pmatrix} = \begin{pmatrix}
+                    0 \\ 0 \\ 0
+                    \end{pmatrix} \ \Rightarrow \ \begin{pmatrix}
+                    x \\ y \\ z
+                    \end{pmatrix} = \begin{pmatrix}
+                    1 \\ -2 \\ 1
+                \end{pmatrix} z
+            \end{equation*}
+            이 되어, $\Null (L) = \left<(1, -2, 1)\right>$이다.
+        \end{solution}
 
-        \item $\Range (L)\ \bigl(= \Image(L)\bigr)$을 구하시오.
+    \item $\Range (L)\ \bigl(= \Image(L)\bigr)$을 구하시오.
         \begin{solution}
             $L \begin{pmatrix}
                 x \\ y \\ z
-            \end{pmatrix} = \begin{pmatrix}
+                \end{pmatrix} = \begin{pmatrix}
                 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
-            \end{pmatrix} \begin{pmatrix}
+                \end{pmatrix} \begin{pmatrix}
                 x \\ y \\ z
             \end{pmatrix}$이므로,
             \begin{align*}
@@ -472,21 +475,58 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
             \end{align*}
             이다.
         \end{solution}
-    \end{enumerate}
+\end{enumerate}
 \end{example}
 
 \begin{theorem}
     벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
 \end{theorem}
 
-\begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리\footnote{계수와 퇴화 차수에 대해서는 다음 강좌에 정의한다.}]
+\begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리]\label{rank-nullity}
     벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 다음이 성립한다:
     \begin{equation*}
-        \dim \Null (L) + \dim \Range (L) = \dim V.
+        \dim \Null (L) + \dim \Range (L) = \dim V.\footnote{계수와 퇴화 차수에 대해서는 다음 강좌에 정의한다.}
     \end{equation*}
 \end{theorem}
 
 \begin{example}
-    위의 예시에서 본 $L$에 대해 $\Null (L) = \left<(1, -2, 1)\right>$이고 $\Range (L) = \left<(1, 4, 7), (2, 5, 8)\right>$이어서, $\dim \Null (L) + \dim \Range (L) = 1 + 2 = 3$이 성립한다.
+    이전 예시에서 $\Null (L) = \left<(1, -2, 1)\right>$이고 $\Range (L) = \left<(1, 4, 7), (2, 5, 8)\right>$이므로, $\dim \Null (L) + \dim \Range (L) = 1 + 2 = 3$이 성립한다.
 \end{example}
+
+\begin{theorem}
+    벡터\marginpar{\small 2018년 9월 12일} 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$에 대해서 $\{\vec v_1, \dots, \vec v_n\}$이 $V$의 기저라면,
+    \begin{equation*}
+        \Range (L) = \Span \{L(\vec v_1), \dots, L(\vec v_n)\}
+    \end{equation*}
+    이다.
+\end{theorem}
+
+\begin{remark}
+    위에서 $\{L(\vec v_1), \dots, L(\vec v_n)\}$이 기저일 필요는 없다.
+\end{remark}
+
+\begin{theorem}\label{thm10}
+    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\Null (L) = \{\vecz\}$라는 것과 동치이다.
+\end{theorem}
+
+\begin{proof}
+    ($\Rightarrow$) $L(\vecz) = \vecz$이고, $L$은 일대일이므로 $L(\vec v) = \vecz$를 만족하는 $\vec v = \vecz$가 유일하다.
+
+    ($\Leftarrow$) $L(\vec v_1) = L(\vec v_2)$인 임의의 $\vec v_1, \vec v_2 \in V$를 고르자.
+    그렇다면
+    \begin{equation*}
+        L(\vec v_1) - L(\vec v_2) = L(\vec v_1 - \vec v_2) = \vecz
+    \end{equation*}
+    인데, $\Null (L) = \{\vecz\}$이므로 $\vec v_1 - \vec v_2 = \vecz$이다.
+    따라서 $\vec v_1 = \vec v_2$이며, $L$은 일대일 함수이다.
+\end{proof}
+
+\begin{theorem}
+    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\dim \Range (L) = \dim V$라는 것과 동치이다.
+\end{theorem}
+
+\begin{proof}
+    $L$이 일대일이라는 것은 Theorem~\ref{thm10}에 따라 $\Null (L) = \{\vecz\}$, 즉 $\dim \Null (L) = 0$이라는 것과 동치이다.\footnote{$\dim \Null (L) = 0\ \Leftrightarrow\ \Null (L) = \{\vecz\}$}
+    그런데 Theorem~\ref{rank-nullity}에 따라서 $\dim \Null (L) + \dim \Range (L) = \dim V$이므로, $\dim \Range(L) = \dim V$가 성립한다.
+\end{proof}
 \end{document}
