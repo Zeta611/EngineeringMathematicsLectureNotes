@@ -50,6 +50,7 @@ numbered=no
 \DeclareMathOperator{\Null}{N}
 \DeclareMathOperator{\Image}{Im}
 \DeclareMathOperator{\Range}{R}
+\DeclareMathOperator{\rank}{rank}
 
 \title{공학 수학\\강의 노트}
 
@@ -162,9 +163,9 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
             \[
                 a(1, 2, 3) + b(4, 5, 6) + c(7, 8, 10) = (0, 0, 0)
             \]
-            을 만족하는 $a, b, c$는 0밖에 없으므로 $(1, 2, 3), (4, 5, 6), (7, 8, 10)$은 (일차) 독립이다.
-        \item $\vecz, \vec v_1, \dots, \vec v_k$는 (일차) 종속이다.
-        \item $\vec v_1, \vec v_2, \vec v_3, \vec v_4$가 독립이면 $\vec v_1, \vec v_2, \vec v_3$ 또한 독립이다.
+            을 만족하는 $a, b, c$는 0밖에 없으므로 $(1, 2, 3), (4, 5, 6), (7, 8, 10)$은 일차 독립이다.
+        \item $\vecz, \vec v_1, \dots, \vec v_k$는 일차 종속이다.
+        \item $\vec v_1, \vec v_2, \vec v_3, \vec v_4$가 일차 독립이면 $\vec v_1, \vec v_2, \vec v_3$ 또한 일차 독립이다.
             (왜냐하면 $\vec v_1, \vec v_2, \vec v_3$ 가 종속이면 $\vec v_3 = c_1 \vec v_1 + c_2 \vec v_2 + 0 \vec v_4$이기 때문이다.)
     \end{itemize}
 \end{example}
@@ -195,14 +196,14 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \leavevmode
     \begin{enumerate}
         \item $a_1, a_2, a_3$는 서로 다른 실수이다.
-            이 때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 독립임을 보여라.
+            이 때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차 독립임을 보여라.
         \item $a_1, \dots, a_n$는 서로 다른 실수이다.
-            이 때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 독립임을 보여라.
+            이 때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차 독립임을 보여라.
     \end{enumerate}
 \end{homework}
 
 \begin{theorem}\label{thm3}
-    체 F에 대한 벡터 공간 $V$의 독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 독립이다.
+    체 F에 대한 벡터 공간 $V$의 일차 독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 일차 독립이다.
 \end{theorem}
 
 \begin{proof}
@@ -216,12 +217,12 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
         \vec w = -\left(\frac{c_1}{a} \vec v_1 + \dots + \frac{c_k}{a} \vec v_k\right) \in \left<\vec v_1, \dots, \vec v_k\right>
     \]
     이므로 모순이다.
-    따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 독립이므로 $c_1 = \dots = c_k = a = 0$이다.
-    그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 독립이다.
+    따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 일차 독립이므로 $c_1 = \dots = c_k = a = 0$이다.
+    그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 일차 독립이다.
 \end{proof}
 
-Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 독립이다.
-이에 따라 어떤 유한 생성 벡터 공간 $V$의 독립인 벡터들 $\vec v_1, \dots, \vec v_k$가 주어졌을 때, 선형 생성에 속하지 않는 벡터 $\vec w_{k + 1}, \dots, \vec w_{\dim V}$를 순차적으로 추가해서 기저를 구성할 수 있다.
+Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 일차 독립이다.
+이에 따라 어떤 유한 생성 벡터 공간 $V$의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$가 주어졌을 때, 선형 생성에 속하지 않는 벡터 $\vec w_{k + 1}, \dots, \vec w_{\dim V}$를 순차적으로 추가해서 기저를 구성할 수 있다.
 이를 기저 확장(basis extension)이라고 부른다.
 
 \begin{theorem}
@@ -241,7 +242,7 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
 \begin{definition}
     벡터 공간 $V$의 부분 집합 $W_1, W_2$에 대해서 $W_1 + W_2$를 다음과 같이 정의한다:
     \[
-        W_1 + W_2 = \{\vec v_1 + \vec v_2 \mid \vec v_1 \in W_1, \vec v_2 \in W_2\}.
+        W_1 + W_2 := \{\vec v_1 + \vec v_2 \mid \vec v_1 \in W_1, \vec v_2 \in W_2\}.
     \]
 \end{definition}
 
@@ -344,7 +345,7 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
     먼저 $\mathcal B_\cap \subseteq \mathcal B_U \cap \mathcal B_W$임은 자명하다.
     $\mathcal B_U \cap \mathcal B_W$에 속하는 원소 $\vec x$를 고르자.
     $\mathcal B_U \cap \mathcal B_W \subseteq U \cap W$이므로, $\vec x \in \Span \mathcal B_\cap$이다.
-    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
+    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 일차 독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
     따라서 $\mathcal B_U \cap \mathcal B_W \subseteq B_\cap$이다.
 \end{myremark}
 
@@ -398,15 +399,15 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
     \begin{enumerate}
         \item $L$의 핵(kernel) 혹은 영 공간(null space)\footnote{영 공간이라는 용어는 보통 행렬에 국한되어 사용되고, 핵은 추상적인 선형 변환에 대해 많이 사용된다.}
             \begin{equation*}
-                \ker L = \Null (L) = \{\vec v \in V \mid L(\vec v) = \vecz\}.
+                \ker L = \Null (L) := \{\vec v \in V \mid L(\vec v) = \vecz\}.
             \end{equation*} 
         \item $L$의 치역(range) 혹은 상(image)\footnote{치역은 정의역의 상이다. 상은 정의역의 부분 집합에 대해서도 정의될 수 있다.}
             \begin{equation*}
-                \Range (L) = \Image (L) = \{L(\vec v) \mid \vec v \in V\}.
+                \Range (L) = \Image (L) := \{L(\vec v) \mid \vec v \in V\}.
             \end{equation*}
         \item $L$이 일대일 함수(one-to-one function) 혹은 단사 함수(injective function, injection)라는 것은 다음을 의미한다:
             \begin{equation*}
-                \forall \vec v_1, \vec v_2 \in V \quad (L(\vec v_1) = L(\vec v_2)\ \Rightarrow\ \vec v_1 = \vec v_2)
+                \forall \vec v_1, \vec v_2 \in V \quad \bigl(L(\vec v_1) = L(\vec v_2)\ \Rightarrow\ \vec v_1 = \vec v_2\bigr)
             \end{equation*}
         \item $L$이 위로의(onto) 함수 혹은 단사 함수(surjective function, surjection)라는 것은 다음을 의미한다:
             \begin{equation*}
@@ -478,7 +479,7 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
 \end{enumerate}
 \end{example}
 
-\begin{theorem}
+\begin{theorem} \label{thm7}
     벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
 \end{theorem}
 
@@ -521,7 +522,7 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
     따라서 $\vec v_1 = \vec v_2$이며, $L$은 일대일 함수이다.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem} \label{thm11}
     벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\dim \Range (L) = \dim V$라는 것과 동치이다.
 \end{theorem}
 
@@ -529,4 +530,168 @@ Theorem~\ref{thm3}에 따르면, 독립인 벡터들의 선형 생성에 포함�
     $L$이 일대일이라는 것은 Theorem~\ref{thm10}에 따라 $\Null (L) = \{\vecz\}$, 즉 $\dim \Null (L) = 0$이라는 것과 동치이다.\footnote{$\dim \Null (L) = 0\ \Leftrightarrow\ \Null (L) = \{\vecz\}$}
     그런데 Theorem~\ref{rank-nullity}에 따라서 $\dim \Null (L) + \dim \Range (L) = \dim V$이므로, $\dim \Range(L) = \dim V$가 성립한다.
 \end{proof}
+
+\begin{theorem}
+    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 전단사라는 것은 $L$의 역함수 $L^{-1}: W \rightarrow V$가 존재한다는 것이다.
+    이 때, $L^{-1}$도 선형이다.
+\end{theorem}
+
+\begin{proof}
+    전단사 함수는 역함수가 존재하므로, $L^{-1}$이 선형임을 보이면 된다.
+
+    $W$에서 두 원소 $\vec w_1$와 $\vec w_2$를 고르자.
+    이 때,
+    \begin{align*}
+        L^{-1}(\vec w_1) &= \vec v_1\\
+        L^{-1}(\vec w_2) &= \vec v_2
+    \end{align*}
+    라고 하자.
+    그렇다면 $\vec w_1$과 $\vec w_2$의 선형 결합은 다음과 같이 표현된다:
+    \begin{align*}
+        c_1 \vec w_1 + c_2 \vec w_2 &= c_1 L(\vec v_1) + c_2 L(\vec v_2)\\
+                                &= L(c_1 \vec v_1 + c_2 \vec v_2)
+    \end{align*}
+    양변에 역함수를 취해주면
+    \begin{align*}
+        L^{-1}(c_1 \vec w_1 + c_2 \vec w_2) &= c_1 \vec v_1 + c_2 \vec v_2\\
+                                     &= c_1 L^{-1}(\vec w_1) + c_2 L^{-1}(\vec w_2)
+    \end{align*}
+    이 되어 $L^{-1}$ 또한 선형 변환임을 알 수 있다.
+\end{proof}
+
+\begin{definition}
+    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$에 대해서, $L$의 계수
+    \begin{equation*}
+        \rank L := \dim \Range(L)
+    \end{equation*}
+    로 정의한다.
+\end{definition}
+
+\begin{theorem}
+    벡터 공간 $U, V, W$에 대해 선형 변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
+    만약 $L_2$가 일대일 함수라면, 다음이 성립한다:
+    \begin{equation*}
+        \rank (L_2 \circ L_1) = \rank L_1
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    정리~\ref{thm7}에 의해 $\Range(L_1)$은 벡터 공간이므로, 선형 변환 $\tilde L_2: \Range(L_1) \rightarrow W$를 정의하자:
+    \begin{equation*}
+        \forall \vec v \in \Range(L_1) < V \qquad \tilde L_2(\vec v) = L_2(\vec v)
+    \end{equation*}
+    따라서 $\tilde L_2$ 또한 일대일 선형 변환임을 알 수 있다.
+    정리~\ref{thm11}에 따라 
+    \begin{equation*}
+        \dim \Range(\tilde L_2) = \dim \Range(L_1)
+    \end{equation*}
+    이다.
+    그런데
+    \begin{align*}
+        \Range(\tilde L_2) &= \{\tilde L_2 (\vec v) \mid \vec v \in \Range(L_1)\}\\
+                          &= \{L_2(\vec v) \mid \vec v \in \Range(L_1)\}
+    \end{align*}
+    이고
+    \begin{align*}
+        \Range(L_2 \circ L_2) &= \{(L_2 \circ L_1) (\vec u) \mid \vec u \in U\}\\
+                        &= \{L_2(\vec v) \mid \vec v = L_1(\vec u),\ \vec u \in U\}\\
+                        &= \{L_2(\vec v) \mid \vec v \in \Range(L_1)\}
+    \end{align*}
+    이므로 $\Range(\tilde L_2) = \Range(L_2 \circ L_1)$이다.
+    따라서 $\dim \Range(\tilde L_2) = \dim \Range(L_2 \circ L_1) = \dim \Range(L_1)$이 성립한다.
+\end{proof}
+
+\begin{definition}
+    $m \times n$ 행렬(matrix)이란, $m$개의 행과 $n$개의 열로 이루어진 원소들의 나열이다:
+    \begin{equation*}
+        \begin{pmatrix}
+            a_{11} & a_{12} & \dots & a_{1n}\\
+            a_{21} & a_{22} & \dots & a_{2n}\\
+            \vdots & \vdots & \ddots & \vdots\\
+            a_{m1} & a_{m2} & \dots & a_{mn}
+        \end{pmatrix}
+    \end{equation*}
+\end{definition}
+
+두 행렬의 곱은 각각의 행렬에 대응되는 선형 변환의 합성에 대응된다.
+즉, 어떤 선형 변환 $L_A: \mathbb R^l \rightarrow \mathbb R^m$이 $\vec x \mapsto A \vec x$로 대응시키고 $L_B: \mathbb R^m \rightarrow \mathbb R^n$이 $A \vec x \mapsto B(A \vec x) = BA \vec x$로 대응시킨다면, $BA$는 $L_B \circ L_A$에 대응된다.
+
+$n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이고 $B = A^{-1}$이다.
+이 때,
+\begin{equation*}
+    I = \begin{pmatrix}
+        1 & 0 & \dots & 0\\
+        0 & 1 & \dots & 0\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \dots & 1
+    \end{pmatrix}
+\end{equation*}
+을 말한다.
+
+\begin{definition}
+    선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간(column space)은 $A$의 열벡터들의 생성이다.
+    따라서 열공간은 $\Range(L_A)$와 동일하다.
+    이 때 열공간의 차원을 열계수(column rank)라고 부르며, $L_A$의 계수 $\dim \Range(L_A) = \rank L_A$와 같다.
+
+    마찬가지로, 행공간(row space)은 $A$의 행벡터들의 생성이다.
+    이 때 행공간의 차원을 행계수(row rank)라고 부른다.
+\end{definition}
+
+\begin{example}
+    $A = \begin{pmatrix}
+        1 & 2 & 3\\
+        4 & 5 & 6\\
+        7 & 8 & 9
+    \end{pmatrix}$에서 열벡터 $(1, 4, 7)$과 $(3, 6, 9)$는 일차 독립이고, $(2, 5, 8)$은 두 벡터의 합의 절반이므로 일차 종속이다.
+    따라서 열계수는 2이다.
+    또한 행벡터 $(1, 2, 3)$과 $(7, 8, 9)$는 일차 독립이고, $(4, 5, 6)$은 두 벡터의 합의 절반이므로 일차 종속이다.
+    따라서 행계수도 2이다.
+\end{example}
+
+\begin{theorem}
+    선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열계수와 행계수는 동일하다.
+    즉, 열계수와 행계수 모두 $\rank L_A$로 나타내어지며 바로 행렬 $A$를 사용해 $\rank A$라고 쓸 수 있다.
+\end{theorem}
+
+두 행을 교환하거나, 어떤 행의 상수배를 다른 행에 더하거나, 한 행에 0이 아닌 상수를 곱하는 연산을 행렬의 기본 행 연산이라고 한다.
+마찬가지로 열에 대해서도 기본 열 연산을 정의할 수 있다.
+
+\begin{theorem}
+    두 행렬 $A$와 $B$의 곱을 $C$라고 하자.
+    행렬 $A$에 기본 행 연산을 취한 새로운 행렬을 $\tilde A$라고 하자.
+    행렬 $C$에 동일한 기본 행 연산을 취한 새로운 행렬을 $\tilde C$라고 하면, 여전히 $\tilde A B = \tilde C$가 성립한다.
+\end{theorem}
+
+\begin{definition}
+    항등행렬 $I$에 기본 행/열 연산을 한 번한 것을 기본 행렬이라고 부른다.
+\end{definition}
+
+\begin{example}
+    $\begin{pmatrix}
+        0 & 1 & 0\\
+        1 & 0 & 0\\
+        0 & 0 & 1
+        \end{pmatrix}, \begin{pmatrix}
+        1 & 0 & 0\\
+        k & 1 & 0\\
+        0 & 0 & 1
+        \end{pmatrix}, \begin{pmatrix}
+        k & 0 & 0\\
+        0 & 1 & 0\\
+        0 & 0 & 1
+    \end{pmatrix}$은 모두 계수가 3인 기본 행렬들이다.
+\end{example}
+
+\begin{theorem}
+    $n \times n$ 기본 행렬의 계수는 $n$이다.
+\end{theorem}
+
+\begin{theorem}
+    선형 변환 $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대해서, 다음의 명제는 동치이다:
+    \begin{enumerate}
+        \item $L_A$는 일대일 함수이다.
+        \item $L_A$는 위로의 함수이다.
+        \item $\rank L_A = n$이다.
+    \end{enumerate}
+\end{theorem}
 \end{document}
