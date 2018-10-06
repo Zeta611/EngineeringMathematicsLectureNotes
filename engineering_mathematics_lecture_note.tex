@@ -7,6 +7,7 @@
 \usepackage{mathpazo}
 \setmainfont{TeX Gyre Pagella}
 \setmainhangulfont[ItalicFont={*},ItalicFeatures={FakeSlant=.167}]{NanumMyeongjo}
+\usepackage{anyfontsize}
 
 \usepackage{amsmath,mathtools,amssymb,amsthm,thmtools}
 
@@ -51,6 +52,13 @@ numbered=no
 \DeclareMathOperator{\Image}{Im}
 \DeclareMathOperator{\Range}{R}
 \DeclareMathOperator{\rank}{rank}
+
+\makeatletter
+\newcommand\nextitem[1]{%
+    \setcounter{\@enumctr}{#1}%
+    \addtocounter{\@enumctr}{-1}%
+}
+\makeatother
 
 \title{공학 수학\\강의 노트}
 
@@ -174,7 +182,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     벡터 공간 $V$의 부분 공간 $W$가 일차 독립인 $\vec v_1, \dots, \vec v_k$에 의해 생성될 때, $\{ \vec v_1, \dots, \vec v_k\}$를 $W$의 기저(basis)라고 한다.
 \end{definition}
 
-\begin{theorem}[차원(dimension) 정리]
+\begin{theorem}[차원(dimension) 정리] \label{thm:dimension}
     $W$가 유한 생성 (finitely generated) (부분) 공간이면 $W$의 기저의 원소의 개수는 동일하다.
     이 때, 기저의 원소의 개수를 $W$의 차원(dimension)이라고 하며, $\dim W$로 표기한다.
 \end{theorem}
@@ -202,7 +210,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \end{enumerate}
 \end{homework}
 
-\begin{theorem}\label{thm3}
+\begin{theorem}\label{thm:independence}
     체 F에 대한 벡터 공간 $V$의 일차 독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 일차 독립이다.
 \end{theorem}
 
@@ -221,11 +229,11 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 일차 독립이다.
 \end{proof}
 
-Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 일차 독립이다.
+Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 일차 독립이다.
 이에 따라 어떤 유한 생성 벡터 공간 $V$의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$가 주어졌을 때, 선형 생성에 속하지 않는 벡터 $\vec w_{k + 1}, \dots, \vec w_{\dim V}$를 순차적으로 추가해서 기저를 구성할 수 있다.
 이를 기저 확장(basis extension)이라고 부른다.
 
-\begin{theorem}
+\begin{theorem} \label{thm:intersection}
     체 $F$에 대한 벡터 공간 $V$의 부분 공간 $W_1, W_2$가 주어졌을 때, $W_1 \cap W_2$ 또한 $V$의 부분 공간이다.
 \end{theorem}
 
@@ -251,7 +259,7 @@ Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 
     원점이 아닌 한 점만을 원소로 하는 집합 $W_2 \subset \mathbb R^2$가 주어졌을 때, $W_1 + W_2$는 $W_1$의 직선을 $W_2$의 (유일한) 원소의 점으로 평행 이동한 직선을 나타낸다.
 \end{example}
 
-\begin{theorem}
+\begin{theorem} \label{thm:addition}
     체 $F$에 대한 벡터 공간 $V$의 부분 공간 $W_1$과 $W_2$에 대해서, $W_1 + W_2$도 $V$의 부분 공간이다.
 \end{theorem}
 
@@ -274,7 +282,7 @@ Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 
     따라서 $W_1 + W_2 < V$이다.
 \end{proof}
 
-\begin{theorem}[그라스만(Graßmann) 공식]
+\begin{theorem}[그라스만(Graßmann) 공식] \label{thm:grassmann}
     체\marginpar{\small 2018년 9월 10일} $F$에 대한 유한 생성 벡터 공간 $U$와 $W$에 대해, 다음이 성립한다:
     \begin{equation*}
         \dim (U + W) = \dim U + \dim W - \dim (U \cap W).
@@ -479,11 +487,11 @@ Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 
 \end{enumerate}
 \end{example}
 
-\begin{theorem} \label{thm7}
+\begin{theorem} \label{thm:nullspace_range}
     벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
 \end{theorem}
 
-\begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리]\label{rank-nullity}
+\begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리]\label{thm:rank_nullity}
     벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 다음이 성립한다:
     \begin{equation*}
         \dim \Null (L) + \dim \Range (L) = \dim V.\footnote{계수와 퇴화 차수에 대해서는 다음 강좌에 정의한다.}
@@ -506,7 +514,7 @@ Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 
     위에서 $\{L(\vec v_1), \dots, L(\vec v_n)\}$이 기저일 필요는 없다.
 \end{remark}
 
-\begin{theorem}\label{thm10}
+\begin{theorem}\label{thm:one_to_one_nullspace}
     벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\Null (L) = \{\vecz\}$라는 것과 동치이다.
 \end{theorem}
 
@@ -522,22 +530,23 @@ Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 
     따라서 $\vec v_1 = \vec v_2$이며, $L$은 일대일 함수이다.
 \end{proof}
 
-\begin{theorem} \label{thm11}
+\begin{theorem} \label{thm:one_to_one_range}
     벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\dim \Range (L) = \dim V$라는 것과 동치이다.
 \end{theorem}
 
 \begin{proof}
-    $L$이 일대일이라는 것은 Theorem~\ref{thm10}에 따라 $\Null (L) = \{\vecz\}$, 즉 $\dim \Null (L) = 0$이라는 것과 동치이다.\footnote{$\dim \Null (L) = 0\ \Leftrightarrow\ \Null (L) = \{\vecz\}$}
-    그런데 Theorem~\ref{rank-nullity}에 따라서 $\dim \Null (L) + \dim \Range (L) = \dim V$이므로, $\dim \Range(L) = \dim V$가 성립한다.
+    $L$이 일대일이라는 것은 Theorem~\ref{thm:one_to_one_nullspace}에 따라 $\Null (L) = \{\vecz\}$, 즉 $\dim \Null (L) = 0$이라는 것과 동치이다.\footnote{$\dim \Null (L) = 0\ \Leftrightarrow\ \Null (L) = \{\vecz\}$}
+    그런데 Theorem~\ref{thm:rank_nullity}에 따라서 $\dim \Null (L) + \dim \Range (L) = \dim V$이므로, $\dim \Range(L) = \dim V$가 성립한다.
 \end{proof}
 
-\begin{theorem}
-    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 전단사라는 것은 $L$의 역함수 $L^{-1}: W \rightarrow V$가 존재한다는 것이다.
+\begin{theorem} \label{thm:inverse}
+    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 전단사라는 것은 $L$의 역함수 $L^{-1}: W \rightarrow V$가 존재한다는 것과 동치이다.
     이 때, $L^{-1}$도 선형이다.
 \end{theorem}
 
 \begin{proof}
-    전단사 함수는 역함수가 존재하므로, $L^{-1}$이 선형임을 보이면 된다.
+    전단사 함수가 역함수를 가진다는 증명은 생략한다.
+    $L^{-1}$이 선형임을 보인다.
 
     $W$에서 두 원소 $\vec w_1$와 $\vec w_2$를 고르자.
     이 때,
@@ -576,12 +585,12 @@ Theorem~\ref{thm3}에 따르면, 일차 독립인 벡터들의 선형 생성에 
 \end{theorem}
 
 \begin{proof}
-    정리~\ref{thm7}에 의해 $\Range(L_1)$은 벡터 공간이므로, 선형 변환 $\tilde L_2: \Range(L_1) \rightarrow W$를 정의하자:
+    정리~\ref{thm:nullspace_range}에 의해 $\Range(L_1)$은 벡터 공간이므로, 선형 변환 $\tilde L_2: \Range(L_1) \rightarrow W$를 정의하자:
     \begin{equation*}
         \forall \vec v \in \Range(L_1) < V \qquad \tilde L_2(\vec v) = L_2(\vec v)
     \end{equation*}
     따라서 $\tilde L_2$ 또한 일대일 선형 변환임을 알 수 있다.
-    정리~\ref{thm11}에 따라 
+    정리~\ref{thm:one_to_one_range}에 따라 
     \begin{equation*}
         \dim \Range(\tilde L_2) = \dim \Range(L_1)
     \end{equation*}
@@ -652,7 +661,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서 행계수도 2이다.
 \end{example}
 
-\begin{theorem} \label{thm14}
+\begin{theorem} \label{thm:rank}
     선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열계수와 행계수는 동일하다.
     즉, 열계수와 행계수 모두 $\rank L_A$로 나타내어지며 바로 행렬 $A$를 사용해 $\rank A$라고 쓸 수 있다.
 \end{theorem}
@@ -732,7 +741,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
             그런데 $k \neq 0$이므로 $c_1 = \dots = c_n = 0$이다.
             따라서 $A$의 열벡터들도 일차 독립이다.
     \end{enumerate}
-    따라서, $A$의 열공간의 차원은 $n$이고 정리~\ref{thm14} 의해 $\rank A = n$이다.
+    따라서, $A$의 열공간의 차원은 $n$이고 정리~\ref{thm:rank} 의해 $\rank A = n$이다.
     마찬가지로 기본 행 연산의 경우에도 모든 과정을 행벡터에 대입하여 진행하면 동일하게 계수가 $n$임을 알 수 있다.
 \end{proof}
 
@@ -751,28 +760,138 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서 $\Span \mathcal B = W = V$이다.
 \end{proof}
 
-\begin{theorem}
-    선형 변환 $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대해서, 다음의 명제는 동치이다:
+\begin{theorem} \label{thm:onto}
+    선형 변환 $L: V \rightarrow V$에 대해서, 다음의 명제는 동치이다:
     \begin{enumerate}
-        \item $L_A$는 일대일 함수이다.
-        \item $L_A$는 위로의 함수이다.
-        \item $\rank L_A = n$이다.
+        \item $L$는 일대일 함수이다.
+        \item $L$는 위로의 함수이다.
+        \item $\rank L = \dim V$이다.
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    정리~\ref{thm11}에 의해 $L_A$가 일대일 함수라는 것은 $\dim \Range(L_A) = \dim \mathbb R^n$, 즉 $\rank L_A = n$이라는 것과 동치이다.
+    정리~\ref{thm:one_to_one_range}에 의해 $L$가 일대일 함수라는 것은 $\dim \Range(L) = \dim V$, 즉 $\rank L = \dim V$라는 것과 동치이다.
     따라서 1과 3은 동치이다.
 
     이제 2와 3이 동치임을 보이자.
-    만약 $L_A$가 위로의 함수이면, 공역과 치역이 동일하다.
-    즉, $\Range(L_A) = \mathbb R^n$이다.
-    따라서 $\rank L_A = \dim \Range(L_A) = \dim \mathbb R^n = n$이 성립한다.
+    만약 $L$가 위로의 함수이면, 공역과 치역이 동일하다.
+    즉, $\Range(L) = V$다.
+    따라서 $\rank L = \dim \Range(L) = \dim V$이 성립한다.
 
-    역으로, $\rank L_A = n$이라고 하자.
-    $\dim \Range(L_A) = \dim \mathbb R^n$이므로, 정리~\ref{thm17}에 따라 $\Range(L_A) = \mathbb R^n$이다.
-    그러므로 $L_A$는 위로의 함수이다.
+    역으로, $\rank L = \dim V$라고 하자.
+    $\dim \Range(L) = \dim V$이므로, 정리~\ref{thm17}에 따라 $\Range(L) = V$이다.
+    그러므로 $L$는 위로의 함수이다.
 
     따라서, 1, 2, 3은 모두 동치이다.
 \end{proof}
+
+지금까지의 내용을 간략히 요약하고, 약간의 내용을 덧붙인다.\marginpar{\small 2018년 9월 17일}
+체란 간단히 가감승제에 대해서 닫힌 집합이고, 벡터 공간은 덧셈과 스칼라 곱에 대해 닫힌 집합이다.
+또한 일차 결합, 일차 독립, 일차 종속과 기저 등에 대해서 다루었다.
+
+정리에는 기저의 원소의 개수가 항상 일정하다는 정리~\ref{thm:dimension}), 벡터 공간의 교집합도 벡터 공간이라는 것을 보여주는 정리~\ref{thm:intersection}, 벡터 공간의 합 또한 벡터 공간이며(정리~\ref{thm:addition}) 그 차원은 각각의 차원의 합에서 교집합의 차원을 제한 것이라는 정리~\ref{thm:grassmann}이 있었다.
+어떤 선형 사상의 영공간과 치역은 각각 정의역과 공역의 부분 공간이며(정리~\ref{thm:nullspace_range}), 그 차원의 합은 정의역의 차원임을 알려주는 정리~\ref{thm:rank_nullity}가 있었다.
+또한 행렬의 행계수, 열계수, 그리고 대응되는 선형 변환의 계수가 모두 같다는 정리~\ref{thm:rank}가 있었다.
+
+\begin{theorem} \label{thm:image_independence}
+    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$이 일대일 함수라는 것은 임의의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k \in V$을 골랐을 때, $L(\vec v_1), \dots, L(\vec v_k)$ 또한 일차 독립이라는 것과 동치이다.
+\end{theorem}
+
+\begin{proof}
+    먼저 $L$이 일대일 함수라고 가정하자.
+    임의의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 선형 변환 $L$을 취한 벡터들의 선형 결합
+    \begin{equation*}
+        c_1 L(\vec v_1) + \dots + c_n L(\vec v_n) = \vecz
+    \end{equation*}
+    를 생각하자.
+    그렇다면,
+    \begin{equation*}
+        L(c_1 \vec v_1 + \dots + c_n \vec v_n) = \vecz
+    \end{equation*}
+    인데, 정리~\ref{thm:one_to_one_nullspace}에 따라 $\Null(L) = \{\vecz\}$이므로
+    \begin{equation*}
+        c_1 \vec v_1 + \dots + c_n \vec v_n = \vecz
+    \end{equation*}
+    임을 알 수 있다.
+    그런데 $\vec v_1, \dots, \vec v_n$은 일차 독립이므로 $c_1 = \dots = c_n = 0$이다.
+    따라서 $L(\vec v_1), \dots, L(\vec v_k)$는 일차 독립이다.
+
+    이제 임의의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 대해서 $L(\vec v_1), \dots, L(\vec v_k)$가 일차 독립이라고 가정하자.
+    $L(\vec v_1) = L(\vec v_2)$인 $\vec v_1, \vec v_2 \in V$를 고르자.
+    그런데 $L(\vec v_1) = L(\vec v_2)$이므로, 가정한 명제의 대우에 따라서 $\vec v_1$과 $\vec v_2$는 일차 종속이다.
+    따라서
+    \begin{equation*}
+        c_1 \vec v_1 + c_2 \vec v_2 = \vecz
+    \end{equation*}
+    인 $(0, 0)$이 아닌 $(c_1, c_2)$가 존재한다.
+    일반성을 잃지 않고 $c_1 \neq 0$이라고 하면,
+    \begin{equation*}
+        \vec v_1 = - \frac{c_2}{c_1} \vec v_2
+    \end{equation*}
+    가 성립한다.
+    그런데 $L(\vec v_1 - \vec v_2) = \vecz$이므로,
+    \begin{align*}
+        L(\vec v_1 - \vec v_2) &= L\left(-\frac{c_2}{c_1} \vec v_2 - \vec v_2\right)\\
+                             &= L\left(-\left(1 + \frac{c_2}{c_1}\right) \vec v_2\right)\\
+                             &= -\left(1 + \frac{c_2}{c_1}\right) L(\vec v_2)\\
+                             &= \vecz
+    \end{align*}
+    이다.
+    여기서 $L(\vec v_2) = \vecz$일 경우는 모든 벡터에 대한 함숫값이 $\vecz$라는 것이고, 가정이 성립하려면 $V$와 $W$는 자명한 벡터 공간 $\{\vecz\}$이어야만 한다.
+    이 경우 가능한 선형 변환은 유일하며, $\vecz \in V$를 $\vecz \in W$와 대응시키는 일대일(이면서 위로의) 함수이다.
+    자명하지 않은 벡터 공간의 경우, $\frac{c_2}{c_1} = -1$이어야 하고 따라서 $\vec v_1 = \vec v_2$이다.
+    따라서 $L$은 일대일 함수이다.
+\end{proof}
+
+\begin{theorem} \label{thm:basis_span}
+    체 $F$에 대한 벡터 공간 $V$가 $\vec v_1, \dots, \vec v_n$에 의해 생성될 때, $\dim V \leq n$이다.
+    만약 $\dim V = n$이라면 $\vec v_1, \dots, \vec v_n$은 기저를 이룬다.\footnote{강의 내용에 없었으나 본인의 필요에 따라 추가하였다.}
+\end{theorem}
+
+\begin{proof}
+    $\{\vec v_1, \dots, \vec v_n\}$의 부분 집합 중 일차 독립인 최대인 $\{\vec v_1, \dots, \vec v_r\}$을 고르고, $\mathcal B$라고 쓰자.
+    (즉 $r \leq n$이며, 원소의 순서는 재배열되었을 수 있다.)
+    $V$의 임의의 원소 $\vec v$에 대해서, $V = \left<\vec v_1, \dots, \vec v_n\right>$이므로
+    \begin{equation*}
+        \exists c_1, \dots c_n \in F \quad \vec v = c_1 \vec v_1 + \dots + c_n \vec v_n
+    \end{equation*}
+    이다.
+    그런데 $\vec v_{r + 1}, \dots$은 $\mathcal B$와 일차 종속이므로 $\vec v_1, \dots, \vec v_r$로 다시 쓸 수 있다.
+    (일차 독립이라면 해당 벡터를 $\mathcal B$에 추가하여도 여전히 일차 독립이어야 하는데, 그러면 $\mathcal B$가 최대인 일차 독립 부분 집합이라는 가정에 모순된다.)
+    따라서,
+    \begin{align*}
+        \vec v &= c_1 \vec v_1 + \dots + c_r \vec v_r + c_{r + 1} \vec v_{r + 1} + \dots\\
+               &= c_1 \vec v_1 + \dots + c_r \vec v_r + c_{r + 1} \sum_{i = 1}^r \alpha_i \vec v_i + \dots\\
+               &= \bigl(c_1 + \alpha_1 (c_{r + 1} + \dots)\bigr) \vec v_1 + \dots + \bigl(c_r + \alpha_r (c_{r + 1} + \dots)\bigr) \vec v_r
+    \end{align*}
+    로 표현되어 $\Span B = V$이다.
+    결국 $\mathcal B$는 $V$의 기저이며, $\dim V = r \leq n$이다.
+
+    이렇게 구성한 $\mathcal B$의 크기가 $n$이라고 하자.
+    $\mathcal B \subseteq \{\vec v_1, \dots, \vec v_n\}$인데 $|\mathcal B| = \bigl|\{\vec v_1, \dots, \vec v_n\}\bigr|$이므로, $\mathcal B = \{\vec v_1, \dots, \vec v_n\}$이다.
+    따라서, $\vec v_1, \dots, \vec v_n$은 기저를 이룬다.
+\end{proof}
+
+지금까지의 내용에 따라서, 벡터 공간 $V$와 $W$간의 선형 변환 $L$에 대해서 다음의 명제들은 서로 동치이다:
+\begin{enumerate}
+    \item $L$은 일대일 함수이다.
+    \item $\Null(L) = \{\vecz\}$이다. (정리~\ref{thm:one_to_one_nullspace})
+    \item $\rank L = \dim V$이다. (정리~\ref{thm:one_to_one_range})
+    \item 임의의 선형 독립인 $\vec v_1, \dots, \vec v_k \in V$에 대해서, $L(\vec v_1), \dots, L(\vec v_n)$도 선형 독립이다. (정리~\ref{thm:image_independence})
+\end{enumerate}
+
+만약 $V = W$이고, $V$가 유한 생성 벡터 공간이라면, 다음의 명제들도 위 명제들과 동치이다:
+\begin{enumerate}
+    \nextitem{5}
+    \item $L$은 위로의 함수이다. (정리~\ref{thm:onto})
+    \item $L$은 일대일 대응이다. (1과 5로부터)
+    \item $L$은 가역(invertible)이다. (정리~\ref{thm:inverse})
+\end{enumerate}
+
+나아가 $V = W = \mathbb R^n$일 경우, 선형 변환 $L$에 대응되는 $n \times n$ 행렬 $A$가 있어서 다음의 명제들도 위 명제들과 동치이다:
+\begin{enumerate}
+    \nextitem{8}
+    \item $\forall \vec v \in \mathbb R^n \quad L^{-1}(\vec v) = A^{-1} \vec v$이다. (7로부터)
+    \item $A$의 열벡터들은 일차 독립이다. (정리~\ref{thm:rank}와 \ref{thm:basis_span})
+\end{enumerate}
 \end{document}
