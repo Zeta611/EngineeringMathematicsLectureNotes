@@ -652,7 +652,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서 행계수도 2이다.
 \end{example}
 
-\begin{theorem}
+\begin{theorem} \label{thm14}
     선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열계수와 행계수는 동일하다.
     즉, 열계수와 행계수 모두 $\rank L_A$로 나타내어지며 바로 행렬 $A$를 사용해 $\rank A$라고 쓸 수 있다.
 \end{theorem}
@@ -689,6 +689,52 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 \begin{theorem}
     $n \times n$ 기본 행렬의 계수는 $n$이다.
 \end{theorem}
+
+\begin{proof}
+    $n \times n$ 항등행렬 $I$에 대해서, 각 열벡터를 $\vec e_1, \dots, \vec e_n$이라고 하자.
+    이 때 열벡터들은 서로 독립이므로 $\rank I = n$이다.
+
+    $I$에 어떤 기본 열 연산을 하여 기본 행렬 $A$를 만들었다고 하자.
+    기본 열 연산이 1. 열의 교환인 경우, 2. 열의 상수배를 하여 다른 열에 더한 경우, 3. 열에 0이 아닌 상수를 곱한 경우에 대해서 생각하자.
+    \begin{enumerate}
+        \item 열을 교환했을 경우\\
+            $i$ 번째 열과 $j$ 번째 열을 교환했다고 하자.
+            그렇다면 $A$의 열벡터들은 $\vec e_1, \dots, \vec e_j \text{($i$ 번째)}, \dots, \vec e_i \text{($j$ 번째)}, \dots, \vec e_n$이 된다.
+            그런데 $\vec e_1, \dots, \vec e_n$은 순서와 상관없이 일차 독립이므로 $A$의 열벡터들도 일차 독립이다.
+        \item 열의 상수배를 하여 다른 열에 더한 경우\\
+            $i$ 번째 열에 $k$배를 하여 $j$ 열에 더했다고 하자.
+            ($k \neq 0$이다.)
+            그렇다면 $A$의 열벡터들은 $\vec e_1, \dots, \vec e_j + k \vec e_i, \dots, \vec e_n$이 된다.
+            다음의 선형 결합을 생각하자:
+            \begin{equation*}
+                c_1 \vec e_1 + \dots + c_j (\vec e_j + k \vec e_1) + \dots + c_n \vec e_n = \vecz
+            \end{equation*}
+            만약 $c_j$가 0이 아니라면, 다음과 같이 식을 재작성할 수 있다:
+            \begin{equation*}
+                \vec e_j = -\frac{1}{c_j} \left(c_1 \vec e_1 + \dots + c_{j - 1} \vec e_{j - 1} + c_{j + 1} \vec e_{j + 1} + \dots + c_n \vec e_n\right) + \frac{k}{c_j} \vec e_1
+            \end{equation*}
+            이 때 $\frac{k}{c_j} \neq 0$이므로 $\vec e_1, \dots, \vec e_n$이 독립이라는 것에 모순이다.
+            따라서 $c_j = 0$이다.
+            결국,
+            \begin{equation*}
+                c_1 \vec e_1 + \dots + c_{j - 1} \vec e_{j - 1} + c_{j + 1} \vec e_{j + 1} + \dots + c_n \vec e_n = \vecz
+            \end{equation*}
+            가 되어, $c_1 = \dots = c_{j - 1} = c_{j + 1} = \dots = c_n = 0$이다.
+            그런데 $c_j = 0$이므로 $c_1 = \dots = c_n = 0$이어서, $A$의 열벡터들도 일차 독립이다.
+        \item 열에 0이 아닌 상수를 곱한 경우\\
+            $i$ 번째 열에 $k \neq 0$을 곱했다고 하자.
+            그렇다면 $A$의 열벡터들은 $\vec e_1, \dots, k \vec e_i, \vec e_n$이 된다.
+            다음의 선형 결합을 생각하자:
+            \begin{equation*}
+                c_1 \vec e_1 + \dots + c_i (k \vec e_i) + \dots + c_n \vec e_n = \vecz
+            \end{equation*}
+            $\vec e_1, \dots, \vec e_n$의 독립성에 의해 $c_1 = \dots = c_i k = \dots = c_n = 0$이 된다.
+            그런데 $k \neq 0$이므로 $c_1 = \dots = c_n = 0$이다.
+            따라서 $A$의 열벡터들도 일차 독립이다.
+    \end{enumerate}
+    따라서, $A$의 열공간의 차원은 $n$이고 정리~\ref{thm14} 의해 $\rank A = n$이다.
+    마찬가지로 기본 행 연산의 경우에도 모든 과정을 행벡터에 대입하여 진행하면 동일하게 계수가 $n$임을 알 수 있다.
+\end{proof}
 
 \begin{theorem}
     선형 변환 $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대해서, 다음의 명제는 동치이다:
