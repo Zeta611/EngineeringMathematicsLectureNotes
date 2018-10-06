@@ -736,6 +736,21 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     마찬가지로 기본 행 연산의 경우에도 모든 과정을 행벡터에 대입하여 진행하면 동일하게 계수가 $n$임을 알 수 있다.
 \end{proof}
 
+\begin{theorem}\label{thm17}
+    어떤 벡터 공간 $V$와 부분 공간 $W$가 주어졌다고 하자.
+    그렇다면, 다음이 성립한다:
+    \begin{equation*}
+        \dim W = \dim V \Rightarrow W = V
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    $\dim W = \dim V = n$일 때, 벡터 공간 $W$의 기저 $\mathcal B = \vec w_1, \dots, \vec w_n$를 구성하자.
+    $\vec w_1, \dots, \vec w_n$은 일차 독립이고 $V$의 원소이기도 하므로, 기저 확장을 통해 $V$의 기저를 구성할 수 있다.
+    그런데 이미 $|\mathcal B| = \dim V$이므로, $\mathcal B$는 $V$의 기저이다.
+    따라서 $\Span \mathcal B = W = V$이다.
+\end{proof}
+
 \begin{theorem}
     선형 변환 $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대해서, 다음의 명제는 동치이다:
     \begin{enumerate}
@@ -744,4 +759,20 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
         \item $\rank L_A = n$이다.
     \end{enumerate}
 \end{theorem}
+
+\begin{proof}
+    정리~\ref{thm11}에 의해 $L_A$가 일대일 함수라는 것은 $\dim \Range(L_A) = \dim \mathbb R^n$, 즉 $\rank L_A = n$이라는 것과 동치이다.
+    따라서 1과 3은 동치이다.
+
+    이제 2와 3이 동치임을 보이자.
+    만약 $L_A$가 위로의 함수이면, 공역과 치역이 동일하다.
+    즉, $\Range(L_A) = \mathbb R^n$이다.
+    따라서 $\rank L_A = \dim \Range(L_A) = \dim \mathbb R^n = n$이 성립한다.
+
+    역으로, $\rank L_A = n$이라고 하자.
+    $\dim \Range(L_A) = \dim \mathbb R^n$이므로, 정리~\ref{thm17}에 따라 $\Range(L_A) = \mathbb R^n$이다.
+    그러므로 $L_A$는 위로의 함수이다.
+
+    따라서, 1, 2, 3은 모두 동치이다.
+\end{proof}
 \end{document}
