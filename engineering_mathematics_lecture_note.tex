@@ -12,22 +12,24 @@
 \usepackage{amsmath,mathtools,amssymb,amsthm,thmtools}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}{정의}
 
 \theoremstyle{theorem}
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{정리}
 
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+\newtheorem*{remark}{참고}
 
 \theoremstyle{remark}
-\newtheorem*{myremark}{My remark}
+\newtheorem*{myremark}{나의 참고}
 
 \theoremstyle{remark}
-\newtheorem*{example}{Example}
+\newtheorem*{example}{예시}
 
 \theoremstyle{remark}
-\newtheorem*{homework}{Homework}
+\newtheorem*{homework}{숙제}
+
+\renewcommand*{\proofname}{증명}
 
 \declaretheoremstyle[
 spaceabove=6pt, spacebelow=6pt,
@@ -39,7 +41,7 @@ headpunct={.},
 qed=$\blacksquare$,
 numbered=no
 ]{solstyle}
-\declaretheorem[style=solstyle]{solution}
+\declaretheorem[style=solstyle,name=풀이]{solution}
 
 \usepackage{diffcoeff}
 \diffset[roman = true]
@@ -290,7 +292,12 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{theorem}
 
 \begin{proof}
-    $l = \dim (U \cap W)$, $n = \dim U - l$, $m = \dim W - l$이라 하고, $U \cap W$의 기저를 $\mathcal B_\cap = \{\vec v_1, \dots, \vec v_l\}$라고 하자.
+    \begin{align*}
+        l &= \dim (U \cap W)\\
+        n &= \dim U - l\\
+        m &= \dim W - l
+    \end{align*}
+    이라 하고, $U \cap W$의 기저를 $\mathcal B_\cap = \{\vec v_1, \dots, \vec v_l\}$라고 하자.
     $\mathcal B_\cap$을 확장해 $U$의 기저 $\mathcal B_U = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n\}$와 $W$의 기저 $\mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec w_1, \dots, \vec w_m\}$을 구성할 수 있다.
 
     이제 $\mathcal B_U \cup \mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n, \vec w_1, \dots, \vec w_m\}$\footnote{이를 위해서는 $\vec u_1, \dots, \vec u_n$과 $\vec w_1, \dots, \vec w_m$에 겹치는 원소가 없어야 한다.
@@ -576,7 +583,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
     로 정의한다.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem} \label{thm:one_to_one_rank}
     벡터 공간 $U, V, W$에 대해 선형 변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
     만약 $L_2$가 일대일 함수라면, 다음이 성립한다:
     \begin{equation*}
@@ -602,7 +609,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
     \end{align*}
     이고
     \begin{align*}
-        \Range(L_2 \circ L_2) &= \{(L_2 \circ L_1) (\vec u) \mid \vec u \in U\}\\
+        \Range(L_2 \circ L_1) &= \{(L_2 \circ L_1) (\vec u) \mid \vec u \in U\}\\
                         &= \{L_2(\vec v) \mid \vec v = L_1(\vec u),\ \vec u \in U\}\\
                         &= \{L_2(\vec v) \mid \vec v \in \Range(L_1)\}
     \end{align*}
@@ -643,9 +650,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 
 \begin{definition}
     선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간(column space)은 $A$의 열벡터들의 생성이다.
-    따라서 열공간은 $\Range(L_A)$와 동일하다.
-    이 때 열공간의 차원을 열계수(column rank)라고 부르며, $L_A$의 계수 $\dim \Range(L_A) = \rank L_A$와 같다.
-
+    이 때 열공간의 차원을 열계수(column rank)라고 부른다.
     마찬가지로, 행공간(row space)은 $A$의 행벡터들의 생성이다.
     이 때 행공간의 차원을 행계수(row rank)라고 부른다.
 \end{definition}
@@ -661,6 +666,11 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서 행계수도 2이다.
 \end{example}
 
+\begin{theorem} \label{thm:rank_matrix}
+    선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간은 $\Range(L_A)$와 동일하다.
+    따라서 열계수는 $L_A$의 계수 $\dim \Range(L_A) = \rank L_A$와 같다.
+\end{theorem}
+
 \begin{theorem} \label{thm:rank}
     선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열계수와 행계수는 동일하다.
     즉, 열계수와 행계수 모두 $\rank L_A$로 나타내어지며 바로 행렬 $A$를 사용해 $\rank A$라고 쓸 수 있다.
@@ -669,7 +679,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 두 행을 교환하거나, 어떤 행의 상수배를 다른 행에 더하거나, 한 행에 0이 아닌 상수를 곱하는 연산을 행렬의 기본 행 연산이라고 한다.
 마찬가지로 열에 대해서도 기본 열 연산을 정의할 수 있다.
 
-\begin{theorem}
+\begin{theorem} \label{thm:elementary_op}
     두 행렬 $A$와 $B$의 곱을 $C$라고 하자.
     행렬 $A$에 기본 행 연산을 취한 새로운 행렬을 $\tilde A$라고 하자.
     행렬 $C$에 동일한 기본 행 연산을 취한 새로운 행렬을 $\tilde C$라고 하면, 여전히 $\tilde A B = \tilde C$가 성립한다.
@@ -695,7 +705,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     \end{pmatrix}$은 모두 계수가 3인 기본 행렬들이다.
 \end{example}
 
-\begin{theorem}
+\begin{theorem} \label{thm:rank_elementary}
     $n \times n$ 기본 행렬의 계수는 $n$이다.
 \end{theorem}
 
@@ -894,4 +904,286 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     \item $\forall \vec v \in \mathbb R^n \quad L^{-1}(\vec v) = A^{-1} \vec v$이다. (7로부터)
     \item $A$의 열벡터들은 일차 독립이다. (정리~\ref{thm:rank}와 \ref{thm:basis_span})
 \end{enumerate}
+
+\begin{theorem}
+    벡터\marginpar{\small2018년 9월 19일} 공간 $U, V, W$에 대해 선형 변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
+    만약 $L_1$가 위로의 함수라면, 다음이 성립한다:
+    \begin{equation*}
+        \rank (L_2 \circ L_1) = \rank L_2
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    $\Range(L_2 \circ L_1)$은 $L_2 \circ L_1$에 대한 $U$의 상이다.
+    즉,
+    \begin{align*}
+        \Range(L_2 \circ L_1) &= \{(L_2 \circ L_1)(\vec u) \mid \vec u \in U\}\\
+                        &= \{L_2(\vec v) \mid \vec v = L_1(\vec u),\ \vec u \in U\}
+    \end{align*}
+    이다.
+    그런데 $L_1$은 위로의 함수이므로
+    \begin{equation*}
+        \forall \vec v \in V \quad \exists \vec u \in U \quad L_1(\vec u) = \vec v
+    \end{equation*}
+    가 성립한다.
+    따라서
+    \begin{equation*}
+        \{L_2(\vec v) \mid \vec v = L_1(\vec u),\ \vec u \in U\} = \{L_2(\vec v) \mid \vec v \in V\} = \Range(L_2)
+    \end{equation*}
+    이다.
+    따라서 $\Range(L_2 \circ L_1) = \Range(L_2)$이며, $\rank(L_2 \circ L_1) = \rank L_2$이 성립함을 알 수 있다.
+\end{proof}
+
+\begin{theorem} \label{thm:elementary_op_rank}
+    $m \times n$ 행렬 $A$의 계수는 기본 행/열 연산에 대해 불변이다.
+\end{theorem}
+
+\begin{proof}
+    기본 행/열 연산에 대응되는 기본 행렬을 $E$라고 하고, $A$에 기본 행/열 연산을 취한 행렬을 $\tilde A$라고 하면,
+    \begin{equation*}
+        EA = \tilde A
+    \end{equation*}
+    이다.
+    이 때 $E$는 $m \times n$ 행렬을 $m \times n$ 행렬로 보내는 $m \times m$ 행렬이다.
+    각 행렬 $E, A, \tilde A$에 대응되는 행렬을 $L_E, L_A, L_{\tilde A}$라고 하자.
+    이 때 $\tilde A = EA$이므로 $L_{\tilde A} = L_E \circ L_A$이다.
+    정리~\ref{thm:rank_matrix}와 \ref{thm:rank_elementary}에 따라 $\rank E = \rank L_E = m$이고, 따라서 정리~\ref{thm:one_to_one_nullspace}에 따라 $L_E$는 일대일이다.
+    그러므로 정리~\ref{thm:one_to_one_rank}에 의해
+    \begin{equation*}
+        \rank L_{\tilde A} = \rank (L_E \circ L_A) = \rank L_A
+    \end{equation*}
+    임을 알 수 있다.
+    따라서 정리~\ref{thm:rank_matrix}에 의해 $\rank A = \rank \tilde A$이다.
+\end{proof}
+
+\begin{theorem}
+    $m \times n$ 행렬 $A$의 행계수는 기본 행/열 연산에 대해 불변이다.
+\end{theorem}
+
+\begin{proof}
+    정리~\ref{thm:rank}에 의해 자명하다.
+
+    혹은, 좀 더 직접적으로 정리~\ref{thm:elementary_op_rank}에서 각 행렬에 전치를 취한 후, 기본 행 연산은 기본 열 연산으로, 기본 열 연산은 기본 행 연산으로 바꾼다면 행계수를 열계수로 바꾸어 생각할 수 있다.
+\end{proof}
+
+다음의 연립방정식
+\begin{align*}
+    x + 2y + 3z &= 6\\
+    4x + 5y + 6z &= 15\\
+    7x + 8y + 9z &= 24
+\end{align*}
+은 다음과 같이 행렬로 표현할 수 있다.
+\begin{equation*}
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        4 & 5 & 6\\
+        7 & 8 & 9
+    \end{pmatrix}
+    \begin{pmatrix}
+        x\\
+        y\\
+        z
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        6\\
+        15\\
+        24
+    \end{pmatrix}
+\end{equation*}
+   정리~\ref{thm:elementary_op}에 의해 $\begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix}$와 $\begin{pmatrix}6\\15\\24\end{pmatrix}$에 동일한 기본 행 연산을 하여도 등식은 성립한다.
+   따라서
+   \begin{equation*}
+        \begin{pmatrix}
+            1 & 2& 3\\
+            0 & -3 & -6\\
+            0 & 0 & 0
+        \end{pmatrix}
+        \begin{pmatrix}
+            x\\
+            y\\
+            z
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            6\\
+            -9\\
+            0
+        \end{pmatrix}
+   \end{equation*}
+   이 된다.
+   위와 같은 형태를 행사다리꼴(row echelon form)이라고 한다.
+   여기서 $z$는 유일하게 정해지지 않으므로 $z = a$라고 놓으면, 후진 대입법을 통해서 $y$와 $x$를 구할 수 있다:
+   \begin{equation*}
+       \begin{pmatrix}
+           x\\
+           y\\
+           z
+       \end{pmatrix}
+       =
+       \begin{pmatrix}
+           a\\
+           3 - 2a\\
+           a
+       \end{pmatrix}
+       =
+       a
+       \begin{pmatrix}
+           1\\
+           -2\\
+           1
+       \end{pmatrix}
+       +
+       \begin{pmatrix}
+           0\\
+           3\\
+           0
+       \end{pmatrix}.
+   \end{equation*}
+혹은 여기서 그치지 않고 다음과 같이 기본 행 연산을 더 할 수도 있다:
+\begin{equation*}
+    \begin{pmatrix}
+        1 & 0 & -1\\
+        0 & 1 & 2\\
+        0 & 0 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        x\\
+        y\\
+        z
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0\\
+        3\\
+        0
+    \end{pmatrix}
+\end{equation*}
+위와 같은 행태를 기약행 사다리꼴(reduced row echelon form)이라고 한다.
+여기서 바로 $z = a$로 둔다면, 쉽게 위와 동일한 해를 구할 수 있다.\footnote{사실 동일한 표현이 나오는 것은 특수한 경우지만, 결과적으로는 동일한 해집합을 구하게 된다.}
+따라서 해집합은
+\begin{equation*}
+    \left\{ a
+    \begin{pmatrix}
+        1\\
+        -2\\
+        1
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+        0\\
+        3\\
+        0
+    \end{pmatrix}
+    \,\middle|\, a \in \mathbb R
+    \right\}
+\end{equation*}
+임을 알 수 있다.
+
+\begin{theorem} \label{thm:nonhomogeneous}
+    계수 행렬 $A$와 변수 열벡터 $\vec x$, 그리고 상수 열벡터 $\vec b$가 주어졌을 때, 방정식 $A \vec x = \vec b$의 해집합은
+    \begin{equation*}
+        \Null(L_A) + \vec x_0
+    \end{equation*}
+    이 때, $L_A$는 행렬 $A$에 대응되는 선형 변환이고, $\vec x_0$는 특수해(particular solution)이다.
+\end{theorem}
+\begin{proof}
+    $\vec x$를 임의의 해, $\vec x_0$를 특수해라고 하자.
+    즉,
+    \begin{align*}
+        A\vec x &= \vec b\\
+        A\vec x_0 &= \vec b
+    \end{align*}
+    이다.
+    따라서
+    \begin{equation*}
+        A(\vec x - \vec x_0) = 0
+    \end{equation*}
+    과 같이 정리할 수 있고, 정의에 따라 $\vec x - \vec x_0 \in \Null(L_A)$임을 알 수 있다.
+    즉 $\vec x \in \Null(L_A) + \vec x_0$이고, 해집합은 $\Null(L_A) + \vec x_0$의 부분집합이다.
+
+    이제 $\Null(L_A) + \vec x_0$의 한 원소 $\vec x$를 고르자.
+    즉, $\Null(L_A)$에 속하는 한 원소 $\vec x_h$에 대해서
+    \begin{equation*}
+        \vec x = \vec x_h + \vec x_0
+    \end{equation*}
+    를 만족한다.
+    양변에 행렬 $A$를 왼쪽에 곱해주면
+    \begin{equation*}
+        A \vec x = A (\vec x_h + \vec x_0) = A \vec x_h + A \vec x_0
+    \end{equation*}
+    이다.
+    그런데 $\vec x_h \in \Null(L_A)$이므로 $A \vec x_h = \vecz$이고, $\vec x_0$는 특수해이므로 $A \vec x_0 = \vec b$이다.
+    따라서
+    \begin{equation*}
+        A \vec x = \vecz + \vec b
+    \end{equation*}
+    이어서, $\vec x$는 해집합에 속한다.
+    따라서 $\Null(L_A) + \vec x_0$는 해집합의 부분 집합이며, 위에서 해집합 또한 $\Null(L_A) + \vec x_0$의 부분 집합임을 보였으므로 둘은 같은 집합이다.
+\end{proof}
+
+\begin{example}
+    방정식 $2x + y = 3$, 혹은
+    \begin{equation*}
+        \bigl(2 \quad 1\bigr)\,
+        \begin{pmatrix}
+            x\\
+            y
+        \end{pmatrix}
+        = 3
+    \end{equation*}
+    의 해는 방정식 $2x + y = 0$의 해를 좌표 평면에 나타냈을 때 그려지는 직선을 평행 이동한 것이다.
+    특히 특수해 $(0, 3)$, $\bigl(\frac 32, 0\bigr)$, $(1, 1)$ 등에서 하나를 골라 원래 그래프가 해당 점을 지나도록 평행 이동한 것이다.
+\end{example}
+
+정리~\ref{thm:nonhomogeneous}에서 상수 열벡터 $\vec b = \vecz$인 경우의 방정식을 동차 연립 일차 방정식(homogeneous system of linear equations), $\vec b \neq \vecz$인 경우를 비동차 연립 일차 방정(nonhomogeneous system of linear equations)라고 한다.
+다음의 동립 연립 일차 방정식
+\begin{equation*}
+    \begin{pmatrix}
+        1 & 2 & 0 & 3 & 1 & 2\\
+        0 & 0 & 1 & 0 & 0 & 2\\
+        0 & 0 & 0 & 1 & 0 & 1\\
+        0 & 0 & 0 & 0 & 1 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1\\
+        x_2\\
+        x_3\\
+        x_4\\
+        x_5\\
+        x_6
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        0\\
+        0\\
+        0\\
+        0
+    \end{pmatrix}
+\end{equation*}
+을 풀면,
+\begin{equation*}
+    (x_1, x_2, x_3, x_4, x_5, x_6) = a(2, 0, -2, -1, -1, 1) + b(-2, 1, 0, 0, 0, 0)\quad a, b \in \mathbb R
+\end{equation*}
+이 해가 된다.
+이 때 $a$와 $b$는 자유 변수이다.
+따라서, 위 계수 행렬의 영공간은
+\begin{equation*}
+    \left<(2, 0, -2, -1, -1, 1), (-2, 1, 0, 0, 0, 0)\right>
+\end{equation*}
+임을 알 수 있다.
+여기서 주목할 사실은 변수 벡터의 원소 개수가 6, 즉 차원이 6인 벡터 공간에 있다는 것이고, 해공간 혹은 영공간의 차원\footnote{또는 자유변수의 개수, 즉 자유도}이 2라는 것이다.
+이 둘의 차이 $6 - 2 = 4$는 계수 행렬의 계수(rank)와 같은데, 이는 우연이 아니라 계수--퇴화 차수 정리(정리~\ref{thm:rank_nullity})에 의한 것이다.
+
+\begin{definition}
+    어떤 $n \times n$ 행렬 $A$에 대해서 $n \times n$ 행렬 $B$가 존재해서
+    \begin{equation*}
+        A B = I
+    \end{equation*}
+    일 때, $A$를 가역 행렬이라 하고 $B$를 $A$의 역행렬이라고 한다.
+\end{definition}
+
+가역 행렬 $A$의 역행렬 $B$를 찾는 것은 식 $AB = I$에서 $A$를 $I$로 만드는 일련의 기본 행연산들을 $A$와 $I$에 동일하게 취하는 것이다.
+$I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB = I$는 $IB = C$가 된다.
+따라서 $C$는 $A$의 역행렬 $B$가 됨을 알 수 있다.
 \end{document}
