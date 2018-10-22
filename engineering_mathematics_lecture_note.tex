@@ -17,6 +17,9 @@
 \theoremstyle{theorem}
 \newtheorem{theorem}{정리}
 
+\theoremstyle{theorem}
+\newtheorem{lemma}{도움정리}
+
 \theoremstyle{remark}
 \newtheorem*{remark}{참고}
 
@@ -54,6 +57,7 @@ numbered=no
 \DeclareMathOperator{\Image}{Im}
 \DeclareMathOperator{\Range}{R}
 \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Sym}{Sym}
 
 \makeatletter
 \newcommand\nextitem[1]{%
@@ -98,15 +102,15 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 \end{example}
 
 \begin{definition}
-    벡터 공간은 (roughly) 덧셈($+$)과 (어떤 체에 속하는) 상수배가 정의된 집합이다.
+    벡터공간은 (roughly) 덧셈($+$)과 (어떤 체에 속하는) 상수배가 정의된 집합이다.
 \end{definition}
 
 \begin{example}
     \leavevmode
     \begin{itemize}
-        \item $\mathbb R^2 = \left\{\begin{pmatrix} a \\ b \end{pmatrix}\,\middle|\,a, b \in \mathbb R\right\}$은 덧셈에 대해 닫혀 있고, $k \in \mathbb R$의 곱에 대해 닫혀 있으므로 실수체에 대한 벡터 공간이다.
-        \item $\mathbb R^n$과 $\mathbb C^n$은 실수체에 대한 벡터 공간이면서 유리수체에 대한 벡터 공간이다.
-            이를 각각 $\mathbb Q$--벡터 공간, $\mathbb R$--벡터 공간이라고 한다.
+        \item $\mathbb R^2 = \left\{\begin{pmatrix} a \\ b \end{pmatrix}\,\middle|\,a, b \in \mathbb R\right\}$은 덧셈에 대해 닫혀 있고, $k \in \mathbb R$의 곱에 대해 닫혀 있으므로 실수체에 대한 벡터공간이다.
+        \item $\mathbb R^n$과 $\mathbb C^n$은 실수체에 대한 벡터공간이면서 유리수체에 대한 벡터공간이다.
+            이를 각각 $\mathbb Q$--벡터공간, $\mathbb R$--벡터공간이라고 한다.
         \item $\mathcal C^0_I = \{f: I \rightarrow \mathbb R \mid f \text{는 연속 함수},\ I \subset \mathbb R\}$에서는, $x \mapsto \sin x$가 하나의 벡터이다.
         \item $\mathcal C^n_I = \bigl\{f: I \rightarrow \mathbb R\,\bigm|\,\exists f^{(n)},\ f^{(n)} \text{는 연속 함수},\ I \subset \mathbb R\bigr\}$이며, $\mathcal C^0_I > \mathcal C^1_I > \dots > \mathcal C^\infty_I$이다.
     \end{itemize}
@@ -114,31 +118,31 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 
 \setcounter{definition}{1}
 \begin{definition}
-    체 $F$에 대한 벡터 공간 $V$의 원소 $\vec v_1, \dots, \vec v_n \in V$에 대해서,
+    체 $F$에 대한 벡터공간 $V$의 원소 $\vec v_1, \dots, \vec v_n \in V$에 대해서,
     \begin{enumerate}
         \item $c_1, \dots, c_k \in F$일 때
             \[
                 c_1 \vec v_1 + \dots + c_k \vec v_k
             \]
-            는 $\vec v_1, \dots, \vec v_k$의 일차 결합, 혹은 선형 결합(linear combination)이라고 한다.
+            는 $\vec v_1, \dots, \vec v_k$의 일차결합, 혹은 선형결합(linear combination)이라고 한다.
         \item $\vec v_1, \dots, \vec v_k$의 선형 생성
             \[
                 \Span \{\vec v_1, \dots, \vec v_k\} = \left< \vec v_1, \dots, \vec v_k \right>
             \]
-            은 모든 일차 결합의 집합이다.
+            은 모든 일차결합의 집합이다.
             예를 들어, 어떤 평면 상의 평행하지 않은 두 벡터는 그 평면을 선형 생성한다.
-        \item $W \subset V$이면서 $W$가 벡터 공간이면, $W$는 $V$의 부분 공간이라고 하며 $W < V$로 표기한다.
-            예를 들어, 실수 평면으로 나타내어지는 $\mathbb R^2$ 벡터 공간의 부분 집합인 원점을 지나는 직선은 벡터 공간이므로 부분 공간이다.
-            반면, 원점을 지나지 않는 직선은 부분 집합이지만 벡터 공간은 아니므로 부분 공간이 아니다.
+        \item $W \subset V$이면서 $W$가 벡터공간이면, $W$는 $V$의 부분공간이라고 하며 $W < V$로 표기한다.
+            예를 들어, 실수 평면으로 나타내어지는 $\mathbb R^2$ 벡터공간의 부분집합인 원점을 지나는 직선은 벡터공간이므로 부분공간이다.
+            반면, 원점을 지나지 않는 직선은 부분집합이지만 벡터공간은 아니므로 부분공간이 아니다.
         \item $W = \Span \{\vec v_1, \dots, \vec v_k\} < V$일 때, $\vec v_1, \dots, \vec v_k$는 $W$의 생성자(generator)라고 한다.
-        \item $\vec v_1, \dots, \vec v_k$가 일차 종속(linearly dependent)라는 것은 어느 하나가 다른 벡터들의 일차 결합이라는 것이다.
-            일차 종속이 아니면 일차 독립(linearly independent)이라고 한다.
-            예를 들어, $\mathbb R^3$에서 $(1, 2, 3), (4, 5, 6), (7, 8, 9)$는 일차 종속인 반면, $(1, 2, 3), (4, 5, 6)$은 일차 독립이다.
+        \item $\vec v_1, \dots, \vec v_k$가 일차종속(linearly dependent)라는 것은 어느 하나가 다른 벡터들의 일차결합이라는 것이다.
+            일차종속이 아니면 일차독립(linearly independent)이라고 한다.
+            예를 들어, $\mathbb R^3$에서 $(1, 2, 3), (4, 5, 6), (7, 8, 9)$는 일차종속인 반면, $(1, 2, 3), (4, 5, 6)$은 일차독립이다.
     \end{enumerate}
 \end{definition}
 
 \begin{theorem}
-    체\marginpar{\small 2018년 9월 5일} $F$에 대한 벡터 공간 $V$의 원소들 $\vec v_1, \dots, \vec v_k$가 일차 독립이라는 것은, $c_1, \dots, c_k \in F$일 때
+    체\marginpar{\small 2018년 9월 5일} $F$에 대한 벡터공간 $V$의 원소들 $\vec v_1, \dots, \vec v_k$가 일차독립이라는 것은, $c_1, \dots, c_k \in F$일 때
     \[
         c_1 \vec v_1 + \dots + c_k \vec v_k = \vecz\ \Rightarrow\ c_1 = \dots = c_k = 0
     \]
@@ -151,9 +155,9 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \[
         \vec v_k = - \left(\frac{c_1}{c_k} \vec v_1 + \dots + \frac{c_{k - 1}}{c_k} \vec v_{k - 1}\right)
     \]
-    이므로 $\vec v_1, \dots, \vec v_k$가 일차 독립이라는 가정에 모순된다.
+    이므로 $\vec v_1, \dots, \vec v_k$가 일차독립이라는 가정에 모순된다.
 
-    $(\Leftarrow)$ $\vec v_1, \dots, \vec v_k$가 일차 종속이라고 가정하자.
+    $(\Leftarrow)$ $\vec v_1, \dots, \vec v_k$가 일차종속이라고 가정하자.
     즉, (재배열 가능하여) 어떤 $a_1, \dots, a_{k - 1} \in F$가 존재해서,
     \[
         \vec v_k = a_1 \vec v_1 + \dots + a_{k - 1} \vec v_{k - 1}
@@ -173,20 +177,20 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
             \[
                 a(1, 2, 3) + b(4, 5, 6) + c(7, 8, 10) = (0, 0, 0)
             \]
-            을 만족하는 $a, b, c$는 0밖에 없으므로 $(1, 2, 3), (4, 5, 6), (7, 8, 10)$은 일차 독립이다.
-        \item $\vecz, \vec v_1, \dots, \vec v_k$는 일차 종속이다.
-        \item $\vec v_1, \vec v_2, \vec v_3, \vec v_4$가 일차 독립이면 $\vec v_1, \vec v_2, \vec v_3$ 또한 일차 독립이다.
-            (왜냐하면 $\vec v_1, \vec v_2, \vec v_3$ 가 종속이면 $\vec v_3 = c_1 \vec v_1 + c_2 \vec v_2 + 0 \vec v_4$이기 때문이다.)
+            을 만족하는 $a, b, c$는 0밖에 없으므로 $(1, 2, 3), (4, 5, 6), (7, 8, 10)$은 일차독립이다.
+        \item $\vecz, \vec v_1, \dots, \vec v_k$는 일차종속이다.
+        \item $\vec v_1, \vec v_2, \vec v_3, \vec v_4$가 일차독립이면 $\vec v_1, \vec v_2, \vec v_3$ 또한 일차독립이다.
+            ($\vec v_1, \vec v_2, \vec v_3$ 가 종속이면 $\vec v_3 = c_1 \vec v_1 + c_2 \vec v_2 + 0 \vec v_4$이기 때문이다.)
     \end{itemize}
 \end{example}
 
 \begin{definition}
-    벡터 공간 $V$의 부분 공간 $W$가 일차 독립인 $\vec v_1, \dots, \vec v_k$에 의해 생성될 때, $\{ \vec v_1, \dots, \vec v_k\}$를 $W$의 기저(basis)라고 한다.
+    벡터공간 $V$의 부분공간 $W$가 일차독립인 $\vec v_1, \dots, \vec v_k$에 의해 생성될 때, $\{ \vec v_1, \dots, \vec v_k\}$를 $W$의 기저(basis)라고 한다.
 \end{definition}
 
 \begin{theorem}[차원(dimension) 정리] \label{thm:dimension}
-    $W$가 유한 생성 (finitely generated) (부분) 공간이면 $W$의 기저의 원소의 개수는 동일하다.
-    이 때, 기저의 원소의 개수를 $W$의 차원(dimension)이라고 하며, $\dim W$로 표기한다.
+    $W$가 유한생성된(finitely generated) (부분)공간이면 $W$의 기저의 원소의 개수는 동일하다.
+    이 때, 기저의 원소 개수를 $W$의 차원(dimension)이라고 하며, $\dim W$로 표기한다.
 \end{theorem}
 
 \begin{example}
@@ -206,14 +210,14 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \leavevmode
     \begin{enumerate}
         \item $a_1, a_2, a_3$는 서로 다른 실수이다.
-            이 때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차 독립임을 보여라.
+            이 때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차독립임을 보여라.
         \item $a_1, \dots, a_n$는 서로 다른 실수이다.
-            이 때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차 독립임을 보여라.
+            이 때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차독립임을 보여라.
     \end{enumerate}
 \end{homework}
 
 \begin{theorem}\label{thm:independence}
-    체 F에 대한 벡터 공간 $V$의 일차 독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 일차 독립이다.
+    체 F에 대한 벡터공간 $V$의 일차독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 일차독립이다.
 \end{theorem}
 
 \begin{proof}
@@ -227,20 +231,20 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
         \vec w = -\left(\frac{c_1}{a} \vec v_1 + \dots + \frac{c_k}{a} \vec v_k\right) \in \left<\vec v_1, \dots, \vec v_k\right>
     \]
     이므로 모순이다.
-    따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 일차 독립이므로 $c_1 = \dots = c_k = a = 0$이다.
-    그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 일차 독립이다.
+    따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 일차독립이므로 $c_1 = \dots = c_k = a = 0$이다.
+    그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 일차독립이다.
 \end{proof}
 
-Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 일차 독립이다.
-이에 따라 어떤 유한 생성 벡터 공간 $V$의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$가 주어졌을 때, 선형 생성에 속하지 않는 벡터 $\vec w_{k + 1}, \dots, \vec w_{\dim V}$를 순차적으로 추가해서 기저를 구성할 수 있다.
+Theorem~\ref{thm:independence}에 따르면, 일차독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 일차독립이다.
+이에 따라 어떤 유한생성된 벡터공간 $V$의 일차독립인 벡터들 $\vec v_1, \dots, \vec v_k$가 주어졌을 때, 선형 생성에 속하지 않는 벡터 $\vec w_{k + 1}, \dots, \vec w_{\dim V}$를 순차적으로 추가해서 기저를 구성할 수 있다.
 이를 기저 확장(basis extension)이라고 부른다.
 
 \begin{theorem} \label{thm:intersection}
-    체 $F$에 대한 벡터 공간 $V$의 부분 공간 $W_1, W_2$가 주어졌을 때, $W_1 \cap W_2$ 또한 $V$의 부분 공간이다.
+    체 $F$에 대한 벡터공간 $V$의 부분공간 $W_1, W_2$가 주어졌을 때, $W_1 \cap W_2$ 또한 $V$의 부분공간이다.
 \end{theorem}
 
 \begin{proof}
-    $\vec v_1, \vec v_2 \in W_1$이면서 $\vec v_1, \vec v_2 \in W_2$이면, 각각 벡터 공간이므로 임의의 $c_1, c_2 \in F$에 대해서 $c_1 \vec v_1 + c_2 \vec v_2 \in W_1$이면서 $c_1 \vec v_1 + c_2 \vec v_2 \in W_2$이다.
+    $\vec v_1, \vec v_2 \in W_1$이면서 $\vec v_1, \vec v_2 \in W_2$이면, 각각 벡터공간이므로 임의의 $c_1, c_2 \in F$에 대해서 $c_1 \vec v_1 + c_2 \vec v_2 \in W_1$이면서 $c_1 \vec v_1 + c_2 \vec v_2 \in W_2$이다.
     즉,
     \[
         \vec v_1, \vec v_2 \in W_1 \cap W_2\ \Rightarrow\ \forall c_1, c_2 \in F \quad c_1 \vec v_1 + c_2 \vec v_2 \in W_1 \cap W_2
@@ -250,24 +254,24 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{proof}
 
 \begin{definition}
-    벡터 공간 $V$의 부분 집합 $W_1, W_2$에 대해서 $W_1 + W_2$를 다음과 같이 정의한다:
+    벡터공간 $V$의 부분집합 $W_1, W_2$에 대해서 $W_1 + W_2$를 다음과 같이 정의한다:
     \[
         W_1 + W_2 := \{\vec v_1 + \vec v_2 \mid \vec v_1 \in W_1, \vec v_2 \in W_2\}.
     \]
 \end{definition}
 
 \begin{example}
-    좌표 평면으로 나타내어지는 벡터 공간 $\mathbb R^2$의 부분 집합(이면서 부분 공간인)인 원점을 지나는 직선을 $W_1$이라고 하자.
+    좌표 평면으로 나타내어지는 벡터공간 $\mathbb R^2$의 부분집합(이면서 부분공간인)인 원점을 지나는 직선을 $W_1$이라고 하자.
     원점이 아닌 한 점만을 원소로 하는 집합 $W_2 \subset \mathbb R^2$가 주어졌을 때, $W_1 + W_2$는 $W_1$의 직선을 $W_2$의 (유일한) 원소의 점으로 평행 이동한 직선을 나타낸다.
 \end{example}
 
 \begin{theorem} \label{thm:addition}
-    체 $F$에 대한 벡터 공간 $V$의 부분 공간 $W_1$과 $W_2$에 대해서, $W_1 + W_2$도 $V$의 부분 공간이다.
+    체 $F$에 대한 벡터공간 $V$의 부분공간 $W_1$과 $W_2$에 대해서, $W_1 + W_2$도 $V$의 부분공간이다.
 \end{theorem}
 
 \begin{proof}
     임의의 $\vec v_1 \in W_1 + W_2$에 대해 어떤 $\vec w_1 \in W_1$과 $\vec w_2 \in W_2$가 존재하며, 마찬가지로 임의의 $\vec v_2 \in W_1 + W_2$에 대해 어떤 $\vec u_1 \in W_1$과 $\vec u_2 \in W_2$가 존재한다.
-    $W_1$과 $W_2$는 부분 공간이므로 임의의 $c_1, c_2 \in F$에 대해
+    $W_1$과 $W_2$는 부분공간이므로 임의의 $c_1, c_2 \in F$에 대해
     \begin{align*}
         c_1 \vec w_1 + c_2 \vec w_2 &\in W_1\\
         c_1 \vec u_1 + c_2 \vec u_2 &\in W_2
@@ -285,7 +289,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{proof}
 
 \begin{theorem}[그라스만(Graßmann) 공식] \label{thm:grassmann}
-    체\marginpar{\small 2018년 9월 10일} $F$에 대한 유한 생성 벡터 공간 $U$와 $W$에 대해, 다음이 성립한다:
+    체\marginpar{\small 2018년 9월 10일} $F$에 대한 유한생성된 벡터공간 $U$와 $W$에 대해, 다음이 성립한다:
     \begin{equation*}
         \dim (U + W) = \dim U + \dim W - \dim (U \cap W).
     \end{equation*}
@@ -339,11 +343,11 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
         \vec z = d_1 \vec v_1 + \dots + d_l \vec v_l
     \]
     이 되는 $d_1, \dots, \vec d_l \in F$가 유일하게 존재한다.
-    그런데 $\mathcal B_U$와 $\mathcal B_W$는 일차 독립이므로 $j \in \{1, \dots, l\}$에 대해 $b_j = 0$이고 $k \in \{1, \dots, m\}$에 대해 $c_k = 0$이다.
+    그런데 $\mathcal B_U$와 $\mathcal B_W$는 일차독립이므로 $j \in \{1, \dots, l\}$에 대해 $b_j = 0$이고 $k \in \{1, \dots, m\}$에 대해 $c_k = 0$이다.
     이에 따라 $\vec z = \vecz$이 되어 $i \in \{1, \dots, l\}$에 대해서도 $a_i = 0$이다.
-    그러므로 $\mathcal B_U \cup \mathcal B_W$은 일차 독립이다.
+    그러므로 $\mathcal B_U \cup \mathcal B_W$은 일차독립이다.
 
-    $\mathcal B_U \cup \mathcal B_W$는 $U + W$를 생성하고 일차 독립이므로, $U + W$의 기저이다.
+    $\mathcal B_U \cup \mathcal B_W$는 $U + W$를 생성하고 일차독립이므로, $U + W$의 기저이다.
     결국
     \begin{align*}
         \dim (U + W) &= |\mathcal B_U \cup \mathcal B_W|\\
@@ -355,21 +359,21 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 
 \begin{myremark}
     위 증명에서 $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$임을 보이자.\footnote{참고로, $\mathcal B_U \setminus \mathcal B_W$는 $U \setminus W$의 기저가 아니다.
-    $\vecz \in U \cap W$임에 따라 $\vecz \notin U \setminus W$이므로, $U \setminus W$는 벡터 공간이 아니기 때문이다.}
+    $\vecz \in U \cap W$임에 따라 $\vecz \notin U \setminus W$이므로, $U \setminus W$는 벡터공간이 아니기 때문이다.}
     위 증명이 성립하기 위해서는 $\{\vec u_1, \dots, \vec u_n\}$와 $\{\vec w_1, \dots, \vec w_m\}$의 모든 원소가 달라야하기 때문이다.
     먼저 $\mathcal B_\cap \subseteq \mathcal B_U \cap \mathcal B_W$임은 자명하다.
     $\mathcal B_U \cap \mathcal B_W$에 속하는 원소 $\vec x$를 고르자.
     $\mathcal B_U \cap \mathcal B_W \subseteq U \cap W$이므로, $\vec x \in \Span \mathcal B_\cap$이다.
-    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 일차 독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
+    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 일차독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
     따라서 $\mathcal B_U \cap \mathcal B_W \subseteq B_\cap$이다.
 \end{myremark}
 
 \begin{definition}
-    체 $F$에 대한 벡터 공간 $V, W$에서, 임의의 $\vec v_1, \vec v_2 \in V$와 $c_1, c_2 \in F$에 대해
+    체 $F$에 대한 벡터공간 $V, W$에서, 임의의 $\vec v_1, \vec v_2 \in V$와 $c_1, c_2 \in F$에 대해
     \begin{equation*}
         L(c_1 \vec v_1 + c_2 \vec v_2) = c_1 L(\vec v_1) + c_2 L(\vec v_2)
     \end{equation*}
-    을 만족하는 함수 $L: V \rightarrow W$을 선형 변환(linear transformation) 혹은 선형 사상(linear map)이라고 한다.
+    을 만족하는 함수 $L: V \rightarrow W$을 선형변환(linear transformation) 혹은 선형사상(linear map)이라고 한다.
 \end{definition}
 
 \begin{example}
@@ -387,7 +391,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
                     x \\ y
                 \end{pmatrix}
             \end{equation*}
-            은 선형 변환이다.
+            은 선형변환이다.
         \item $L: \mathbb R^2 \rightarrow \mathbb R^3$에 대해,
             \begin{equation*}
                 L \begin{pmatrix}
@@ -402,21 +406,21 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
                     0 \\ 0 \\ 1
                 \end{pmatrix}
             \end{equation*}
-            은 선형 변환이 아니다.
+            은 선형변환이 아니다.
         \item 어떤 사상 $L: \mathbb R^n \rightarrow \mathbb R^m$이 존재한다는 것은 어떤 $m \times n$ 행렬 $A$가 존재해서 $L(\vec x) = A \vec x$라는 것이다.
-        \item $f \mapsto f'$의 미분 연산자 $L: \mathcal C^\infty_I \rightarrow \mathcal C^\infty_I$는 $L(c_1 f_1 + c_2 f_2) = c_1 f'_1 + c_2 f'_2 = c_1 L(f_1) + c_2 L(f_2)$이므로 선형 변환이다.
-        \item $f(x) \mapsto \int_0^x f(t)\, \dd t$의 적분 연산자 $L: \mathcal C^\infty_I \rightarrow \mathcal C^\infty_I$ 또한 선형 변환이다.
+        \item $f \mapsto f'$의 미분 연산자 $L: \mathcal C^\infty_I \rightarrow \mathcal C^\infty_I$는 $L(c_1 f_1 + c_2 f_2) = c_1 f'_1 + c_2 f'_2 = c_1 L(f_1) + c_2 L(f_2)$이므로 선형변환이다.
+        \item $f(x) \mapsto \int_0^x f(t)\, \dd t$의 적분 연산자 $L: \mathcal C^\infty_I \rightarrow \mathcal C^\infty_I$ 또한 선형변환이다.
     \end{enumerate}
 \end{example}
 
 \begin{definition}
-    두 벡터 공간 $V$와 $W$ 간의 선형 변환 $L: V \rightarrow W$에 대해 다음이 정의된다:
+    두 벡터공간 $V$와 $W$ 간의 선형변환 $L: V \rightarrow W$에 대해 다음이 정의된다:
     \begin{enumerate}
-        \item $L$의 핵(kernel) 혹은 영 공간(null space)\footnote{영 공간이라는 용어는 보통 행렬에 국한되어 사용되고, 핵은 추상적인 선형 변환에 대해 많이 사용된다.}
+        \item $L$의 핵(kernel) 혹은 영 공간(null space)\footnote{영 공간이라는 용어는 보통 행렬에 국한되어 사용되고, 핵은 추상적인 선형변환에 대해 많이 사용된다.}
             \begin{equation*}
                 \ker L = \Null (L) := \{\vec v \in V \mid L(\vec v) = \vecz\}.
             \end{equation*} 
-        \item $L$의 치역(range) 혹은 상(image)\footnote{치역은 정의역의 상이다. 상은 정의역의 부분 집합에 대해서도 정의될 수 있다.}
+        \item $L$의 치역(range) 혹은 상(image)\footnote{치역은 정의역의 상이다. 상은 정의역의 부분집합에 대해서도 정의될 수 있다.}
             \begin{equation*}
                 \Range (L) = \Image (L) := \{L(\vec v) \mid \vec v \in V\}.
             \end{equation*}
@@ -495,11 +499,11 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{example}
 
 \begin{theorem} \label{thm:nullspace_range}
-    벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
+    벡터공간 $V$와 $W$간의 선형사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
 \end{theorem}
 
 \begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리]\label{thm:rank_nullity}
-    벡터 공간 $V$와 $W$간의 선형 사상 $L: V \rightarrow W$에 대해 다음이 성립한다:
+    벡터공간 $V$와 $W$간의 선형사상 $L: V \rightarrow W$에 대해 다음이 성립한다:
     \begin{equation*}
         \dim \Null (L) + \dim \Range (L) = \dim V.\footnote{계수와 퇴화 차수에 대해서는 다음 강좌에 정의한다.}
     \end{equation*}
@@ -510,7 +514,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{example}
 
 \begin{theorem}
-    벡터\marginpar{\small 2018년 9월 12일} 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$에 대해서 $\{\vec v_1, \dots, \vec v_n\}$이 $V$의 기저라면,
+    벡터\marginpar{\small 2018년 9월 12일} 공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$에 대해서 $\{\vec v_1, \dots, \vec v_n\}$이 $V$의 기저라면,
     \begin{equation*}
         \Range (L) = \Span \{L(\vec v_1), \dots, L(\vec v_n)\}
     \end{equation*}
@@ -522,7 +526,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{remark}
 
 \begin{theorem}\label{thm:one_to_one_nullspace}
-    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\Null (L) = \{\vecz\}$라는 것과 동치이다.
+    벡터공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$가 일대일이라는 것은 $\Null (L) = \{\vecz\}$라는 것과 동치이다.
 \end{theorem}
 
 \begin{proof}
@@ -538,7 +542,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{proof}
 
 \begin{theorem} \label{thm:one_to_one_range}
-    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 일대일이라는 것은 $\dim \Range (L) = \dim V$라는 것과 동치이다.
+    벡터공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$가 일대일이라는 것은 $\dim \Range (L) = \dim V$라는 것과 동치이다.
 \end{theorem}
 
 \begin{proof}
@@ -547,7 +551,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{proof}
 
 \begin{theorem} \label{thm:inverse}
-    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$가 전단사라는 것은 $L$의 역함수 $L^{-1}: W \rightarrow V$가 존재한다는 것과 동치이다.
+    벡터공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$가 전단사라는 것은 $L$의 역함수 $L^{-1}: W \rightarrow V$가 존재한다는 것과 동치이다.
     이 때, $L^{-1}$도 선형이다.
 \end{theorem}
 
@@ -562,7 +566,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
         L^{-1}(\vec w_2) &= \vec v_2
     \end{align*}
     라고 하자.
-    그렇다면 $\vec w_1$과 $\vec w_2$의 선형 결합은 다음과 같이 표현된다:
+    그렇다면 $\vec w_1$과 $\vec w_2$의 선형결합은 다음과 같이 표현된다:
     \begin{align*}
         c_1 \vec w_1 + c_2 \vec w_2 &= c_1 L(\vec v_1) + c_2 L(\vec v_2)\\
                                 &= L(c_1 \vec v_1 + c_2 \vec v_2)
@@ -572,11 +576,11 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
         L^{-1}(c_1 \vec w_1 + c_2 \vec w_2) &= c_1 \vec v_1 + c_2 \vec v_2\\
                                      &= c_1 L^{-1}(\vec w_1) + c_2 L^{-1}(\vec w_2)
     \end{align*}
-    이 되어 $L^{-1}$ 또한 선형 변환임을 알 수 있다.
+    이 되어 $L^{-1}$ 또한 선형변환임을 알 수 있다.
 \end{proof}
 
 \begin{definition}
-    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$에 대해서, $L$의 계수
+    벡터공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$에 대해서, $L$의 계수
     \begin{equation*}
         \rank L := \dim \Range(L)
     \end{equation*}
@@ -584,7 +588,7 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{definition}
 
 \begin{theorem} \label{thm:one_to_one_rank}
-    벡터 공간 $U, V, W$에 대해 선형 변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
+    벡터공간 $U, V, W$에 대해 선형변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
     만약 $L_2$가 일대일 함수라면, 다음이 성립한다:
     \begin{equation*}
         \rank (L_2 \circ L_1) = \rank L_1
@@ -592,11 +596,11 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
 \end{theorem}
 
 \begin{proof}
-    정리~\ref{thm:nullspace_range}에 의해 $\Range(L_1)$은 벡터 공간이므로, 선형 변환 $\tilde L_2: \Range(L_1) \rightarrow W$를 정의하자:
+    정리~\ref{thm:nullspace_range}에 의해 $\Range(L_1)$은 벡터공간이므로, 선형변환 $\tilde L_2: \Range(L_1) \rightarrow W$를 정의하자:
     \begin{equation*}
         \forall \vec v \in \Range(L_1) < V \qquad \tilde L_2(\vec v) = L_2(\vec v)
     \end{equation*}
-    따라서 $\tilde L_2$ 또한 일대일 선형 변환임을 알 수 있다.
+    따라서 $\tilde L_2$ 또한 일대일 선형변환임을 알 수 있다.
     정리~\ref{thm:one_to_one_range}에 따라 
     \begin{equation*}
         \dim \Range(\tilde L_2) = \dim \Range(L_1)
@@ -633,8 +637,8 @@ Theorem~\ref{thm:independence}에 따르면, 일차 독립인 벡터들의 선�
     \end{equation*}
 \end{definition}
 
-두 행렬의 곱은 각각의 행렬에 대응되는 선형 변환의 합성에 대응된다.
-즉, 어떤 선형 변환 $L_A: \mathbb R^l \rightarrow \mathbb R^m$이 $\vec x \mapsto A \vec x$로 대응시키고 $L_B: \mathbb R^m \rightarrow \mathbb R^n$이 $A \vec x \mapsto B(A \vec x) = BA \vec x$로 대응시킨다면, $BA$는 $L_B \circ L_A$에 대응된다.
+두 행렬의 곱은 각각의 행렬에 대응되는 선형변환의 합성에 대응된다.
+즉, 어떤 선형변환 $L_A: \mathbb R^l \rightarrow \mathbb R^m$이 $\vec x \mapsto A \vec x$로 대응시키고 $L_B: \mathbb R^m \rightarrow \mathbb R^n$이 $A \vec x \mapsto B(A \vec x) = BA \vec x$로 대응시킨다면, $BA$는 $L_B \circ L_A$에 대응된다.
 
 $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이고 $B = A^{-1}$이다.
 이 때,
@@ -649,7 +653,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 을 말한다.
 
 \begin{definition}
-    선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간(column space)은 $A$의 열벡터들의 생성이다.
+    선형변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간(column space)은 $A$의 열벡터들의 생성이다.
     이 때 열공간의 차원을 열계수(column rank)라고 부른다.
     마찬가지로, 행공간(row space)은 $A$의 행벡터들의 생성이다.
     이 때 행공간의 차원을 행계수(row rank)라고 부른다.
@@ -660,19 +664,19 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
         1 & 2 & 3\\
         4 & 5 & 6\\
         7 & 8 & 9
-    \end{pmatrix}$에서 열벡터 $(1, 4, 7)$과 $(3, 6, 9)$는 일차 독립이고, $(2, 5, 8)$은 두 벡터의 합의 절반이므로 일차 종속이다.
+    \end{pmatrix}$에서 열벡터 $(1, 4, 7)$과 $(3, 6, 9)$는 일차독립이고, $(2, 5, 8)$은 두 벡터의 합의 절반이므로 일차종속이다.
     따라서 열계수는 2이다.
-    또한 행벡터 $(1, 2, 3)$과 $(7, 8, 9)$는 일차 독립이고, $(4, 5, 6)$은 두 벡터의 합의 절반이므로 일차 종속이다.
+    또한 행벡터 $(1, 2, 3)$과 $(7, 8, 9)$는 일차독립이고, $(4, 5, 6)$은 두 벡터의 합의 절반이므로 일차종속이다.
     따라서 행계수도 2이다.
 \end{example}
 
 \begin{theorem} \label{thm:rank_matrix}
-    선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간은 $\Range(L_A)$와 동일하다.
+    선형변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간은 $\Range(L_A)$와 동일하다.
     따라서 열계수는 $L_A$의 계수 $\dim \Range(L_A) = \rank L_A$와 같다.
 \end{theorem}
 
 \begin{theorem} \label{thm:rank}
-    선형 변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열계수와 행계수는 동일하다.
+    선형변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열계수와 행계수는 동일하다.
     즉, 열계수와 행계수 모두 $\rank L_A$로 나타내어지며 바로 행렬 $A$를 사용해 $\rank A$라고 쓸 수 있다.
 \end{theorem}
 
@@ -719,12 +723,12 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
         \item 열을 교환했을 경우\\
             $i$ 번째 열과 $j$ 번째 열을 교환했다고 하자.
             그렇다면 $A$의 열벡터들은 $\vec e_1, \dots, \vec e_j \text{($i$ 번째)}, \dots, \vec e_i \text{($j$ 번째)}, \dots, \vec e_n$이 된다.
-            그런데 $\vec e_1, \dots, \vec e_n$은 순서와 상관없이 일차 독립이므로 $A$의 열벡터들도 일차 독립이다.
+            그런데 $\vec e_1, \dots, \vec e_n$은 순서와 상관없이 일차독립이므로 $A$의 열벡터들도 일차독립이다.
         \item 열의 상수배를 하여 다른 열에 더한 경우\\
             $i$ 번째 열에 $k$배를 하여 $j$ 열에 더했다고 하자.
             ($k \neq 0$이다.)
             그렇다면 $A$의 열벡터들은 $\vec e_1, \dots, \vec e_j + k \vec e_i, \dots, \vec e_n$이 된다.
-            다음의 선형 결합을 생각하자:
+            다음의 선형결합을 생각하자:
             \begin{equation*}
                 c_1 \vec e_1 + \dots + c_j (\vec e_j + k \vec e_1) + \dots + c_n \vec e_n = \vecz
             \end{equation*}
@@ -739,24 +743,24 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
                 c_1 \vec e_1 + \dots + c_{j - 1} \vec e_{j - 1} + c_{j + 1} \vec e_{j + 1} + \dots + c_n \vec e_n = \vecz
             \end{equation*}
             가 되어, $c_1 = \dots = c_{j - 1} = c_{j + 1} = \dots = c_n = 0$이다.
-            그런데 $c_j = 0$이므로 $c_1 = \dots = c_n = 0$이어서, $A$의 열벡터들도 일차 독립이다.
+            그런데 $c_j = 0$이므로 $c_1 = \dots = c_n = 0$이어서, $A$의 열벡터들도 일차독립이다.
         \item 열에 0이 아닌 상수를 곱한 경우\\
             $i$ 번째 열에 $k \neq 0$을 곱했다고 하자.
             그렇다면 $A$의 열벡터들은 $\vec e_1, \dots, k \vec e_i, \vec e_n$이 된다.
-            다음의 선형 결합을 생각하자:
+            다음의 선형결합을 생각하자:
             \begin{equation*}
                 c_1 \vec e_1 + \dots + c_i (k \vec e_i) + \dots + c_n \vec e_n = \vecz
             \end{equation*}
             $\vec e_1, \dots, \vec e_n$의 독립성에 의해 $c_1 = \dots = c_i k = \dots = c_n = 0$이 된다.
             그런데 $k \neq 0$이므로 $c_1 = \dots = c_n = 0$이다.
-            따라서 $A$의 열벡터들도 일차 독립이다.
+            따라서 $A$의 열벡터들도 일차독립이다.
     \end{enumerate}
     따라서, $A$의 열공간의 차원은 $n$이고 정리~\ref{thm:rank} 의해 $\rank A = n$이다.
     마찬가지로 기본 행 연산의 경우에도 모든 과정을 행벡터에 대입하여 진행하면 동일하게 계수가 $n$임을 알 수 있다.
 \end{proof}
 
 \begin{theorem}\label{thm17}
-    어떤 유한 생성 벡터 공간 $V$와 부분 공간 $W$가 주어졌다고 하자.
+    어떤 유한생성된 벡터공간 $V$와 부분공간 $W$가 주어졌다고 하자.
     그렇다면, 다음이 성립한다:
     \begin{equation*}
         \dim W = \dim V \Rightarrow W = V
@@ -764,14 +768,14 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 \end{theorem}
 
 \begin{proof}
-    $\dim W = \dim V = n$일 때, 벡터 공간 $W$의 기저 $\mathcal B = \vec w_1, \dots, \vec w_n$를 구성하자.
-    $\vec w_1, \dots, \vec w_n$은 일차 독립이고 $V$의 원소이기도 하므로, 기저 확장을 통해 $V$의 기저를 구성할 수 있다.
+    $\dim W = \dim V = n$일 때, 벡터공간 $W$의 기저 $\mathcal B = \vec w_1, \dots, \vec w_n$를 구성하자.
+    $\vec w_1, \dots, \vec w_n$은 일차독립이고 $V$의 원소이기도 하므로, 기저 확장을 통해 $V$의 기저를 구성할 수 있다.
     그런데 이미 $|\mathcal B| = \dim V$이므로, $\mathcal B$는 $V$의 기저이다.
     따라서 $\Span \mathcal B = W = V$이다.
 \end{proof}
 
 \begin{theorem} \label{thm:onto}
-    선형 변환 $L: V \rightarrow V$에 대해서, 다음의 명제는 동치이다:
+    선형변환 $L: V \rightarrow V$에 대해서, 다음의 명제는 동치이다:
     \begin{enumerate}
         \item $L$는 일대일 함수이다.
         \item $L$는 위로의 함수이다.
@@ -796,20 +800,20 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 \end{proof}
 
 지금까지의 내용을 간략히 요약하고, 약간의 내용을 덧붙인다.\marginpar{\small 2018년 9월 17일}
-체란 간단히 가감승제에 대해서 닫힌 집합이고, 벡터 공간은 덧셈과 스칼라 곱에 대해 닫힌 집합이다.
-또한 일차 결합, 일차 독립, 일차 종속과 기저 등에 대해서 다루었다.
+체란 간단히 가감승제에 대해서 닫힌 집합이고, 벡터공간은 덧셈과 스칼라 곱에 대해 닫힌 집합이다.
+또한 일차결합, 일차독립, 일차종속과 기저 등에 대해서 다루었다.
 
-정리에는 기저의 원소의 개수가 항상 일정하다는 정리~\ref{thm:dimension}), 벡터 공간의 교집합도 벡터 공간이라는 것을 보여주는 정리~\ref{thm:intersection}, 벡터 공간의 합 또한 벡터 공간이며(정리~\ref{thm:addition}) 그 차원은 각각의 차원의 합에서 교집합의 차원을 제한 것이라는 정리~\ref{thm:grassmann}이 있었다.
-어떤 선형 사상의 영공간과 치역은 각각 정의역과 공역의 부분 공간이며(정리~\ref{thm:nullspace_range}), 그 차원의 합은 정의역의 차원임을 알려주는 정리~\ref{thm:rank_nullity}가 있었다.
-또한 행렬의 행계수, 열계수, 그리고 대응되는 선형 변환의 계수가 모두 같다는 정리~\ref{thm:rank}가 있었다.
+정리에는 기저의 원소의 개수가 항상 일정하다는 정리~\ref{thm:dimension}), 벡터공간의 교집합도 벡터공간이라는 것을 보여주는 정리~\ref{thm:intersection}, 벡터공간의 합 또한 벡터공간이며(정리~\ref{thm:addition}) 그 차원은 각각의 차원의 합에서 교집합의 차원을 제한 것이라는 정리~\ref{thm:grassmann}이 있었다.
+어떤 선형사상의 영공간과 치역은 각각 정의역과 공역의 부분공간이며(정리~\ref{thm:nullspace_range}), 그 차원의 합은 정의역의 차원임을 알려주는 정리~\ref{thm:rank_nullity}가 있었다.
+또한 행렬의 행계수, 열계수, 그리고 대응되는 선형변환의 계수가 모두 같다는 정리~\ref{thm:rank}가 있었다.
 
 \begin{theorem} \label{thm:image_independence}
-    벡터 공간 $V$와 $W$간의 선형 변환 $L: V \rightarrow W$이 일대일 함수라는 것은 임의의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k \in V$을 골랐을 때, $L(\vec v_1), \dots, L(\vec v_k)$ 또한 일차 독립이라는 것과 동치이다.
+    벡터공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$이 일대일 함수라는 것은 임의의 일차독립인 벡터들 $\vec v_1, \dots, \vec v_k \in V$을 골랐을 때, $L(\vec v_1), \dots, L(\vec v_k)$ 또한 일차독립이라는 것과 동치이다.
 \end{theorem}
 
 \begin{proof}
     먼저 $L$이 일대일 함수라고 가정하자.
-    임의의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 선형 변환 $L$을 취한 벡터들의 선형 결합
+    임의의 일차독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 선형변환 $L$을 취한 벡터들의 선형결합
     \begin{equation*}
         c_1 L(\vec v_1) + \dots + c_n L(\vec v_n) = \vecz
     \end{equation*}
@@ -823,12 +827,12 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
         c_1 \vec v_1 + \dots + c_n \vec v_n = \vecz
     \end{equation*}
     임을 알 수 있다.
-    그런데 $\vec v_1, \dots, \vec v_n$은 일차 독립이므로 $c_1 = \dots = c_n = 0$이다.
-    따라서 $L(\vec v_1), \dots, L(\vec v_k)$는 일차 독립이다.
+    그런데 $\vec v_1, \dots, \vec v_n$은 일차독립이므로 $c_1 = \dots = c_n = 0$이다.
+    따라서 $L(\vec v_1), \dots, L(\vec v_k)$는 일차독립이다.
 
-    이제 임의의 일차 독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 대해서 $L(\vec v_1), \dots, L(\vec v_k)$가 일차 독립이라고 가정하자.
+    이제 임의의 일차독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 대해서 $L(\vec v_1), \dots, L(\vec v_k)$가 일차독립이라고 가정하자.
     $L(\vec v_1) = L(\vec v_2)$인 $\vec v_1, \vec v_2 \in V$를 고르자.
-    그런데 $L(\vec v_1) = L(\vec v_2)$이므로, 가정한 명제의 대우에 따라서 $\vec v_1$과 $\vec v_2$는 일차 종속이다.
+    그런데 $L(\vec v_1) = L(\vec v_2)$이므로, 가정한 명제의 대우에 따라서 $\vec v_1$과 $\vec v_2$는 일차종속이다.
     따라서
     \begin{equation*}
         c_1 \vec v_1 + c_2 \vec v_2 = \vecz
@@ -847,27 +851,27 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
                              &= \vecz
     \end{align*}
     이다.
-    여기서 $L(\vec v_2) = \vecz$일 경우는 모든 벡터에 대한 함숫값이 $\vecz$라는 것이고, 가정이 성립하려면 $V$와 $W$는 자명한 벡터 공간 $\{\vecz\}$이어야만 한다.
-    이 경우 가능한 선형 변환은 유일하며, $\vecz \in V$를 $\vecz \in W$와 대응시키는 일대일(이면서 위로의) 함수이다.
-    자명하지 않은 벡터 공간의 경우, $\frac{c_2}{c_1} = -1$이어야 하고 따라서 $\vec v_1 = \vec v_2$이다.
+    여기서 $L(\vec v_2) = \vecz$일 경우는 모든 벡터에 대한 함숫값이 $\vecz$라는 것이고, 가정이 성립하려면 $V$와 $W$는 자명한 벡터공간 $\{\vecz\}$이어야만 한다.
+    이 경우 가능한 선형변환은 유일하며, $\vecz \in V$를 $\vecz \in W$와 대응시키는 일대일(이면서 위로의) 함수이다.
+    자명하지 않은 벡터공간의 경우, $\frac{c_2}{c_1} = -1$이어야 하고 따라서 $\vec v_1 = \vec v_2$이다.
     따라서 $L$은 일대일 함수이다.
 \end{proof}
 
 \begin{theorem} \label{thm:basis_span}
-    체 $F$에 대한 벡터 공간 $V$가 $\vec v_1, \dots, \vec v_n$에 의해 생성될 때, $\dim V \leq n$이다.
+    체 $F$에 대한 벡터공간 $V$가 $\vec v_1, \dots, \vec v_n$에 의해 생성될 때, $\dim V \leq n$이다.
     만약 $\dim V = n$이라면 $\vec v_1, \dots, \vec v_n$은 기저를 이룬다.\footnote{강의 내용에 없었으나 본인의 필요에 따라 추가하였다.}
 \end{theorem}
 
 \begin{proof}
-    $\{\vec v_1, \dots, \vec v_n\}$의 부분 집합 중 일차 독립인 최대인 $\{\vec v_1, \dots, \vec v_r\}$을 고르고, $\mathcal B$라고 쓰자.
+    $\{\vec v_1, \dots, \vec v_n\}$의 부분집합 중 일차독립인 최대인 $\{\vec v_1, \dots, \vec v_r\}$을 고르고, $\mathcal B$라고 쓰자.
     (즉 $r \leq n$이며, 원소의 순서는 재배열되었을 수 있다.)
     $V$의 임의의 원소 $\vec v$에 대해서, $V = \left<\vec v_1, \dots, \vec v_n\right>$이므로
     \begin{equation*}
         \exists c_1, \dots c_n \in F \quad \vec v = c_1 \vec v_1 + \dots + c_n \vec v_n
     \end{equation*}
     이다.
-    그런데 $\vec v_{r + 1}, \dots$은 $\mathcal B$와 일차 종속이므로 $\vec v_1, \dots, \vec v_r$로 다시 쓸 수 있다.
-    (일차 독립이라면 해당 벡터를 $\mathcal B$에 추가하여도 여전히 일차 독립이어야 하는데, 그러면 $\mathcal B$가 최대인 일차 독립 부분 집합이라는 가정에 모순된다.)
+    그런데 $\vec v_{r + 1}, \dots$은 $\mathcal B$와 일차종속이므로 $\vec v_1, \dots, \vec v_r$로 다시 쓸 수 있다.
+    (일차독립이라면 해당 벡터를 $\mathcal B$에 추가하여도 여전히 일차독립이어야 하는데, 그러면 $\mathcal B$가 최대인 일차독립 부분집합이라는 가정에 모순된다.)
     따라서,
     \begin{align*}
         \vec v &= c_1 \vec v_1 + \dots + c_r \vec v_r + c_{r + 1} \vec v_{r + 1} + \dots\\
@@ -882,15 +886,15 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서, $\vec v_1, \dots, \vec v_n$은 기저를 이룬다.
 \end{proof}
 
-지금까지의 내용에 따라서, 벡터 공간 $V$와 $W$간의 선형 변환 $L$에 대해서 다음의 명제들은 서로 동치이다:
+지금까지의 내용에 따라서, 벡터공간 $V$와 $W$간의 선형변환 $L$에 대해서 다음의 명제들은 서로 동치이다:
 \begin{enumerate}
     \item $L$은 일대일 함수이다.
     \item $\Null(L) = \{\vecz\}$이다. (정리~\ref{thm:one_to_one_nullspace})
     \item $\rank L = \dim V$이다. (정리~\ref{thm:one_to_one_range})
-    \item 임의의 선형 독립인 $\vec v_1, \dots, \vec v_k \in V$에 대해서, $L(\vec v_1), \dots, L(\vec v_n)$도 선형 독립이다. (정리~\ref{thm:image_independence})
+    \item 임의의 선형독립인 $\vec v_1, \dots, \vec v_k \in V$에 대해서, $L(\vec v_1), \dots, L(\vec v_n)$도 선형독립이다. (정리~\ref{thm:image_independence})
 \end{enumerate}
 
-만약 $V = W$이고, $V$가 유한 생성 벡터 공간이라면, 다음의 명제들도 위 명제들과 동치이다:
+만약 $V = W$이고, $V$가 유한생성된 벡터공간이라면, 다음의 명제들도 위 명제들과 동치이다:
 \begin{enumerate}
     \nextitem{5}
     \item $L$은 위로의 함수이다. (정리~\ref{thm:onto})
@@ -898,15 +902,15 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     \item $L$은 가역(invertible)이다. (정리~\ref{thm:inverse})
 \end{enumerate}
 
-나아가 $V = W = \mathbb R^n$일 경우, 선형 변환 $L$에 대응되는 $n \times n$ 행렬 $A$가 있어서 다음의 명제들도 위 명제들과 동치이다:
+나아가 $V = W = \mathbb R^n$일 경우, 선형변환 $L$에 대응되는 $n \times n$ 행렬 $A$가 있어서 다음의 명제들도 위 명제들과 동치이다:
 \begin{enumerate}
     \nextitem{8}
     \item $\forall \vec v \in \mathbb R^n \quad L^{-1}(\vec v) = A^{-1} \vec v$이다. (7로부터)
-    \item $A$의 열벡터들은 일차 독립이다. (정리~\ref{thm:rank}와 \ref{thm:basis_span})
+    \item $A$의 열벡터들은 일차독립이다. (정리~\ref{thm:rank}와 \ref{thm:basis_span})
 \end{enumerate}
 
 \begin{theorem}
-    벡터\marginpar{\small2018년 9월 19일} 공간 $U, V, W$에 대해 선형 변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
+    벡터\marginpar{\small2018년 9월 19일} 공간 $U, V, W$에 대해 선형변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
     만약 $L_1$가 위로의 함수라면, 다음이 성립한다:
     \begin{equation*}
         \rank (L_2 \circ L_1) = \rank L_2
@@ -956,7 +960,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서 정리~\ref{thm:rank_matrix}에 의해 $\rank A = \rank \tilde A$이다.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem} \label{thm:rowrankinvar}
     $m \times n$ 행렬 $A$의 행계수는 기본 행/열 연산에 대해 불변이다.
 \end{theorem}
 
@@ -1085,7 +1089,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     \begin{equation*}
         \Null(L_A) + \vec x_0
     \end{equation*}
-    이 때, $L_A$는 행렬 $A$에 대응되는 선형 변환이고, $\vec x_0$는 특수해(particular solution)이다.
+    이 때, $L_A$는 행렬 $A$에 대응되는 선형변환이고, $\vec x_0$는 특수해(particular solution)이다.
 \end{theorem}
 \begin{proof}
     $\vec x$를 임의의 해, $\vec x_0$를 특수해라고 하자.
@@ -1119,7 +1123,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
         A \vec x = \vecz + \vec b
     \end{equation*}
     이어서, $\vec x$는 해집합에 속한다.
-    따라서 $\Null(L_A) + \vec x_0$는 해집합의 부분 집합이며, 위에서 해집합 또한 $\Null(L_A) + \vec x_0$의 부분 집합임을 보였으므로 둘은 같은 집합이다.
+    따라서 $\Null(L_A) + \vec x_0$는 해집합의 부분집합이며, 위에서 해집합 또한 $\Null(L_A) + \vec x_0$의 부분집합임을 보였으므로 둘은 같은 집합이다.
 \end{proof}
 
 \begin{example}
@@ -1172,7 +1176,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     \left<(2, 0, -2, -1, -1, 1), (-2, 1, 0, 0, 0, 0)\right>
 \end{equation*}
 임을 알 수 있다.
-여기서 주목할 사실은 변수 벡터의 원소 개수가 6, 즉 차원이 6인 벡터 공간에 있다는 것이고, 해공간 혹은 영공간의 차원\footnote{또는 자유변수의 개수, 즉 자유도}이 2라는 것이다.
+여기서 주목할 사실은 변수 벡터의 원소 개수가 6, 즉 차원이 6인 벡터공간에 있다는 것이고, 해공간 혹은 영공간의 차원\footnote{또는 자유변수의 개수, 즉 자유도}이 2라는 것이다.
 이 둘의 차이 $6 - 2 = 4$는 계수 행렬의 계수(rank)와 같은데, 이는 우연이 아니라 계수--퇴화 차수 정리(정리~\ref{thm:rank_nullity})에 의한 것이다.
 
 \begin{definition}
@@ -1186,4 +1190,103 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 가역 행렬 $A$의 역행렬 $B$를 찾는 것은 식 $AB = I$에서 $A$를 $I$로 만드는 일련의 기본 행연산들을 $A$와 $I$에 동일하게 취하는 것이다.
 $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB = I$는 $IB = C$가 된다.
 따라서 $C$는 $A$의 역행렬 $B$가 됨을 알 수 있다.
+
+이렇게\marginpar{\small2018년 10월 1일} 역행렬을 구할 수 있으려면 기본 행연산들을 통해 $A$를 $I$로 만들 수 있어야 한다.
+그런데 정리~\ref{thm:rowrankinvar}에 따르면 기본 행연산으로 행계수가 바뀌지 않으므로, $A$의 행계수가 $A$의 행/열의 개수와 같지 않으면 $I$로 변형할 수 없다.
+따라서, $A$의 역행렬이 존재할 조건은 $A$의 계수가 행/열의 개수와 같은 것이다.
+
+\begin{definition}
+    벡터공간 $V_1, \dots, V_n, W$에 대해 어떤 함수 $f: V_1 \times \dots \times V_n \rightarrow W$가 다중선형사상(multilinear map)이라는 것은 모든 $i \in \{1, \dots, n\}$에 대한 $\vec v_i \in V_i$에 대해
+    \begin{equation*}
+        f(\vec v_1, \dots, c \vec v_i + \tilde c \tilde{\vec v}_i, \dots, \vec v_n) = c f(\vec v_1, \dots, \vec v_i, \dots, \vec v_n) + \tilde c f(\vec v_1, \dots, \tilde{\vec v}_i, \dots, \vec v_n)
+    \end{equation*}
+    을 만족한다는 것이다.
+    즉, 다중선형사상은 각각의 $\vec v_i$에 대해 $f$가 선형사상이다.
+\end{definition}
+
+\begin{definition}
+    벡터공간 $V$와 $W$에 대한 다중선형사상 $f: V^n \rightarrow W$가
+    \begin{equation*}
+        \bigl(\exists i, j \in \{1, \dots, n\} \quad \vec v_i = \vec v_j\bigr) \quad \Rightarrow \quad f(\vec v_1, \dots, \vec v_n) = 0
+    \end{equation*}
+    를 만족하면 $f$를 교대다중선형사상(alternating multilinear map)이라고 부른다.
+\end{definition}
+
+\begin{theorem}
+    벡터공간 $V$와 $W$에 대한 교대다중선형사상 $f: V^n \rightarrow W$은 두 벡터를 교환하면 부호가 바뀐다.
+    즉,
+    \begin{equation*}
+        f(\vec v_1, \dots, \vec v_i, \dots, \vec v_j, \dots, \vec v_n) = -f(\vec v_1, \dots, \vec v_j, \dots, \vec v_i, \dots, \vec v_n)
+    \end{equation*}
+    이다.
+\end{theorem}
+
+\begin{proof}
+    교대다중선형사상에서 두 벡터가 동일하면 그 함숫값은 0이므로,
+    \begin{equation*}
+        f(\vec v_1, \dots, \vec v_i + \vec v_j, \dots, \vec v_i + \vec v_j, \dots \vec v_n) = 0
+    \end{equation*}
+    이다.
+    이는 다중선형성에 의해
+    \begin{align*}
+        &\quad f(\vec v_1, \dots, \vec v_i + \vec v_j, \dots, \vec v_i + \vec v_j, \dots \vec v_n)\\
+        &= f(\vec v_1, \dots, \vec v_i, \dots, \vec v_i, \dots \vec v_n) + f(\vec v_1, \dots, \vec v_j, \dots, \vec v_j, \dots \vec v_n)\\
+        &\qquad+ f(\vec v_1, \dots, \vec v_i, \dots, \vec v_j, \dots \vec v_n) + f(\vec v_1, \dots, \vec v_j, \dots, \vec v_i, \dots \vec v_n)\\
+        &= f(\vec v_1, \dots, \vec v_i, \dots, \vec v_j, \dots \vec v_n) + f(\vec v_1, \dots, \vec v_j, \dots, \vec v_i, \dots \vec v_n)\\
+        &= 0
+    \end{align*}
+    이다.
+    따라서,
+    \begin{equation*}
+        f(\vec v_1, \dots, \vec v_i, \dots, \vec v_j, \dots \vec v_n) = -f(\vec v_1, \dots, \vec v_j, \dots, \vec v_i, \dots \vec v_n)
+    \end{equation*}
+    를 만족한다.
+\end{proof}
+
+\begin{example}
+    교대다중선형사상 $f: \mathbb R^2 \times \mathbb R^2 \rightarrow \mathbb R$에 대해서, $f$가 $\begin{pmatrix}a & b \\ c & d\end{pmatrix}$의 열벡터를 인자로 받는다고 하자.
+    이를 계산하면
+    \begin{align*}
+        f
+        \begin{pmatrix}
+            a & b\\
+            c & d
+        \end{pmatrix}
+        &= f(a \vec e_1 + c \vec e_2, b \vec e_1 + d \vec e_2)\\
+        &= ab f(\vec e_1, \vec e_1) + ad f(\vec e_1, \vec e_2) + cb f(\vec e_2, \vec e_1) + cd f(\vec e_2, \vec e_2)\\
+        &= (ad - bc) f(\vec e_1, \vec e_2)\\
+        &= (ad - bc) f
+        \begin{pmatrix}
+            1 & 0\\
+            0 & 1
+        \end{pmatrix}
+    \end{align*}
+\end{example}
+
+\begin{definition}
+    교대다중선형사상 $f: (\mathbb R^n)^n \rightarrow \mathbb R$에 대해서 $n \times n$ 단위행렬 $I$의 함숫값이 1, 즉 $f(I) = 1$이면 $f$를 행렬식(determinant)이라고 하고, $\det$라고 표기한다.
+\end{definition}
+
+행렬식을 계산할 때는 각 열벡터들의 원소들을 행이 겹치지 않도록 골라서 계산할 수 있다.
+예를 들어
+\begin{align*}
+    \det
+    \begin{pmatrix}
+        a & b & c\\
+        d & e & f\\
+        g & h & j
+    \end{pmatrix}
+    &= aej \det (\vec e_1, \vec e_2, \vec e_3) + bfg \det (\vec e_3, \vec e_1, \vec e_2) + cdh \det (\vec e_2, \vec e_3, \vec e_1)\\
+    &\qquad+ bdj \det (\vec e_2, \vec e_1, \vec e_3) + ceg \det (\vec e_3, \vec e_2, \vec e_1) + afh \det (\vec e_1, \vec e_3, \vec e_2)\\
+    &= \bigl((aej + bfg + cdh) - (bdj + ceg + afh)\bigr) \det I
+\end{align*}
+와 같이 계산하면 된다.
+
+\begin{lemma}
+    $\Sym\bigl(\{1, 2, \dots, n\}\bigr)$의 항등 순열(permutation) $(1\ 2\ \dots\ n)$의 원소 두 개씩을 서로 교환(transposition)하여 다시 항등 순열을 만들 때, 교환 횟수는 항상 짝수번이다.
+\end{lemma}
+
+\begin{theorem}
+    $\Sym\bigl(\{1, 2, \dots, n\}\bigr)$의 순열 $\sigma_1$에서 $\sigma_2$를 만드는 교환은 홀짝성을 보존한다.
+\end{theorem}
 \end{document}
