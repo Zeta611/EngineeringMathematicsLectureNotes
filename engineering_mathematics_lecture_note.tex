@@ -54,6 +54,7 @@ numbered=no
 \renewcommand{\vec}[1]{\bm{\mathit{#1}}}
 \newcommand{\vecz}{\bm{\mathrm{0}}}
 \newcommand{\dd}{\mathrm{d}}
+\newcommand{\dD}{\mathrm{D}}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Null}{N}
 \DeclareMathOperator{\Image}{Im}
@@ -62,6 +63,7 @@ numbered=no
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Vol}{Vol}
 \DeclareMathOperator{\sVol}{\widetilde{Vol}}
+\DeclareMathOperator{\Char}{char}
 
 \usepackage{comment}
 % \excludecomment{proof}
@@ -197,7 +199,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 
 \begin{theorem}[차원(dimension) 정리] \label{thm:dimension}
     $W$가 유한생성된(finitely generated) (부분)공간이면 $W$의 기저의 원소의 개수는 동일하다.
-    이 때, 기저의 원소 개수를 $W$의 차원(dimension)이라고 하며, $\dim W$로 표기한다.
+    이때, 기저의 원소 개수를 $W$의 차원(dimension)이라고 하며, $\dim W$로 표기한다.
 \end{theorem}
 
 \begin{example}
@@ -217,9 +219,9 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \leavevmode
     \begin{enumerate}
         \item $a_1, a_2, a_3$는 서로 다른 실수이다.
-            이 때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차독립임을 보여라.
+            이때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차독립임을 보여라.
         \item $a_1, \dots, a_n$는 서로 다른 실수이다.
-            이 때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차독립임을 보여라.
+            이때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차독립임을 보여라.
     \end{enumerate}
 \end{homework}
 
@@ -559,7 +561,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 
 \begin{theorem} \label{thm:inverse}
     벡터공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$가 전단사라는 것은 $L$의 역함수 $L^{-1}: W \rightarrow V$가 존재한다는 것과 동치이다.
-    이 때, $L^{-1}$도 선형이다.
+    이때, $L^{-1}$도 선형이다.
 \end{theorem}
 
 \begin{proof}
@@ -567,7 +569,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     $L^{-1}$이 선형임을 보인다.
 
     $W$에서 두 원소 $\vec w_1$와 $\vec w_2$를 고르자.
-    이 때,
+    이때,
     \begin{align*}
         L^{-1}(\vec w_1) &= \vec v_1\\
         L^{-1}(\vec w_2) &= \vec v_2
@@ -648,7 +650,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 즉, 어떤 선형변환 $L_A: \mathbb R^l \rightarrow \mathbb R^m$이 $\vec x \mapsto A \vec x$로 대응시키고 $L_B: \mathbb R^m \rightarrow \mathbb R^n$이 $A \vec x \mapsto B(A \vec x) = BA \vec x$로 대응시킨다면, $BA$는 $L_B \circ L_A$에 대응된다.
 
 $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이고 $B = A^{-1}$이다.
-이 때,
+이때,
 \begin{equation*}
     I = \begin{pmatrix}
         1 & 0 & \dots & 0\\
@@ -661,9 +663,9 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 
 \begin{definition}
     선형변환 $L_A$에 대응되는 행렬 $A$에 대해서, 열공간(column space)은 $A$의 열벡터들의 생성이다.
-    이 때 열공간의 차원을 열계수(column rank)라고 부른다.
+    이때 열공간의 차원을 열계수(column rank)라고 부른다.
     마찬가지로, 행공간(row space)은 $A$의 행벡터들의 생성이다.
-    이 때 행공간의 차원을 행계수(row rank)라고 부른다.
+    이때 행공간의 차원을 행계수(row rank)라고 부른다.
 \end{definition}
 
 \begin{example}
@@ -722,7 +724,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 
 \begin{proof}
     $n \times n$ 항등행렬 $I$에 대해서, 각 열벡터를 $\vec e_1, \dots, \vec e_n$이라고 하자.
-    이 때 열벡터들은 서로 독립이므로 $\rank I = n$이다.
+    이때 열벡터들은 서로 독립이므로 $\rank I = n$이다.
 
     $I$에 어떤 기본 열 연산을 하여 기본 행렬 $A$를 만들었다고 하자.
     기본 열 연산이 1. 열의 교환인 경우, 2. 열의 상수배를 하여 다른 열에 더한 경우, 3. 열에 0이 아닌 상수를 곱한 경우에 대해서 생각하자.
@@ -743,7 +745,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
             \begin{equation*}
                 \vec e_j = -\frac{1}{c_j} \left(c_1 \vec e_1 + \dots + c_{j - 1} \vec e_{j - 1} + c_{j + 1} \vec e_{j + 1} + \dots + c_n \vec e_n\right) + \frac{k}{c_j} \vec e_1
             \end{equation*}
-            이 때 $\frac{k}{c_j} \neq 0$이므로 $\vec e_1, \dots, \vec e_n$이 독립이라는 것에 모순이다.
+            이때 $\frac{k}{c_j} \neq 0$이므로 $\vec e_1, \dots, \vec e_n$이 독립이라는 것에 모순이다.
             따라서 $c_j = 0$이다.
             결국,
             \begin{equation*}
@@ -957,9 +959,9 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
         EA = \tilde A
     \end{equation*}
     이다.
-    이 때 $E$는 $m \times n$ 행렬을 $m \times n$ 행렬로 보내는 $m \times m$ 행렬이다.
+    이때 $E$는 $m \times n$ 행렬을 $m \times n$ 행렬로 보내는 $m \times m$ 행렬이다.
     각 행렬 $E, A, \tilde A$에 대응되는 행렬을 $L_E, L_A, L_{\tilde A}$라고 하자.
-    이 때 $\tilde A = EA$이므로 $L_{\tilde A} = L_E \circ L_A$이다.
+    이때 $\tilde A = EA$이므로 $L_{\tilde A} = L_E \circ L_A$이다.
     정리~\ref{thm:rank_matrix}와 \ref{thm:rank_elementary}에 따라 $\rank E = \rank L_E = m$이고, 따라서 정리~\ref{thm:one_to_one_nullspace}에 따라 $L_E$는 일대일이다.
     그러므로 정리~\ref{thm:one_to_one_rank}에 의해
     \begin{equation*}
@@ -1098,7 +1100,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     \begin{equation*}
         \Null(L_A) + \vec x_0
     \end{equation*}
-    이 때, $L_A$는 행렬 $A$에 대응되는 선형변환이고, $\vec x_0$는 특수해(particular solution)이다.
+    이때, $L_A$는 행렬 $A$에 대응되는 선형변환이고, $\vec x_0$는 특수해(particular solution)이다.
 \end{theorem}
 \begin{proof}
     $\vec x$를 임의의 해, $\vec x_0$를 특수해라고 하자.
@@ -1179,7 +1181,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     (x_1, x_2, x_3, x_4, x_5, x_6) = a(2, 0, -2, -1, -1, 1) + b(-2, 1, 0, 0, 0, 0)\quad a, b \in \mathbb R
 \end{equation*}
 이 해가 된다.
-이 때 $a$와 $b$는 자유 변수이다.
+이때 $a$와 $b$는 자유 변수이다.
 따라서, 위 계수 행렬의 영공간은
 \begin{equation*}
     \left<(2, 0, -2, -1, -1, 1), (-2, 1, 0, 0, 0, 0)\right>
@@ -1338,7 +1340,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     만약 행렬 $A$에서 어떤 행의 $k$배를 하여 다른 행에 더하는 기본 행 연산을 반복하였을 때 상(하)삼각행렬을 만들었다고 하자.
     상삼각행렬은 다시 어떤 행의 $k$배를 하여 다른 행에 더하는 기본 행 연산을 반복하여 (후진대입을 하는 것과 같이) 대각선 이외의 모든 원소를 0으로 만들 수 있다.
     이렇게 만들어진 행렬을 $\tilde A$라고 하자.
-    이 때 정리~\ref{thm:ero_det}에 따라 $\det A = \det \tilde A$이다.
+    이때 정리~\ref{thm:ero_det}에 따라 $\det A = \det \tilde A$이다.
 
     $\det \tilde A = 0$, 즉 $\tilde A$의 대각선의 한 원소가 0이라고 가정하자.
     이는 $\tilde A$의 열벡터들이 서로 독립이 아니라는 것과 동치이다. ($\tilde A$의 대각선 이외의 모든 원소들은 0이기 때문이다.)
@@ -1346,7 +1348,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     따라서 $A$에 대응되는 $L_A$는 일대일 함수가 되지 않는다 (\pageref{page:equiv_remark}쪽의 참고 9).
 \end{proof}
 
-\begin{remark}
+\begin{remark} \label{page:equiv_remark_update}
     \pageref{page:equiv_remark}쪽의 참고를 다시 옮긴다.
     벡터공간 $V$와 $W$간의 선형변환 $L$에 대해서 다음의 명제들은 서로 동치이다:
     \begin{enumerate}
@@ -1388,7 +1390,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \vec b &= (b_1, b_2, b_3)\\
         \vec c &= (c_1, c_2, c_3)
     \end{align*}
-    이 때,
+    이때,
     \begin{equation*}
         \vec a \times \vec b = (a_2 b_3 - a_3 b_2, a_3 b_1 - a_1 b_3, a_1 b_2 - a_2 b_1)
     \end{equation*}
@@ -1411,7 +1413,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         |\vec a \times \vec b|
     \end{equation*}
     이다.
-    이 때 $\vec a \times \vec b$와 $\vec c$가 $\theta$의 각도를 이룬다고 하면, $\vec a, \vec b, \vec c$가 이루는 평행체의 부피는
+    이때 $\vec a \times \vec b$와 $\vec c$가 $\theta$의 각도를 이룬다고 하면, $\vec a, \vec b, \vec c$가 이루는 평행체의 부피는
     \begin{equation*}
         \Vol(\vec a, \vec b, \vec c) = |\vec a \times \vec b| \bigl| |\vec c| \cos \theta \bigr| = |(\vec a \times \vec b) \cdot \vec c|
     \end{equation*}
@@ -1434,7 +1436,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     \end{equation*}
     이라는 것이다.
     
-    이 때 $\vec v_1, \dots, \vec v_n$에 의해 생성되는 평행체의 부호수를 가지는 부피(signed volume) $\sVol(\vec v_1, \dots, \vec v_n)$는
+    이때 $\vec v_1, \dots, \vec v_n$에 의해 생성되는 평행체의 부호수를 가지는 부피(signed volume) $\sVol(\vec v_1, \dots, \vec v_n)$는
     \begin{equation*}
         \sVol(\vec v_1, \dots, \vec v_n) = \det(\vec v_1, \dots, \vec v_n)
     \end{equation*}
@@ -1508,9 +1510,10 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     \begin{equation*}
         A^{-1} = \frac{1}{\det A} (C_{ij})^t
     \end{equation*}
-    이 때 $(C_{ij})$는 여인수들의 행렬이다.
+    이때 $(C_{ij})$는 여인수들의 행렬이다.
 \end{theorem}
 
+\section{Linear Algebra: Matrix Eigenvalue Problems}
 \begin{definition}
     $\mathbb R^n$의 두 벡터 $\vec a = (a_1, \dots, a_n)$과 $\vec b = (b_1, \dots, b_n)$에 대해서 스칼라곱(scalar product), 점곱(dot product), 혹은 단순히 내적(inner product)은 다음을 말한다:
     \begin{equation*}
@@ -1544,8 +1547,8 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \item $\left< (a, b), (c, d) \right> = ad + bc$는 양의 정부호성을 만족하지 않으므로 내적이 아니다.
         \item $\left< (a, b, c), (d, e, f) \right> = ad + be + kcf$에서 $k = 3$일 경우 내적이고, $k = -1$일 경우 양의 정부호성을 만족하지 않으므로 내적이 아니다.
         \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right>_I = \int_I f g\,\dd x$는 내적이다.
-        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right> = \int_{-1}^1 e^x f g\,\dd x$는 내적이다. 이 때 $e^x$를 $[-1, 1]$에서 내적의 무게함수(weight function)이라고 한다.
-        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right>_I = \int_I r f g\,\dd x$는 내적이다. 이 때
+        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right> = \int_{-1}^1 e^x f g\,\dd x$는 내적이다. 이때 $e^x$를 $[-1, 1]$에서 내적의 무게함수(weight function)이라고 한다.
+        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right>_I = \int_I r f g\,\dd x$는 내적이다. 이때
             \begin{equation*}
                 \forall x \in I\quad r(x) \geq 0
             \end{equation*}
@@ -1569,7 +1572,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \left<\vec a, \vec b\right> = \left<a_1 \vec e_1 + \dots + a_n \vec e_n, b_1 \vec e_1 + \dots + b_n \vec e_n\right> = \sum_{i, j = 1}^n a_i b_j \left<\vec e_i, \vec e_j\right>
     \end{equation*}
     대칭성에 따라 $\left<\vec e_i, \vec e_j\right> = \left<\vec e_j, \vec e_i\right>$이며, 따라서 $A_{ij} = \left<\vec e_i, \vec e_j\right>$일 때 $A = (A_{ij}) = (A_{ji})$는 대칭행렬이다.
-    이 때
+    이때
     \begin{align*}
         \left<\vec a, \vec b \right> &= \sum_{i, j = 1}^n a_i b_j A_{ij} = \sum_{j = 1}^n b_j \left(\sum_{i = 1}^n A_{ij} a_i\right) = \sum_{j = 1}^n b_j \left(\sum_{i = 1}^n A_{ji} a_i\right)\\
                                      &=
@@ -1703,7 +1706,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     \begin{equation*}
         \cos \theta = \frac{\left<\vec a, \vec b\right>}{\lVert \vec a\rVert \lVert \vec b \rVert}
     \end{equation*}
-    이 때 $-1 \leq \frac{\left<\vec a, \vec b\right>}{\lVert \vec a\rVert \lVert \vec b \rVert} \leq 1$임은 정리~\ref{thm:CBS}의 CBS 부등식에 의해 보장된다.
+    이때 $-1 \leq \frac{\left<\vec a, \vec b\right>}{\lVert \vec a\rVert \lVert \vec b \rVert} \leq 1$임은 정리~\ref{thm:CBS}의 CBS 부등식에 의해 보장된다.
 \end{definition}
 
 \begin{definition}
@@ -1719,7 +1722,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 
 \begin{proof}
     내적공간 $V$에 속하는 벡터들 $\vec a_1, \dots, \vec a_n$의 집합이 정규직교 집합이라고 하자.
-    이 때 $\vec a_i$들의 선형결합
+    이때 $\vec a_i$들의 선형결합
     \begin{equation*}
         c_1 \vec a_1 + \dots + c_n \vec a_n = 0
     \end{equation*}
@@ -1740,12 +1743,12 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 
 \begin{definition}
     내적공간 $V$와 $V$의 부분공간 $W$에 대해서, $\vec a \in V$를 잡자.
-    이 때 $\vec a$의 $W$ 위로의 정사영 $\vec v$는 
+    이때 $\vec a$의 $W$ 위로의 정사영 $\vec v$는 
     \begin{equation*}
         \forall \vec w \in W \qquad \left<\vec a - \vec v, \vec w\right> = 0
     \end{equation*}
     을 만족한다.
-    이 때 $\vec v = p_W (\vec a)$로 표기한다.
+    이때 $\vec v = p_W (\vec a)$로 표기한다.
 
     $\vec a \in V$의 어떤 벡터 $\vec u \in V$가 생성하는 벡터공간 $\left<\vec u\right>$로의 정사영을 $p_{\vec u} (\vec a)$로도 표기한다.
 \end{definition}
@@ -1815,7 +1818,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
                 \langle f, g \rangle = \int_{-1}^1 f(x) g(x)\,\dd x
             \end{equation*}
             이다.
-            이 때 $\{1, x, x^2\}$에 대해서 그람-슈미트 과정을 다음과 같이 실행한다:
+            이때 $\{1, x, x^2\}$에 대해서 그람-슈미트 과정을 다음과 같이 실행한다:
             \begin{align*}
                 \vec w_1 &= 1\\
                 \vec w_2 &= x - \frac{\langle 1, x \rangle}{\langle 1, 1\rangle} 1 = x - \frac{\left. \frac{x^2}{2}\right|_{-1}^1}{\left. x\right|_{-1}^1} = x\\
@@ -1823,7 +1826,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             \end{align*}
             따라서 $\left< 1, x, x^2 \right>$는 직교 기저 $\left\{1, x, x^2 - \frac13\right\}$로 생성된다.
         \item 벡터공간 $W = \left< 1, x, x^2, x^3 \right>$에 대해서 $I = [-1, 1]$이고 $r(x) = 1$인 내적 $\langle \cdot, \cdot \rangle_{I, r(x)}$가 주어졌다고 하자.
-            이 때 $\{1, x, x^2, x^3\}$에 대해서 그람-슈미트 과정을 실행할 때, 세 번째 직교 기저 벡터까지는 위에서 $\{1, x, x^2\}$에 대해서 그람-슈미트 과정을 실행한 것과 동일하다:
+            이때 $\{1, x, x^2, x^3\}$에 대해서 그람-슈미트 과정을 실행할 때, 세 번째 직교 기저 벡터까지는 위에서 $\{1, x, x^2\}$에 대해서 그람-슈미트 과정을 실행한 것과 동일하다:
             \begin{align*}
                 \vec w_1 &= 1\\
                 \vec w_2 &= x\\
@@ -1912,7 +1915,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \vec a_i \cdot \vec a_j = \vec b_i \cdot \vec b_j = \delta_{ij}
     \end{equation*}
     이라는 것과 동치이다.
-    이 때 $\delta_{ij}$는 크로넥커(Kronecker) 델타이며, 이는 $i = j$일 때 1, $i \neq j$일 때 0을 가지는 함수이다.
+    이때 $\delta_{ij}$는 크로넥커(Kronecker) 델타이며, 이는 $i = j$일 때 1, $i \neq j$일 때 0을 가지는 함수이다.
     그러므로 1, 2와 5, 6은 동치이다.
 
     3과 4가 동치임을 보이자.
@@ -1925,7 +1928,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \lVert A (\vec a + \vec b) \rVert = \lVert \vec a + \vec b \rVert
     \end{equation*}
     가 성립한다.
-    이 때
+    이때
     \begin{align*}
         \lVert A (\vec a + \vec b) \rVert &= \sqrt{A (\vec a + \vec b) \cdot A (\vec a + \vec b) }\\
                                           &= \sqrt{(A \vec a + A \vec b) \cdot (A \vec a + A \vec b)}\\
@@ -1991,14 +1994,203 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     \begin{enumerate}
         \item $\mathbb R^2 \rightarrow \mathbb R^2$에서 원점을 기준으로 $\theta$만큼 회전시키는 회전변환 
             \begin{equation*}
-                \vec v \mapsto \begin{pmatrix}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta\end{pmatrix} \vec v
+                \vec x \mapsto \begin{pmatrix}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta\end{pmatrix} \vec x
             \end{equation*}
         의 행렬은 직교행렬이다.
         \item $\mathbb R^2 \rightarrow \mathbb R^2$에서 원점을 지나고 $x$축과 $\theta$의 각을 이루는 직선에 대한 대칭변환 
             \begin{equation*}
-                \vec v \mapsto \begin{pmatrix}\cos \theta & \sin \theta \\ \sin \theta & -\cos \theta\end{pmatrix} \vec v
+                \vec x \mapsto \begin{pmatrix}\cos \theta & \sin \theta \\ \sin \theta & -\cos \theta\end{pmatrix} \vec x
             \end{equation*}
         의 행렬은 직교행렬이다.
+    \end{enumerate}
+\end{example}
+
+\begin{remark}
+    $\mathbb R^3 \rightarrow \mathbb R^3$에서\marginpar{\small 2018년 10월 8일} 벡터 $\vec v$를 기준으로 $\alpha$만큼 회전시키는 회전변환 $R_{\vec v}(\alpha)$를 구하자.
+
+    우선 $z$ 축을 중심으로 $\alpha$만큼 회전하는 $R_{\vec e_3}(\alpha)$는 $\mathbb R^2$에서의 회전변환을 통해
+    \begin{equation*}
+        R_{\vec e_3}(\alpha)
+        \begin{pmatrix}
+            x \\ y \\ z
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \cos \alpha & -\sin alpha & 0\\
+            \sin \alpha & \cos \alpha & 0\\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            x \\ y \\ z
+        \end{pmatrix}
+    \end{equation*}
+    임을 쉽게 알 수 있다.
+
+    이제 $\vec v$와 직교를 이루는 $\vec u, \vec w$를 잡자.
+    이때 $\vec w \times \vec u$가 $\vec v$와 평행이 되도록 하자.
+    이들을 정규화한 $\sfrac{\vec w}{\lVert \vec w \rVert}, \sfrac{\vec u}{\lVert \vec u \rVert}, \sfrac{\vec v}{\lVert \vec v \rVert}$를 각각 $\vec e_1, \vec e_2, \vec e_3$로 변환하는 선형변환 $L$을 잡자.
+    즉,
+    \begin{align*}
+        L\left(\frac{\vec w}{\lVert \vec w \rVert}\right) &= \vec e_1\\
+        L\left(\frac{\vec u}{\lVert \vec u \rVert}\right) &= \vec e_2\\
+        L\left(\frac{\vec v}{\lVert \vec v \rVert}\right) &= \vec e_3
+    \end{align*}
+    이다.
+    그런데 $L$은 회전변환이므로 반드시 역함수 $L^{-1}$가 존재한다.
+    따라서
+    \begin{align*}
+        \frac{\vec w}{\lVert \vec w \rVert} &= L^{-1}(\vec e_1)\\
+        \frac{\vec u}{\lVert \vec u \rVert} &= L^{-1}(\vec e_2)\\
+        \frac{\vec v}{\lVert \vec v \rVert} &= L^{-1}(\vec e_3)
+    \end{align*}
+    이고, $L$에 대응되는 행렬은 
+    \begin{equation*}
+        \begin{pmatrix}
+            \frac{\vec w}{\lVert \vec w \rVert} & \frac{\vec u}{\lVert \vec u \rVert} & \frac{\vec v}{\lVert \vec v \rVert}
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    그런데 $\sfrac{\vec w}{\lVert \vec w \rVert}, \sfrac{\vec u}{\lVert \vec u \rVert}, \sfrac{\vec v}{\lVert \vec v \rVert}$는 정규직교하므로 이는 직교행렬이고, 따라서 역행렬은
+    \begin{equation*}
+        \begin{pmatrix}
+            \frac{\vec w^t}{\lVert \vec w \rVert} \\ \frac{\vec u^t}{\lVert \vec u \rVert} \\ \frac{\vec v^t}{\lVert \vec v \rVert}
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+
+    $\vec v$를 기준으로 $\alpha$만큼의 회전은 $\sfrac{\vec v}{\lVert \vec v\rVert}$가 $\vec e_3$가 되도록 회전한 후, $z$ 축을 중심으로 $\alpha$만큼의 회전, 즉 $R_{\vec e_3}(\alpha)$를 한 후, 다시 원래대로 $\vec e_3$를 $\sfrac{\vec v}{\lVert \vec v\rVert}$의 위치로 옮기는 것이다.
+    따라서 $R_{\vec v}(\alpha)$는 아래와 같은 행렬에 대응된다:
+    \begin{equation*}
+        \begin{pmatrix}
+            \frac{\vec w}{\lVert \vec w \rVert} & \frac{\vec u}{\lVert \vec u \rVert} & \frac{\vec v}{\lVert \vec v \rVert}
+        \end{pmatrix}
+        \begin{pmatrix}
+            \cos \alpha & -\sin \alpha & 0\\
+            \sin \alpha & \cos \alpha & 0\\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \frac{\vec w^t}{\lVert \vec w \rVert} \\ \frac{\vec u^t}{\lVert \vec u \rVert} \\ \frac{\vec v^t}{\lVert \vec v \rVert}
+        \end{pmatrix}
+    \end{equation*}
+\end{remark}
+
+벡터함수 $\vec F = (f_1, \dots, f_n)$가 $\mathbb R^m \rightarrow \mathbb R^n$으로 갈 때, 점 $P$에서 다음과 같이 근사할 수 있다:
+\begin{align*}
+    \vec F(\vec x) &=
+    \begin{pmatrix}
+        f_1(\vec x) \\ \vdots \\ f_n(\vec x)
+    \end{pmatrix}
+    \approx
+    \begin{pmatrix}
+        f_1(P) + f_1'(P) (\vec x - P)\\
+        \vdots\\
+        f_n(P) + f_n'(P) (\vec x - P)
+    \end{pmatrix}\\
+              &=
+              \begin{pmatrix}
+                  f_1'(P) \\ \vdots \\ f_n'(P)
+              \end{pmatrix}
+              (\vec x - P) + \vec F(P)
+\end{align*}
+이때 $\vec F$의 $P$에서의 야코비 행렬(Jacobian matrix)을 다음과 같이 정의하여 더 간단하게 표현할 수 있다.
+
+\begin{definition}
+    벡터함수 $\vec F: \mathbb R^m \rightarrow \mathbb R^n$에 대해 야코비 행렬(Jacobian matrix)을 다음과 같이 정의한다:
+    \begin{equation*}
+        \vec F' = \jacob{f_1, \dots, f_n}{x_1, \dots, x_m} =
+        \begin{pmatrix}
+            f_1' \\ \vdots \\ f_n'
+        \end{pmatrix}
+    \end{equation*}
+    이때 $\vec F = (f_1, \dots, f_n)$이다.
+\end{definition}
+
+따라서 $\vec F$의 $P$에서의 근사는
+\begin{equation*}
+    \vec F(\vec x) \approx \vec F'(P) (\vec x - P) + \vec F(P)
+\end{equation*}
+로 쓸 수 있다.
+
+\begin{example}
+    $\vec F(x, y) = (f(x, y), g(x, y)) = (x^2 - y^2, -2xy)$로 정의된 벡터함수의 야코비 행렬을 구하면
+    \begin{equation*}
+        \vec F' =
+        \begin{pmatrix}
+            \diffp{f}{x} & \diffp{f}{y}\\
+            \diffp{g}{x} & \diffp{g}{y}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            2x & -2y\\
+            -2y & -2x
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    %TODO: orthogonal 행렬
+\end{example}
+
+\begin{definition}
+    $n \times n$ 행렬 $A$에 대해서 $A \vec x = \lambda \vec x$가 되는 $\vec x \neq \vecz$가 존재한다.
+    이때 $\lambda$를 특성값(eigenvalue), $\vec x$를 $\lambda$-특성벡터(eigenvector) 혹은 단순히 특성벡터라고 부르며, $\lambda$-특성벡터들과 $\vecz$의 집합 $E_\lambda$를 $\lambda$-특성공간(eigenspace)이라고 부른다.
+    또한 $\det (A - \lambda I)$을 특성다항식(characteristic polynomial)이라고 부르고, $\Char A$라고 쓴다.
+\end{definition}
+
+\begin{remark}
+    $n \times n$ 행렬 $A$의 특성값 $\lambda$와 특성벡터 $\vec x$를 구하기 위해서,
+    \begin{equation*}
+        A \vec x = \lambda \vec x
+    \end{equation*}
+    에서 우변을 좌변으로 이항한다:
+    \begin{equation*}
+        (A - \lambda I) \vec x = \vecz
+    \end{equation*}
+    그런데 $\vec x \neq \vecz$이므로 $A - \lambda I$는 정리~\ref{thm:one_to_one_nullspace}와 \ref{thm:nonzero_det}에 의해 $\det (A - \lambda I) = 0$이어야 한다.
+    따라서 특성다항식 $\Char A = \det (A - \lambda I) = 0$을 풀면 특성값 $\lambda$를 구할 수 있다.
+    $\lambda$-특성벡터 $\vec x$의 경우, $(A - \lambda I) \vec x = \vecz$이므로 $\Null (A - \lambda I)$의 원소를 구하면 된다.
+    이는 $A - \lambda I$를 행사다리꼴 형태로 바꾸어 구할 수 있다.
+\end{remark}
+
+\begin{example}
+    \leavevmode
+    \begin{enumerate}
+        \item 행렬 $\begin{pmatrix}2 & 1\\1 & 2\end{pmatrix}$의 특성값들과 각각의 특성벡터들을 찾기 위해 특성다항식을 푼다:
+            \begin{equation*}
+                \det
+                \begin{pmatrix}
+                    2 - \lambda & 1\\
+                    1 & 2 - \lambda
+                \end{pmatrix}
+                = (2 - \lambda)^2 - 1 = (\lambda - 3)(\lambda - 1) = 0
+            \end{equation*}
+            따라서 $\lambda = 3$일 경우와 $\lambda = 1$일 경우를 나누어 특성벡터를 찾는다.
+            \begin{enumerate}
+                \item $\lambda = 1$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            1 & 1\\
+                            1 & 1
+                        \end{pmatrix}
+                        \vec x = \vecz
+                    \end{equation*}
+                    이므로 $k \in \mathbb R$에 대해 1-특성벡터 $\vec x = k(1, -1)$이며 1-특성공간 $E_1 = \langle 1, -1 \rangle$이다.
+                \item $\lambda = 3$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            -1 & 1\\
+                            1 & -1
+                        \end{pmatrix}
+                        \vec x = \vecz
+                    \end{equation*}
+                    이므로 $k \in \mathbb R$에 대해 3-특성벡터 $\vec x = k(1, 1)$이며 3-특성공간 $E_3 = \langle 1, 1 \rangle$이다.
+            \end{enumerate}
+        \item $0 < \alpha < \pi$에 대해 행렬 $A = \begin{pmatrix}\cos \alpha & -\sin \alpha\\\sin \alpha & \cos \alpha\end{pmatrix}$의 특성값은 실수 범위에서 존재하지 않는다.
+            이는
+            \begin{equation*}
+                \Char A = \lambda^2 - 2 \lambda \cos \alpha + 1
+            \end{equation*}
+            인데, $\lambda$에 대한 이차방정식의 판별식에서 $\sfrac D4 = \cos^2 \alpha - 1 < 0$이기 때문에 실근을 가지지 않는다.
+            하지만 복소수 범위에서 $\lambda = e^{i \alpha}$ 혹은 $\lambda = e^{-i \alpha}$임을 알 수 있다.
     \end{enumerate}
 \end{example}
 
