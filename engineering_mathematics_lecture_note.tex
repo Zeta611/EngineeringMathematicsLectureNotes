@@ -12,13 +12,13 @@
 \usepackage{amsmath,mathtools,amssymb,amsthm,thmtools}
 
 \theoremstyle{definition}
-\newtheorem{definition}{정의}
+\newtheorem{definition}{정의}[section]
 
 \theoremstyle{theorem}
-\newtheorem{theorem}{정리}
+\newtheorem{theorem}{정리}[section]
 
 \theoremstyle{theorem}
-\newtheorem{lemma}{도움정리}
+\newtheorem{lemma}{도움정리}[section]
 
 \theoremstyle{remark}
 \newtheorem*{remark}{참고}
@@ -89,7 +89,7 @@ numbered=no
 \reversemarginpar{}
 \section{Linear Algebra: Matrices, Vectors, Determinants. Linear Systems}
 
-Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\small2018년 9월 3일}
+Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\small2018.9.3.}
 \begin{itemize}
     \item \textbf{체體}: 실수체, 복소수체
     \item \textbf{장場}: 전자기장, 벡터장
@@ -151,7 +151,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 \end{definition}
 
 \begin{theorem}
-    체\marginpar{\small 2018년 9월 5일} $F$에 대한 벡터공간 $V$의 원소들 $\vec v_1, \dots, \vec v_k$가 일차독립이라는 것은, $c_1, \dots, c_k \in F$일 때
+    체\marginpar{\small 2018.9.5.} $F$에 대한 벡터공간 $V$의 원소들 $\vec v_1, \dots, \vec v_k$가 일차독립이라는 것은, $c_1, \dots, c_k \in F$일 때
     \[
         c_1 \vec v_1 + \dots + c_k \vec v_k = \vecz\ \Rightarrow\ c_1 = \dots = c_k = 0
     \]
@@ -298,7 +298,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 \end{proof}
 
 \begin{theorem}[그라스만(Graßmann) 공식] \label{thm:grassmann}
-    체\marginpar{\small 2018년 9월 10일} $F$에 대한 유한생성된 벡터공간 $U$와 $W$에 대해, 다음이 성립한다:
+    체\marginpar{\small 2018.9.10.} $F$에 대한 유한생성된 벡터공간 $U$와 $W$에 대해, 다음이 성립한다:
     \begin{equation*}
         \dim (U + W) = \dim U + \dim W - \dim (U \cap W).
     \end{equation*}
@@ -523,7 +523,7 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 \end{example}
 
 \begin{theorem}
-    벡터\marginpar{\small 2018년 9월 12일} 공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$에 대해서 $\{\vec v_1, \dots, \vec v_n\}$이 $V$의 기저라면,
+    벡터\marginpar{\small 2018.9.12.} 공간 $V$와 $W$간의 선형변환 $L: V \rightarrow W$에 대해서 $\{\vec v_1, \dots, \vec v_n\}$이 $V$의 기저라면,
     \begin{equation*}
         \Range (L) = \Span \{L(\vec v_1), \dots, L(\vec v_n)\}
     \end{equation*}
@@ -793,7 +793,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 \end{theorem}
 
 \begin{proof}
-    정리~\ref{thm:one_to_one_range}에 의해 $L$가 일대일 함수라는 것은 $\dim \Range(L) = \dim V$, 즉 $\rank L = \dim V$라는 것과 동치이다.
+    정리~\ref{thm:one_to_one_range}에서 $L$가 일대일 함수라는 것은 $\dim \Range(L) = \dim V$, 즉 $\rank L = \dim V$라는 것과 동치이다.
     따라서 1과 3은 동치이다.
 
     이제 2와 3이 동치임을 보이자.
@@ -808,7 +808,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     따라서, 1, 2, 3은 모두 동치이다.
 \end{proof}
 
-지금까지의 내용을 간략히 요약하고, 약간의 내용을 덧붙인다.\marginpar{\small 2018년 9월 17일}
+지금까지의 내용을 간략히 요약하고, 약간의 내용을 덧붙인다.\marginpar{\small 2018.9.17.}
 체란 간단히 가감승제에 대해서 닫힌 집합이고, 벡터공간은 덧셈과 스칼라 곱에 대해 닫힌 집합이다.
 또한 일차결합, 일차독립, 일차종속과 기저 등에 대해서 다루었다.
 
@@ -921,7 +921,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 \end{remark}
 
 \begin{theorem}
-    벡터\marginpar{\small2018년 9월 19일} 공간 $U, V, W$에 대해 선형변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
+    벡터\marginpar{\small2018.9.19.} 공간 $U, V, W$에 대해 선형변환 $L_1: U \rightarrow V$와 $L_2: V \rightarrow W$이 주어졌다고 하자.
     만약 $L_1$가 위로의 함수라면, 다음이 성립한다:
     \begin{equation*}
         \rank (L_2 \circ L_1) = \rank L_2
@@ -1202,7 +1202,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
 $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB = I$는 $IB = C$가 된다.
 따라서 $C$는 $A$의 역행렬 $B$가 됨을 알 수 있다.
 
-이렇게\marginpar{\small2018년 10월 1일} 역행렬을 구할 수 있으려면 기본 행연산들을 통해 $A$를 $I$로 만들 수 있어야 한다.
+이렇게\marginpar{\small2018.10.1.} 역행렬을 구할 수 있으려면 기본 행연산들을 통해 $A$를 $I$로 만들 수 있어야 한다.
 그런데 정리~\ref{thm:rowrankinvar}에 따르면 기본 행연산으로 행계수가 바뀌지 않으므로, $A$의 행계수가 $A$의 행/열의 개수와 같지 않으면 $I$로 변형할 수 없다.
 따라서, $A$의 역행렬이 존재할 조건은 $A$의 계수가 행/열의 개수와 같은 것이다.
 
@@ -1303,7 +1303,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 \end{theorem}
 
 \begin{theorem} \label{thm:det_props}
-    $\mathbb R^n$에\marginpar{\small 2018년 10월 5일} 속하는 벡터 $\vec v_1, \dots, \vec v_n$와 $n \times n$ 행렬 $A, B$에 대해서, 다음이 성립한다:
+    $\mathbb R^n$에\marginpar{\small 2018.10.5.} 속하는 벡터 $\vec v_1, \dots, \vec v_n$와 $n \times n$ 행렬 $A, B$에 대해서, 다음이 성립한다:
     \begin{enumerate}
         \item $\det(\vec v_1, \dots, \vec v_i, \dots, \vec v_n) = \det(\vec v_1, \dots, \vec v_i + k \vec v_j, \dots, \vec v_n)$
         \item $\det\bigl(A^t\bigr) = \det(A)$
@@ -1754,7 +1754,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 \end{definition}
 
 \begin{theorem}
-    내적공간 $V$와 $V$의 부분공간 $W$에 대해서 $W$의 직교 기저가 $\{\vec w_1, \dots, \vec w_n\}$일 때, $\vec v \in V$의 $W$ 위로의 정사영 $p_W (\vec v)$는 다음과 같다:
+    내적공간 $V$와 부분공간 $W$에 대해서 $W$의 직교 기저가 $\{\vec w_1, \dots, \vec w_n\}$일 때, $\vec v \in V$의 $W$ 위로의 정사영 $p_W (\vec v)$는 다음과 같다:
     \begin{equation*}
         p_W (\vec v) = \frac{\left<\vec v, \vec w_1\right>}{\left<\vec w_1, \vec w_1\right>} + \dots + \frac{\left<\vec v, \vec w_n\right>}{\left<\vec w_n, \vec w_n\right>}
     \end{equation*}
@@ -2006,7 +2006,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 \end{example}
 
 \begin{remark}
-    $\mathbb R^3 \rightarrow \mathbb R^3$에서\marginpar{\small 2018년 10월 8일} 벡터 $\vec v$를 기준으로 $\alpha$만큼 회전시키는 회전변환 $R_{\vec v}(\alpha)$를 구하자.
+    $\mathbb R^3 \rightarrow \mathbb R^3$에서\marginpar{\small 2018.10.8.} 벡터 $\vec v$를 기준으로 $\alpha$만큼 회전시키는 회전변환 $R_{\vec v}(\alpha)$를 구하자.
 
     우선 $z$ 축을 중심으로 $\alpha$만큼 회전하는 $R_{\vec e_3}(\alpha)$는 $\mathbb R^2$에서의 회전변환을 통해
     \begin{equation*}
@@ -2016,7 +2016,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \end{pmatrix}
         =
         \begin{pmatrix}
-            \cos \alpha & -\sin alpha & 0\\
+            \cos \alpha & -\sin \alpha & 0\\
             \sin \alpha & \cos \alpha & 0\\
             0 & 0 & 1
         \end{pmatrix}
@@ -2113,6 +2113,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 로 쓸 수 있다.
 
 \begin{example}
+    각도를 보존하는 사상을 등각사상(conformal mapping)이라고 하는데, 어떤 사상의 야코비 행렬이 직교행렬의 상수 배이면 해당 사상은 등각사상임이 알려져 있다.
     $\vec F(x, y) = (f(x, y), g(x, y)) = (x^2 - y^2, -2xy)$로 정의된 벡터함수의 야코비 행렬을 구하면
     \begin{equation*}
         \vec F' =
@@ -2127,7 +2128,8 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
         \end{pmatrix}
     \end{equation*}
     이다.
-    %TODO: orthogonal 행렬
+    그런데 $\vec F'$의 열벡터 $2(x, -y)$와 $2(-y, -x)$의 내적이 0이므로 두 열벡터는 직교한다.
+    따라서 $\vec F'$는 직교행렬의 상수배임을 알 수 있고, $\vec F$는 등각사상이다.
 \end{example}
 
 \begin{definition}
@@ -2191,8 +2193,245 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             \end{equation*}
             인데, $\lambda$에 대한 이차방정식의 판별식에서 $\sfrac D4 = \cos^2 \alpha - 1 < 0$이기 때문에 실근을 가지지 않는다.
             하지만 복소수 범위에서 $\lambda = e^{i \alpha}$ 혹은 $\lambda = e^{-i \alpha}$임을 알 수 있다.
+        \item 행렬\marginpar{\small 2018.10.10.}  $\begin{pmatrix}-2 & 2 & -3\\2 & 1 & -6\\-1 & -2 & 0\end{pmatrix}$의 특성값들과 각각의 특성벡터들을 찾기 위해 특성다항식을 푼다:
+            \begin{equation*}
+                \det
+                \begin{pmatrix}
+                    -2 - \lambda & 2 & -3\\
+                    2 & 1 - \lambda & -6\\
+                    -1 & -2 & -\lambda
+                \end{pmatrix}
+                = - (\lambda - 5)(\lambda + 3)^2
+            \end{equation*}
+            따라서 $\lambda = 5$일 경우와 $\lambda = -3$일 경우를 나누어 특성벡터를 찾는다.
+            \begin{enumerate}
+                \item $\lambda = 5$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            -7 & 2 & -3\\
+                            2 & -4 & -6\\
+                            -1 & -2 & -5
+                        \end{pmatrix}
+                        \rightarrow
+                        \begin{pmatrix}
+                            -7 & 2 & -3\\
+                            0 & 1 & 2\\
+                            0 & 0 & 0
+                        \end{pmatrix}
+                        \rightarrow
+                        \begin{pmatrix}
+                            1 & 0 & 1\\
+                            0 & 1 & 2\\
+                            0 & 0 & 0
+                        \end{pmatrix}
+                    \end{equation*}
+                    이므로 $k \in \mathbb R$에 대해 5-특성벡터 $\vec x = k(-1, -2, 1)$이며 5-특성공간 $E_5 = \langle (-1, -2, 1) \rangle$이다.
+                \item $\lambda = -3$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            1 & 2 & -3\\
+                            2 & 4 & -6\\
+                            -1 & -2 & 3
+                        \end{pmatrix}
+                        \rightarrow
+                        \begin{pmatrix}
+                            1 & 2 & -3\\
+                            0 & 0 & 0\\
+                            0 & 0 & 0
+                        \end{pmatrix}
+                    \end{equation*}
+                    이므로 $k, l \in \mathbb R$에 대해 $-3$-특성벡터 $\vec x = k(-2, 1, 0) + l(3, 0, 1)$이며 $-3$-특성공간 $E_{-3} = \langle (-2, 1, 0), (3, 0, 1)\rangle$이다.
+            \end{enumerate}
+            여기서 $\lambda = 5$일 때 $\Char A$에서는 $\lambda - 5$ 항이 하나이고 $\dim E_5 = 1$로 같고, $\lambda = -3$일 때 $\Char A$에서 $\lambda + 3$ 항이 두 개, $\dim E_{-3} = 2$로 동일하다.
+            그러나 이렇게 특성방정식에서 중근의 개수와 해당 특성값에 대응되는 특성공간의 차원이 항상 같은 것은 아니다.
     \end{enumerate}
 \end{example}
+
+\begin{definition}
+    행렬 $A$에 대해서, $\Char A$의 어떤 해, 즉 특성값이 나타나는 횟수를 대수적 중복도(algebraic multiplicity), 해당 특성값에 대응되는 특성공간의 차원을 기하적 중복도(geometric multiplicity)라고 한다.
+\end{definition}
+
+\begin{theorem}
+    행렬 $A$의 기하적 중복도는 대수적 중복도를 초과하지 못한다.
+\end{theorem}
+
+\begin{example}
+    $\begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}$의 특성방정식은 $(\lambda - 1)^2 = 0$이다.
+    따라서 $\lambda = 1$의 대수적 중복도는 1이고, $A - \lambda I = O$이므로 $\mathbb R^2$의 임의의 벡터가 특성벡터이다.
+    그러므로 특성공간은 $\mathbb R^2$이고, 기하적 중복도는 2이다.
+
+    $\begin{pmatrix}0 & 1\\0 & 0\end{pmatrix}$의 특성방정식은 $\lambda^2 = 0$이다.
+    따라서 $\lambda = 0$의 대수적 중복도는 2이고, $k \in \mathbb R$에 대해 $(k, 0)$이 특성벡터이므로, 특성공간은 $\langle (1, 0) \rangle$로 기하적 중복도가 1이다.
+
+    위의 두 경우 모두 기하적 중복도가 대수적 중복도 이하임을 확인할 수 있다.
+\end{example}
+
+\begin{definition}
+    벡터공간 $V$와 부분공간 $U, W$에 대해서 $U \cap W = \{\vecz\}$일 때 $U$와 $W$의 합을 직합(direct sum)이라고 하고 $U \oplus W$라고 쓴다.
+\end{definition}
+
+\begin{remark}
+    그라스만 공식(정리~\ref{thm:grassmann})에서 $\dim (U + W) = \dim U + \dim W$임을 알 수 있다.
+\end{remark}
+
+\begin{theorem}
+    두 벡터공간 $U$와 $W$의 교집합이 $\{\vecz\}$일 때, $\vec x \in U \oplus W$에 대해서
+    \begin{equation*}
+        \vec x = \vec u_1 + \vec w_1 = \vec u_2 + \vec w_2
+    \end{equation*}
+    이고 $\vec u_1, \vec u_2 \in U$, $\vec w_1, \vec w_2 \in W$일 때, $\vec u_1 = \vec u_2$이고 $\vec w_1 = \vec w_2$이다.
+    즉, $U \oplus W$의 원소의 합 표현은 유일하다.
+\end{theorem}
+
+\begin{proof}
+    $\vec x \in U \oplus W$에 대해서 $\vec u_1 + \vec w_1 = \vec u_2 + \vec w_2 = \vec x$이고 $\vec u_1, \vec u_2 \in U$, $\vec w_1, \vec w_2 \in W$라고 하자.
+    그러면 $\vec u_1 - \vec u_2 = \vec w_2 - \vec w_1$이므로 $U \cap W = \{\vecz\}$의 원소이다.
+    따라서 $\vec u_1 - \vec u_2 = \vec w_2 - \vec w_1 = \vecz$이어서 $\vec x$의 합 표현은 유일하다.
+\end{proof}
+
+\begin{definition}
+    벡터공간 $V$의 부분공간 $U_1, \dots, U_k$에 대해서 어떤 벡터 $\vec x \in U_1 + \dots + U_k$의 합 표현이 유일할 때
+    \begin{equation*}
+        U_1 + \dots + U_k = U_1 \oplus \dots \oplus U_k
+    \end{equation*}
+    로 쓴다.
+\end{definition}
+
+\begin{theorem} \label{thm:linear_independence_directsum}
+    벡터공간 $U_1, \dots, U_k$에 대해서 $U_1 \oplus \dots \oplus U_k$가 존재할 때,
+    \begin{equation*}
+        \bigl\{\vec u_i \bigm| \vec u_i \in U_i \setminus \{\vecz\},\ i \in \{1, \dots, k\}\bigr\}
+    \end{equation*}
+    은 일차독립이다.
+\end{theorem}
+
+\begin{proof}
+    스칼라 $c_1, \dots, c_k$에 대해서
+    \begin{equation*}
+        c_1 \vec u_1 + \dots + c_k \vec u_k = \vecz
+    \end{equation*}
+    라고 가정하자.
+    $\vec x$를
+    \begin{equation*}
+        \vec x = c_1 \vec u_1 + \dots + c_{k - 1} \vec u_{k - 1} = -c_k \vec u_k
+    \end{equation*}
+    로 두면,
+    \begin{align*}
+        \vec x &= c_1 \vec u_1 + \dots + c_{k - 1} \vec u_{k - 1} + 0 \vec u_k\\
+               &= 0 \vec u_1 + \dots + 0 \vec u_{k - 1} + (-c_k) \vec u_k
+    \end{align*}
+    이고 합 표현의 유일성에 따라 $c_1 = \dots = c_k = 0$이다.
+    그러므로 $\bigl\{\vec u_i \bigm| \vec u_i \in U_i \setminus \{\vecz\},\ i \in \{1, \dots, k\}\bigr\}$은 일차독립이다.
+\end{proof}
+
+\begin{theorem} \label{thm:eigenspace_directsum}
+    $n \times n$ 행렬 $A$에 대해서 서로 다른 특성값 $\lambda_1, \dots, \lambda_k$에 대응되는 특성공간 $E_1, \dots, E_n$에 대해, 다음이 성립한다:
+    \begin{equation*}
+        E_1 + \dots + E_k = E_1 \oplus \dots \oplus E_k
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    $k$에 대한 수학적 귀납법으로 증명한다.
+
+    먼저 $k = 2$일 경우, 어떤 벡터 $\vec v \in E_1 \cap E_2$를 고르자.
+    그러면
+    \begin{equation*}
+        A \vec v = \lambda_1 \vec v = \lambda_2 \vec v
+    \end{equation*}
+    이므로,
+    \begin{equation*}
+        (\lambda_1 - \lambda_2) \vec v = \vecz
+    \end{equation*}
+    이다.
+    그런데 $\lambda_1 \neq \lambda_2$이므로 $\vec v = \vecz$이다.
+    따라서 $E_1 + E_2 = E_1 \oplus E_2$이다.
+
+    이제 $k > 2$의 경우에, $E_1 + \dots + E_{k - 1} = E_1 \oplus \dots \oplus E_{k - 1}$가 성립한다고 가정하자.
+    $\vec x \in E_1 + \dots + E_k$에 대해서 $\vec v_i, \vec u_i \in E_i$일 때
+    \begin{equation*}
+        \vec x = \vec v_1 + \dots + \vec v_k = \vec u_1 + \dots + \vec u_k \in E_1 + \dots + E_k
+    \end{equation*}
+    라고 하자.
+    그러면
+    \begin{equation*}
+        (\vec v_1 - \vec u_1) + \dots + (\vec v_{k - 1} - \vec u_{k - 1}) = \vec u_k - \vec v_k
+    \end{equation*}
+    이고, $\vec v_i - \vec u_i = \vec w_i$로 놓자.
+    따라서
+    \begin{equation*}
+        \vec w_1 + \dots + \vec w_{k - 1} = -\vec w_k
+    \end{equation*}
+    이고 $\vec w_i \in E_i$이다.
+    양변에 $A$를 왼쪽에 곱하면
+    \begin{align*}
+        &A(\vec w_1 + \dots + \vec w_{k - 1}) = A(-\vec w_k)\\
+        \Leftrightarrow\quad &A \vec w_1 + \dots + A \vec w_{k - 1} = -A \vec w_k\\
+        \Leftrightarrow\quad &\lambda_1 \vec w_1 + \dots + \lambda_{k - 1} \vec w_{k - 1} = - \lambda_k \vec w_k
+    \end{align*}
+    이다.
+    또한 양변에 $\lambda_k$를 곱한 것은
+    \begin{equation*}
+        \lambda_k \vec w_1 + \dots + \lambda_k \vec w_{k - 1} = -\lambda_k \vec w_k
+    \end{equation*}
+    이다.
+    둘을 양변에서 빼면
+    \begin{equation*}
+        (\lambda_1 - \lambda_k) \vec w_1 + \dots + (\lambda_{k - 1} - \lambda_k) \vec w_{k - 1} = \vecz
+    \end{equation*}
+    이다.
+    따라서 $i \in \{1, \dots, k - 1\}$에 대해 $\lambda_i \neq \lambda_k$이므로 $\vec w_1, \dots, \vec w_{k - 1}$는 일차종속이다.
+    그런데 귀납 가정에 따라 $E_1 + \dots + E_{k - 1} = E_1 \oplus \dots \oplus E_{k - 1}$이며 정리~\ref{thm:linear_independence_directsum}에 따라 $\vecz$가 아닌 벡터들은 일차독립이어야 하므로, $\vec w_1, \dots, \vec w_{k - 1}$은 $\vecz$이다.
+    그러므로 $\vec v_i = \vec u_i$이고, 벡터 $\vec x \in E_1 + \dots + E_k$의 합 표현은 유일하고, $E_1 + \dots + E_k = E_1 \oplus \dots \oplus E_k$이다.
+    이로써 귀납 증명이 완료된다.
+\end{proof}
+
+\begin{remark}
+    벡터공간 $U_1, \dots, U_k$에 대해서
+    \begin{equation*}
+        U_1 + \dots + U_k = U_1 \oplus \dots \oplus U_k \Rightarrow \bigl(\forall i, j \in \{1, \dots, k\}\quad i \neq j \Rightarrow U_i \cap U_j = \{\vecz\}\bigr)
+    \end{equation*}
+    이지만 그 역은 성립하지 않는다.
+    예를 들어, $\mathbb R^2$ 좌표평면에서 원점을 지나는 세 직선으로 나타내어지는 벡터공간의 교집합은 원점뿐이지만, $\mathbb R^2$의 벡터들은 세 직선에 속하는 벡터들의 합 표현으로 유일하게 나타내지지 않는다.
+
+    그러나 벡터공간 $U_1, \dots, U_k$들의 집합 $\mathcal U$에 대해서,
+    \begin{equation*}
+        \forall \mathcal P_1, \mathcal P_2 \subseteq \mathcal U \qquad \mathcal P_1 \cap \mathcal P_2 = \varnothing \Rightarrow \sum_{U \in \mathcal P_1} U\ \cap \sum_{\tilde U \in \mathcal P_2} \tilde U = \{\vecz\}
+    \end{equation*}
+    인 것은 $U_1 + \dots + U_k = U_1 \oplus \dots \oplus U_k$와 동치이다.
+\end{remark}
+
+\begin{theorem}
+    행렬 $A$의 서로 다른 특성공간 $E_1, \dots E_k$와 각각의 기저가 $\mathcal B_1, \dots, \mathcal B_k$이라고 하자.
+    그러면 $\mathcal B_1 \cup \dots \cup \mathcal B_k$는 $E_1 \oplus \dots \oplus E_k$의 기저이다.
+\end{theorem}
+
+\begin{proof}
+    $i \in \{1, \dots, k\}$에 대해 $E_i$의 기저 $\mathcal B_i = \{\vec v_{i1}, \dots, \vec v_{ij_i}\}$라고 하자.
+    먼저 $\mathcal B_1 \cup \dots \cup \mathcal B_k$가 $E_1 \oplus \dots \oplus E_k$를 생성하는 것은 각각의 $\mathcal B_i$가 $E_i$를 생성하므로 당연하다.
+    이제 $\mathcal B_1 \cup \dots \cup \mathcal B_k$가 일차독립임을 보이자.
+
+    기저 $\mathcal B_i$에 속하는 기저 벡터들의 선형결합들의 합을
+    \begin{equation*}
+        \sum_{i = 1}^k (c_{i1} \vec v_{i1} + \dots + c_{ij_i} \vec v_{ij_i}) = \vecz
+    \end{equation*}
+    라고 하자.
+    $l \in \{1, \dots, k\}$를 하나 골라서 우변으로 이항하면,
+    \begin{equation*}
+        \sum_{i \neq l} (c_{i1} \vec v_{i1} + \dots + c_{ij_i} \vec v_{ij_i}) = -(c_{l1} \vec v_{l1} + \dots + c_{lj_l} \vec v_{lj_l})
+    \end{equation*}
+    이다.
+    그런데 정리~\ref{thm:eigenspace_directsum}에 따라 양변은 $E_1 \oplus \dots \oplus E_k$의 원소이므로 합 표현이 유일하고, 따라서 모든 $c_{ij_i}$는 0이다.
+    따라서 $\mathcal B_1 \cup \dots \cup \mathcal B_k$가 일차독립이다.
+\end{proof}
+
+\begin{definition}
+    $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대응되는 $n \times n$ 행렬 $A$가 있을 때, $\vec v_1, \dots, \vec v_n$이 $\mathbb R^n$에 대한 행렬 $A$의 특성기저(eigenbasis)라는 것은 $\vec v_1, \dots, \vec v_n$이 $A$의 특성벡터이면서 $\mathbb R^n$의 기저벡터라는 것을 말한다.
+\end{definition}
+
+\begin{remark}
+    $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저가 존재한다는 것은 $\Char A$의 근의 개수가 $n$개라는 것이고, 이는 대수적 중복도와 기하적 중복도의 합이 같다는 것이다.
+\end{remark}
 
 % \begin{theorem}
 %     함수 $\left<\cdot, \cdot\right>: \mathbb R^n \times \mathbb R^n \rightarrow \mathbb R$가 내적이라는 것은 벡터 $\vec a, \vec b \in \mathbb R^n$에 대해 고윳값이 모두 양수인 어떤 $n \times n$ 대칭행렬 $A$가 존재해서 다음을 만족한다는 것과 동치이다:
