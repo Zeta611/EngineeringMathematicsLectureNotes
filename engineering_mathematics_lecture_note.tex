@@ -64,6 +64,7 @@ numbered=no
 \DeclareMathOperator{\Vol}{Vol}
 \DeclareMathOperator{\sVol}{\widetilde{Vol}}
 \DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\tr}{tr}
 
 \usepackage{comment}
 % \excludecomment{proof}
@@ -1556,7 +1557,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     \end{enumerate}
 \end{example}
 
-\begin{theorem}
+\begin{theorem} \label{thm:sym_bilinear}
     함수 $\left<\cdot, \cdot\right>: \mathbb R^n \times \mathbb R^n \rightarrow \mathbb R$가 대칭 쌍선형형식(symmetric bilinear form)이라는 것은 벡터 $\vec a, \vec b \in \mathbb R^n$에 대해 어떤 $n \times n$ 대칭행렬 $A$가 존재해서 다음을 만족한다는 것과 동치이다:
     \begin{equation*}
         \left<\vec a, \vec b\right> = \vec b^t A \vec a
@@ -2509,8 +2510,8 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             0 & \dots & \lambda_n
         \end{pmatrix}
         \begin{pmatrix}
-            \vec v_1^t \\ \vdots \\ \vec v_n^t
-        \end{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}^{-1}
     \end{equation*}
     이므로 $A$는 대각화 가능 행렬이다.
 
@@ -2561,7 +2562,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             1 & 4 & 7\\
             2 & 5 & 8\\
             3 & 6 & 10
-        \end{pmatrix}^t\\
+        \end{pmatrix}^{-1}\\
           &=
         \begin{pmatrix}
             2 & 4 & 7\\
@@ -2577,7 +2578,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             2 & 4 & 7\\
             4 & 5 & 8\\
             6 & 6 & 10
-        \end{pmatrix}^t\\
+        \end{pmatrix}^{-1}\\
           &=
         \begin{pmatrix}
             4 & 2 & 7\\
@@ -2593,7 +2594,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             4 & 2 & 7\\
             5 & 4 & 8\\
             6 & 6 & 10
-        \end{pmatrix}^t
+        \end{pmatrix}^{-1}
     \end{align*}
     이다.
 \end{remark}
@@ -2682,7 +2683,7 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 \end{proof}
 
 \begin{example}
-    $A = \begin{pmatrix}1 & 3\\2 & 4\end{pmatrix} \begin{pmatrix}7 & 0\\ 0 & 8\end{pmatrix}\begin{pmatrix}1 & 3\\2 & 4\end{pmatrix}^t$는 대칭행렬이 아니다.
+    $A = \begin{pmatrix}1 & 3\\2 & 4\end{pmatrix} \begin{pmatrix}7 & 0\\ 0 & 8\end{pmatrix}\begin{pmatrix}1 & 3\\2 & 4\end{pmatrix}^{-1}$는 대칭행렬이 아니다.
     $(1, 2) \cdot (3, 4) \neq 0$이기 때문이다.
 \end{example}
 
@@ -2702,11 +2703,28 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
             0 & 0 & 0 & 0 & 3
         \end{pmatrix}
         \begin{pmatrix}
-            \vec v_1^t \\ \vec v_2^t \\ \vec v_3^t \\ \vec w_1^t \\ \vec w_2^t
-        \end{pmatrix}
+            \vec v_1 & \vec v_2 & \vec v_3 & \vec w_1 & \vec w_2
+        \end{pmatrix}^{-1}
     \end{equation*}
     이 때 $A$의 특성값 2, 3과 2-특성공간 $E_2 = \langle \vec v_1, \vec v_2, \vec v_3 \rangle$과 3-특성공간 $E_3 = \langle \vec w_1, \vec w_2\rangle$을 알 수 있다.
     각각의 특성공간의 기저에 그람-슈미트 과정을 통해서 직교 기저를 얻을 수 있고, 정규화하여 정규직교 기저를 구할 수 있다.
+    $E_2$와 $E_3$의 기저들을 정규직교화하여 $\{\tilde{\vec v}_1, \tilde{\vec v}_2, \tilde{\vec v}_3\}$와 $\{\tilde{\vec w}_1, \tilde{\vec w}_2\}$를 구했을 때, $A$는 다음과 같이 직교 대각화할 수 있다:
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            \tilde{\vec{v}}_1 & \tilde{\vec{v}}_2 & \tilde{\vec{v}}_3 & \tilde{\vec{w}}_1 & \tilde{\vec{w}}_2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 0 & 0 & 0 & 0\\
+            0 & 2 & 0 & 0 & 0\\
+            0 & 0 & 2 & 0 & 0\\
+            0 & 0 & 0 & 3 & 0\\
+            0 & 0 & 0 & 0 & 3
+        \end{pmatrix}
+        \begin{pmatrix}
+            \tilde{\vec{v}}_1^t \\ \tilde{\vec{v}}_2^t \\ \tilde{\vec{v}}_3^t \\ \tilde{\vec{w}}_1^t \\ \tilde{\vec{w}}_2^t
+        \end{pmatrix}^t
+    \end{equation*}
     
     즉, 대칭행렬은 직교 대각화 가능하다:
     대각행렬 $A$에 대해서
@@ -2716,10 +2734,72 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
     인 $P$가 존재한다.
 \end{remark}
 
-% \begin{theorem}
-%     함수 $\left<\cdot, \cdot\right>: \mathbb R^n \times \mathbb R^n \rightarrow \mathbb R$가 내적이라는 것은 벡터 $\vec a, \vec b \in \mathbb R^n$에 대해 고윳값이 모두 양수인 어떤 $n \times n$ 대칭행렬 $A$가 존재해서 다음을 만족한다는 것과 동치이다:
-%     \begin{equation*}
-%         \left<\vec a, \vec b\right> = \vec b^t A \vec a
-%     \end{equation*}
-% \end{theorem}
+\begin{theorem}
+    함수\marginpar{\small 2018.10.17} $\left<\cdot, \cdot\right>: \mathbb R^n \times \mathbb R^n \rightarrow \mathbb R$가 내적이라는 것은 벡터 $\vec a, \vec b \in \mathbb R^n$에 대해 특성값이 모두 양수인 어떤 $n \times n$ 대칭행렬 $A$가 존재해서 다음을 만족한다는 것과 동치이다:
+    \begin{equation*}
+        \left<\vec a, \vec b\right> = \vec b^t A \vec a
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    정리~\ref{thm:sym_bilinear}에 의해 어떤 $n \times n$ 대칭행렬 $A$가 존재하여 $\langle \vec a, \vec b \rangle = \vec b^t A \vec a$인 것은 $\langle\cdot, \cdot\rangle$이 대칭 쌍선형형식인 것과 동치이다.
+    따라서 $n \times n$ 대칭행렬 $A$의 특성값이 모두 양수이면 $\langle \cdot, \cdot \rangle$이 양의 정부호성을 가지는 것과 동치인 것만을 보이면 된다.
+
+    $A = PDP^t$와 같이 대각화를 하고, $D$의 $i$행 $i$열의 원소를 특성값 $\lambda_i$라 하자.
+    어떤 벡터 $\vec x \in \mathbb R^n$에 대해 $\langle \vec x, \vec x\rangle$은 다음과 같이 정리할 수 있다:
+    \begin{equation*}
+        \langle \vec x, \vec x\rangle = \vec x^t A \vec x = \vec x^t PDP^t \vec x = (P^t \vec x)^t D (P^t \vec x)
+    \end{equation*}
+    이때 $P^t \vec x = \vec y = (y_1, \dots, y_n)$이라 두면,
+    \begin{align*}
+        \langle \vec x, \vec x\rangle &=
+        \begin{pmatrix}
+            y_1 & \dots & y_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            y_1 \\ \vdots \\ y_n
+        \end{pmatrix}\\
+                                      &=
+        \begin{pmatrix}
+            \lambda_1 y_1 & \dots & \lambda_n y_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            y_1 \\ \vdots \\ y_n
+        \end{pmatrix}
+        = \lambda_1 y_1^2 + \dots + \lambda_n y_n^2
+    \end{align*}
+    그런데 $P^t \vec x = \vec y$은 $\vec x = P \vec y$인 것과 동치이므로, $\vec x$와 $\vec y$는 $P$에 의해 일대일 대응된다.
+    그러므로 임의의 $\vec x$에 대해 $\langle \vec x, \vec x\rangle$이 양의 정부호를 가진다는 것은 임의의 $\vec y$에 대해 $\sum_{i = 1}^n \lambda_i y_i^2$이 0 이상이고, 0일 경우는 $\vec y = \vecz$이라는 것과 동치이다.
+    임의의 $\vec y$에 대해 $\sum_{i = 1}^n \lambda_i y_i^2$이 0 이상이고 $\vec y = \vecz$일 때만 0이라는 것은 $\lambda_i > 0$이라는 것이다.
+    그러므로 $\langle \cdot, \cdot \rangle$이 양의 정부호를 가질 필요충분조건은 모든 특성값이 양수인 것이다.
+\end{proof}
+
+\begin{definition}
+    대칭행렬 $A$의 모든 특성값이 양수이면 양의 정부호(positive-definite)를 가진다고 하고, 음수가 아니면 양의 준정부호(positive semi-definite)를 가지며, 양의 특성값과 음의 특성값 모두를 가지면 부정부호(indefinite)를 가진다고 한다.
+\end{definition}
+
+\begin{example}
+    $A = \begin{pmatrix}a & b\\b & c\end{pmatrix}$가 양의 정부호를 가질 조건을 구하여라.
+    \begin{solution}
+        특성방정식을 구하면
+        \begin{equation*}
+            \Char A = \det(A - \lambda I) = (a - \lambda)(c - \lambda) - b^2 = \lambda^2 - (\tr A) \lambda + \det A
+        \end{equation*}
+        이므로, $\Char A = 0$의 모든 해가 양수이려면 아래로 볼록인 이차함수가 원점 오른쪽에서 $x$축과 두 번 교차할 조건에 따라
+        \begin{equation*}
+            ac - b^2 > 0 \quad \wedge \quad \frac{a + c}{2} > 0 \quad \wedge \quad (a + c)^2 - 4(ac - b^2) \geq 0
+        \end{equation*}
+        이다.
+        그런데 마지막 식은 $(a - c)^2 + 4b^2 \geq 0$으로 정리되어 항등식이므로,
+        \begin{equation*}
+            \det A > 0 \quad \wedge \quad \tr A > 0
+        \end{equation*}
+        가 $A$가 양의 정부호를 가질 조건이다.
+    \end{solution}
+\end{example}
 \end{document}
