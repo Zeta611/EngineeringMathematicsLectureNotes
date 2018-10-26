@@ -887,7 +887,7 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
                &= c_1 \vec v_1 + \dots + c_r \vec v_r + c_{r + 1} \sum_{i = 1}^r \alpha_i \vec v_i + \dots\\
                &= \bigl(c_1 + \alpha_1 (c_{r + 1} + \dots)\bigr) \vec v_1 + \dots + \bigl(c_r + \alpha_r (c_{r + 1} + \dots)\bigr) \vec v_r
     \end{align*}
-    로 표현되어 $\Span B = V$이다.
+    로 표현되어 $\Span \mathcal B = V$이다.
     결국 $\mathcal B$는 $V$의 기저이며, $\dim V = r \leq n$이다.
 
     이렇게 구성한 $\mathcal B$의 크기가 $n$이라고 하자.
@@ -2430,7 +2430,290 @@ $I$에 해당 기본 행연산들을 취한 결과를 $C$라고 하면, 식 $AB 
 \end{definition}
 
 \begin{remark}
-    $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저가 존재한다는 것은 $\Char A$의 근의 개수가 $n$개라는 것이고, 이는 대수적 중복도와 기하적 중복도의 합이 같다는 것이다.
+    $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저가 존재한다는 것은 $\Char A$의 중근을 포함한 실근의 개수가 $n$개라는 것이고, 이는 대수적 중복도의 합과 기하적 중복도의 합이 $n$으로 같다는 것이다.
+\end{remark}
+
+\begin{definition}
+    $n \times n$\marginpar{2018.10.15} 행렬 $A$와 $B$에 대해서 $A$와 $B$가 닮았다(similar)는 것은 $n \times n$ 가역행렬 $P$가 존재해서
+    \begin{equation*}
+        A = P^{-1} B P
+    \end{equation*}
+    라는 것이다.
+    이 때 $A \sim B$라고 표기한다.
+\end{definition}
+
+\begin{theorem}
+    $n \times n$ 행렬 $A$와 $B$에 대해서 다음이 성립한다:
+    \begin{enumerate}
+        \item $A \sim A$ (반사성(reflexivity))
+        \item $A \sim B \Rightarrow B \sim A$ (대칭성(symmetricity))
+        \item $A \sim B \,\wedge\, B \sim A \Rightarrow A \sim C$ (추이성(transivity))
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item 반사성은 자명하게 성립한다.
+        \item 대칭성은 $A = P^{-1} B P$이면 $B = (P^{-1})^{-1} A (P^{-1})$이므로 성립한다.
+        \item 추이성은 $A = P^{-1}BP$이고 $B = Q^{-1} C Q$일 때 $A = (QP)^{-1} C (QP)$이므로 성립한다.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    $n \times n$ 행렬의 주대각선을 제외한 곳의 원소가 모두 0이면 대각행렬(diagonal matrix)이라고 부른다.
+    또한 대각행렬과 닮은 행렬을 대각화 가능 행렬(diagonalizable matrix)이라고 부른다.
+\end{definition}
+
+\begin{theorem}
+    $n \times n$ 행렬 $A$가 대각화 가능 행렬일 필요충분조건은 $A$이 $\mathbb R^n$에 대해 특성기저를 가지는 것이다.
+\end{theorem}
+
+\begin{proof}
+    먼저 $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저가 존재하면 $A$가 대각화 가능하다는 것을 보이자.
+
+    $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저를 $\{\vec v_1, \dots, \vec v_n\}$, 각각에 대응되는 특성값을 $\lambda_1, \dots, \lambda_n$이라고 하자.
+    즉,
+    \begin{align*}
+        A\vec v_1 &= \lambda_1 \vec v_1\\
+                  &\vdots\\
+        A\vec v_n &= \lambda_n \vec v_n
+    \end{align*}
+    이며, 이는 다시
+    \begin{equation*}
+        A
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+    \end{equation*}
+    로 쓸 수 있다.
+    따라서
+    \begin{equation*}
+        A
+        =
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vec v_1^t \\ \vdots \\ \vec v_n^t
+        \end{pmatrix}
+    \end{equation*}
+    이므로 $A$는 대각화 가능 행렬이다.
+
+    이제 $A$가 대각화 가능하면 $\mathbb R^n$에 대해 $n \times n$ 행렬 $A$의 특성기저가 존재한다는 것을 보이자.
+
+    $n \times n$ 가역행렬 $P$과 대각행렬 $D$에 대해서 $A = PDP^{-1}$이라고 하자.
+    $P$의 열벡터들을 $\vec v_1, \dots, \vec v_n$으로 놓고, $i \in \{1, \dots, n\}$일 때 $D$의 $i$행 $i$열의 원소를 $\lambda_i$로 놓자.
+    $\lambda_i$들이 $A$의 특성값이고, $\vec v_i$가 $\lambda_i$에 대응되는 특성벡터임을 보이자.
+    \begin{equation*}
+        A
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+    \end{equation*}
+    이므로 모든 $\vec v_i$에 대해 $A \vec v_i = \lambda_i \vec v_i$임을 알 수 있다.
+    따라서 $\lambda_i$들은 $A$의 특성값이고 $\vec v_i$는 $\lambda_i$-특성벡터이다.
+    이제 $\vec v_i$들이 $\mathbb R^n$의 기저벡터임을 보이자.
+    $P$는 가역행렬이므로 열벡터들이 일차독립이다(쪽~\pageref{page:equiv_remark_update}의 7과 9).
+    나아가 정리~\ref{thm:basis_span}에 따라 $\vec v_i$들은 기저를 이룬다.
+\end{proof}
+
+\begin{remark}
+    위의 증명 과정에서 임의의 특성기저를 상수배하여도 대각화할 때 사용되는 가역행렬의 열벡터로 사용할 수 있다는 것을 알 수 있다.
+    또한, 두 열벡터를 교환하면 각각의 특성벡터에 해당하는 특성값을 교환하면 여전히 대각화가 성립한다.
+    즉,
+    \begin{align*}
+        A &=
+        \begin{pmatrix}
+            1 & 4 & 7\\
+            2 & 5 & 8\\
+            3 & 6 & 10
+        \end{pmatrix}
+        \begin{pmatrix}
+            4 & 0 & 0\\
+            0 & 5 & 0\\
+            0 & 0 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 4 & 7\\
+            2 & 5 & 8\\
+            3 & 6 & 10
+        \end{pmatrix}^t\\
+          &=
+        \begin{pmatrix}
+            2 & 4 & 7\\
+            4 & 5 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}
+        \begin{pmatrix}
+            4 & 0 & 0\\
+            0 & 5 & 0\\
+            0 & 0 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 4 & 7\\
+            4 & 5 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}^t\\
+          &=
+        \begin{pmatrix}
+            4 & 2 & 7\\
+            5 & 4 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}
+        \begin{pmatrix}
+            5 & 0 & 0\\
+            0 & 4 & 0\\
+            0 & 0 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            4 & 2 & 7\\
+            5 & 4 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}^t
+    \end{align*}
+    이다.
+\end{remark}
+
+\begin{theorem}
+    $n \times n$ 행렬 $A$가 대각화 가능하면, 즉 어떤 $n \times n$ 가역행렬 $P$와 대각행렬 $D$에 대해서 $A = PDP^{-1}$일 때,
+    \begin{equation*}
+        A^k = PD^k P^{-1}
+    \end{equation*}
+    이다.
+\end{theorem}
+
+\begin{proof}
+    $A = PDP^{-1}$일 때
+    \begin{equation*}
+        A^k = (PDP^{-1})^k = \underbrace{(PDP^{-1}) \dots (PDP^{-1})}_\text{$k$ 개} = P\underbrace{D\dots D}_\text{$k$ 개}P^{-1} = PD^kP^{-1}
+    \end{equation*}
+    이다.
+\end{proof}
+
+\begin{theorem}
+    대칭 실행렬 $A$는 대각화 가능 행렬이다.
+    즉, $A = A^t$인 것은 $\Char A$의 모든 근이 실수이고 모든 근에 대해 대수적 중복도와 기하적 중복도가 같은 것과 동치이다.
+\end{theorem}
+
+\begin{lemma} \label{lem:self_adjoint_sym}
+    $n \times n$ 행렬 $A$가 대칭행렬인 것은 $A$가 스칼라곱에 대해 자기 수반(self-adjoint)이라는 것이다.
+    즉,
+    \begin{equation*}
+        A = A^t \qquad \Longleftrightarrow \qquad \forall \vec x, \vec y \in \mathbb R^n \quad A\vec x \cdot \vec y = \vec x \cdot A \vec y
+    \end{equation*}
+    이다.
+\end{lemma}
+
+\begin{proof}
+    우선 $A$가 대칭행렬이면 스칼라곱에 대해 자기 수반이라는 것을 보이자.
+
+    어떤 $\vec x, \vec y \in \mathbb R^n$을 고르자.
+    그러면
+    \begin{equation*}
+        \vec x \cdot A \vec y = (A\vec y)^t \vec x = \vec y^t A^t \vec x = \vec y^t A \vec x = A \vec x \cdot \vec y
+    \end{equation*}
+    이므로 $A$는 스칼라곱에 대해 자기 수반이다.
+
+    이제 $A$가 스칼라곱에 대해 자기 수반이면 $A$가 대칭행렬임을 보이자.
+
+    $A = (\vec v_1 \quad \dots \quad \vec v_n) = (a_{ij})$라고 하자.
+    $A \vec e_i = \vec v_i$이고, $\vec v_i \cdot \vec e_j = a_{ji}$이다.
+    그런데
+    \begin{equation*}
+        A \vec e_i \cdot e_j = e_i \cdot A \vec e_j
+    \end{equation*}
+    이므로,
+    \begin{equation*}
+        a_{ji} = a_{ij}
+    \end{equation*}
+    이다.
+    따라서 $A = A^t$이다.
+    그러므로 $A$가 대칭행렬인 것은 $A$가 스칼라곱에 대해 자기 수반인 것과 동치이다.
+\end{proof}
+
+\begin{remark}
+    $L: \mathcal C^\infty \rightarrow \mathcal C^\infty$에 대해서도 내적 $\langle \cdot, \cdot \rangle$이 주어졌을 때 임의의 $x, y$에 대해 $\langle L x, y \rangle = \langle x, Ly \rangle$인 변환을 생각할 수 있다.
+\end{remark}
+
+\begin{theorem} \label{thm:sym_eigenvector_orthogonal}
+    대칭 실행렬 $A$의 서로 다른 특성값 $\lambda$와 $\mu$에 대해서, 대응되는 특성벡터 $\vec x$와 $\vec y$는 직교한다.
+\end{theorem}
+
+\begin{proof}
+    $A$가 대칭 실행렬인 것은 도움정리~\ref{lem:self_adjoint_sym}에 따라 $A$가 스칼라곱에 대해 자기 수반인 것을 의미한다.
+    따라서 $\lambda$-특성벡터 $\vec x$와 $\mu$-특성벡터 $\vec y$에 대해
+    \begin{equation*}
+        A \vec x \cdot \vec y = \vec x \cdot A \vec y
+    \end{equation*}
+    이며, 따라서
+    \begin{equation*}
+        \lambda \vec x \cdot \vec y = \vec x \cdot \mu \vec y
+    \end{equation*}
+    이다.
+    우변을 좌변으로 이항하면
+    \begin{equation*}
+        (\lambda - \mu) \vec x \cdot \vec y = 0
+    \end{equation*}
+    이고, $\lambda \neq \mu$이므로 $\vec x \cdot \vec y = 0$이다.
+\end{proof}
+
+\begin{example}
+    $A = \begin{pmatrix}1 & 3\\2 & 4\end{pmatrix} \begin{pmatrix}7 & 0\\ 0 & 8\end{pmatrix}\begin{pmatrix}1 & 3\\2 & 4\end{pmatrix}^t$는 대칭행렬이 아니다.
+    $(1, 2) \cdot (3, 4) \neq 0$이기 때문이다.
+\end{example}
+
+\begin{remark}
+    정리~\ref{thm:sym_eigenvector_orthogonal}에 따라 대칭행렬은 가역 직교행렬을 통해 대각화할 수 있음을 알 수 있다.
+    예를 들어, 어떤 행렬 $A$가 다음과 같이 대각화된다고 하자:
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            \vec v_1 & \vec v_2 & \vec v_3 & \vec w_1 & \vec w_2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 0 & 0 & 0 & 0\\
+            0 & 2 & 0 & 0 & 0\\
+            0 & 0 & 2 & 0 & 0\\
+            0 & 0 & 0 & 3 & 0\\
+            0 & 0 & 0 & 0 & 3
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vec v_1^t \\ \vec v_2^t \\ \vec v_3^t \\ \vec w_1^t \\ \vec w_2^t
+        \end{pmatrix}
+    \end{equation*}
+    이 때 $A$의 특성값 2, 3과 2-특성공간 $E_2 = \langle \vec v_1, \vec v_2, \vec v_3 \rangle$과 3-특성공간 $E_3 = \langle \vec w_1, \vec w_2\rangle$을 알 수 있다.
+    각각의 특성공간의 기저에 그람-슈미트 과정을 통해서 직교 기저를 얻을 수 있고, 정규화하여 정규직교 기저를 구할 수 있다.
+    
+    즉, 대칭행렬은 직교 대각화 가능하다:
+    대각행렬 $A$에 대해서
+    \begin{equation*}
+        A = PDP^t \quad \wedge \quad PP^t = I
+    \end{equation*}
+    인 $P$가 존재한다.
 \end{remark}
 
 % \begin{theorem}
