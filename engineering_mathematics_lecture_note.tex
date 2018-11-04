@@ -15,10 +15,10 @@
 \newtheorem{definition}{정의}[section]
 
 \theoremstyle{theorem}
-\newtheorem{theorem}{정리}[section]
+\newtheorem{theorem}[definition]{정리}
 
 \theoremstyle{theorem}
-\newtheorem{lemma}{도움정리}[section]
+\newtheorem{lemma}[definition]{도움정리}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{참고}
@@ -216,33 +216,76 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \end{itemize}
 \end{example}
 
-\begin{homework}
+\begin{remark}
     \leavevmode
     \begin{enumerate}
         \item $a_1, a_2, a_3$는 서로 다른 실수이다.
-            이때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차독립임을 보여라.
+            이때, $\left(1, a_1, a_1^2\right), \left(1, a_2, a_2^2\right), \left(1, a_3, a_3^2\right)$이 일차독립임이다.
         \item $a_1, \dots, a_n$는 서로 다른 실수이다.
-            이때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차독립임을 보여라.
+            이때, $\left(1, a_1, a_1^2\right), \dots, \left(1, a_n, a_n^2\right)$이 일차독립이다.
+            \begin{proof}
+                \leavevmode
+                \begin{equation*}
+                    \begin{pmatrix}
+                        1 & \dots & 1\\
+                        a_1 & \dots & a_n\\
+                        \vdots & \ddots & \vdots\\
+                        a_1^{n - 1} & \dots & a_n^{n - 1}
+                    \end{pmatrix}
+                \end{equation*}
+                의 열벡터들이 독립을 보이면 되는데, 이는 뒤에서 보겠지만 행벡터들이 독립임을 보이는 것과 동치이다.
+                따라서, 다음의 일차결합을 생각할 수 있다:
+                \begin{equation*}
+                    c_1
+                    \begin{pmatrix}
+                        1 \\ \vdots \\ 1
+                    \end{pmatrix}
+                    + c_2
+                    \begin{pmatrix}
+                        a_1 \\ \vdots \\ a_n^{n - 1}
+                    \end{pmatrix}
+                    + \dots + c_n
+                    \begin{pmatrix}
+                        a_1^{n - 1} \\ \vdots \\ a_n^{n - 1}
+                    \end{pmatrix}
+                    = \vecz
+                \end{equation*}
+                그런데 $n - 1$차 식
+                \begin{equation*}
+                    c_1 + c_2 x + \dots + c_n x^{n - 1} = 0
+                \end{equation*}
+                의 해가 $x = a_1, \dots, a_n$으로 $n$개라는 것은 위 식이 항등식이라는 것이다.
+                따라서
+                \begin{equation*}
+                    c_1 = \dots = c_n = 0
+                \end{equation*}
+                이다.
+            \end{proof}
     \end{enumerate}
-\end{homework}
+\end{remark}
 
 \begin{theorem}\label{thm:independence}
     체 F에 대한 벡터공간 $V$의 일차독립인 $\vec v_1, \dots, \vec v_k$에 대해서, $\vec w \in V \setminus \left<\vec v_1 , \dots, \vec v_k\right>$이면 $\vec v_1, \dots, \vec v_k, \vec w$는 일차독립이다.
 \end{theorem}
 
 \begin{proof}
-    $c_1, \dots, c_k, a \in F$일 때,
-    \[
-        c_1 \vec v_1 + \dots + c_k \vec v_k + a \vec w = \vecz
-    \]
-    이라고 가정하자.
-    만약 $a \neq 0$이라면 
-    \[
-        \vec w = -\left(\frac{c_1}{a} \vec v_1 + \dots + \frac{c_k}{a} \vec v_k\right) \in \left<\vec v_1, \dots, \vec v_k\right>
-    \]
-    이므로 모순이다.
-    따라서 $a = 0$이며, $\vec v_1, \dots, \vec v_k$는 일차독립이므로 $c_1 = \dots = c_k = a = 0$이다.
-    그러므로 $\vec v_1, \dots, \vec v_k, \vec w$는 일차독립이다.
+    $\vec w \notin \left< \vec v_1, \dots, \vec v_k \right>$이므로
+    \begin{equation*}
+        \vec w = c_1 \vec v_1 + \dots + c_k \vec v_k
+    \end{equation*}
+    인 $c_i \in F \ (1 \leq i \leq k)$들이 존재하지 않는다.
+
+    만약 $1 \leq j \leq k$인 어떤 $\vec v_j$가
+    \begin{equation*}
+        \vec v_j = c_1 \vec v_1 + \dots + c_{i - 1} \vec v_{i - 1} + c_{i + 1} \vec v_{i + 1} + \dots + c_k \vec v_k + d \vec w
+    \end{equation*}
+    와 같은 일차결합으로 나타내진다면, $d = 0$일 경우 $\vec v_j$가 나머지들의 일차결합이 되어 일차독립성에 모순이다.
+    $d \neq 0$일 경우에는
+    \begin{equation*}
+        \vec w = \frac1d (\vec v_j - c_1 \vec v_1 - \dots - c_{i - 1} \vec v_{i - 1} - c_{i + 1} \vec v_{i + 1} - \dots - c_k \vec v_k)
+    \end{equation*}
+    이 $\left< \vec v_1, \dots, \vec v_k \right>$에 속하게 되므로 모순이다.
+    따라서 $\vec v_1, \dots, \vec v_k, \vec w$는 일차독립이다.
 \end{proof}
 
 정리~\ref{thm:independence}에 따르면, 일차독립인 벡터들의 선형 생성에 포함되지 않는 벡터 또한 이들과 일차독립이다.
@@ -306,77 +349,60 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
 \end{theorem}
 
 \begin{proof}
+    $l, m, n$을
     \begin{align*}
         l &= \dim (U \cap W)\\
         n &= \dim U - l\\
         m &= \dim W - l
     \end{align*}
     이라 하고, $U \cap W$의 기저를 $\mathcal B_\cap = \{\vec v_1, \dots, \vec v_l\}$라고 하자.
-    $\mathcal B_\cap$을 확장해 $U$의 기저 $\mathcal B_U = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n\}$와 $W$의 기저 $\mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec w_1, \dots, \vec w_m\}$을 구성할 수 있다.
+    $U \setminus W$에서 $\mathcal B_\cap$을 확장해 $U$의 기저 $\mathcal B_U = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n\}$와 $W \setminus U$에서 확장해 $W$의 기저 $\mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec w_1, \dots, \vec w_m\}$을 구성할 수 있다.
 
-    이제 $\mathcal B_U \cup \mathcal B_W = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n, \vec w_1, \dots, \vec w_m\}$\footnote{이를 위해서는 $\vec u_1, \dots, \vec u_n$과 $\vec w_1, \dots, \vec w_m$에 겹치는 원소가 없어야 한다.
-    이는 $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$와 동치인데, 자명할수도 있겠지만 증명 후에 다루었다.}가 $U + W$의 기저임을 보이자.
-    $U + W$의 원소 $\vec v$를 고르면, $\vec v = \vec u + \vec w$가 되는
-    \[
-        \vec u = a_1 \vec v_1 + \dots + a_l \vec v_l + b_1 \vec u_1 + \dots + b_n \vec u_n
-    \]
-    와
-    \[
-        \vec w = a'_1 \vec v_1 + \dots + a'_l \vec v_l + c_1 \vec w_1 + \dots + c_m \vec w_m
-    \]
-    가 존재하고, 이러한 $a_1, \dots, a_l, b_1, \dots, b_n, a'_1, \dots, a'_l, c_1, \dots, c_m \in F$는 유일하다.
-    따라서,
-    \begin{align*}
-        \vec v &= \vec u + \vec w\\
-               &= \left(\sum_{i = 1}^l a_i \vec v_i + \sum_{j = 1}^n b_j \vec u_j\right) + \left(\sum_{i = 1}^l a'_i \vec v_i + \sum_{k = 1}^m c_k \vec w_k\right)\\
-               &= \sum_{i = 1}^l \left(a_i + a'_i\right) \vec v_i + \sum_{j = 1}^n b_j \vec u_j + \sum_{k = 1}^m c_k \vec w_k
-    \end{align*}
-    이므로 $\vec v$는 $\Span (\mathcal B_U \cup \mathcal B_W)$의 원소이고, $\mathcal B_U \cup \mathcal B_W$는 $U + W$를 생성한다.
-
-    이제
+    이제 $\mathcal B_+ = \{\vec v_1, \dots, \vec v_l, \vec u_1, \dots, \vec u_n, \vec w_1, \dots, \vec w_m\}$가 $U + W$의 기저임을 보이자.
+    먼저 $\mathcal B_+$가 일차독립임을 보이자.
+    
+    다음의 일차결합
     \begin{equation*}
-        \sum_{i = 1}^l a_i \vec v_i + \sum_{j = 1}^n b_j \vec u_j + \sum_{k = 1}^m c_k \vec w_k = \vecz
+        c_1 \vec v_1 + \dots + c_l \vec v_l + d_1 \vec u_1 + \dots + d_n \vec u_n + e_1 \vec w_1 + \dots + e_m \vec w_m = \vecz
     \end{equation*}
-    이라고 하자.
-    $\vec u_j$항을 제외하고 모두 우변으로 이항하면
+    을 생각하자.
+    이때 $\vec z$를
     \begin{equation*}
-        \sum_{j = 1}^n b_j \vec u_j = \sum_{i = 1}^l -a_i \vec v_i + \sum_{k = 1}^m -c_k \vec w_k
+        \vec z = c_1 \vec v_1 + \dots + c_l \vec v_l + d_1 \vec u_1 + \dots + d_n \vec u_n = - e_1 \vec w_1 - \dots - e_m \vec w_m
     \end{equation*}
-    이 되고, $\vec z = \sum_{j = 1}^n b_j \vec u_j$라고 두자.
-    \begin{align*}
-        \sum_{j = 1}^n b_j \vec u_j \in \Span \mathcal B_U = U\\
-        \sum_{i = 1}^l -a_i \vec v_i + \sum_{k = 1}^m -c_k \vec w_k \in \Span \mathcal B_W = W
-    \end{align*}
-    이므로, $\vec z \in U \cap W = \Span \mathcal B_\cap = \left<\vec v_1, \dots, \vec v_l\right>$이다.
-    즉
-    \[
-        \vec z = d_1 \vec v_1 + \dots + d_l \vec v_l
-    \]
-    이 되는 $d_1, \dots, \vec d_l \in F$가 유일하게 존재한다.
-    그런데 $\mathcal B_U$와 $\mathcal B_W$는 일차독립이므로 $j \in \{1, \dots, l\}$에 대해 $b_j = 0$이고 $k \in \{1, \dots, m\}$에 대해 $c_k = 0$이다.
-    이에 따라 $\vec z = \vecz$이 되어 $i \in \{1, \dots, l\}$에 대해서도 $a_i = 0$이다.
-    그러므로 $\mathcal B_U \cup \mathcal B_W$은 일차독립이다.
+    로 정의하면, $\vec z \in U \cap W = \Span \mathcal B_\cap$이다.
+    따라서
+    \begin{equation*}
+        \vec z = c_1' \vec v_1 + \dots + c_l' \vec v_l
+    \end{equation*}
+    로 쓸 수 있고, 기저에 의한 일차결합은 유일하게 표현되므로 모든 계수 $c_i, d_j, e_k, c_i'$은 0이다.
+    그러므로 $\mathcal B_+$는 일차독립이다.
+    
+    이제 $\Span \mathcal B_+$가 $U + W$임을 보이자.
+    $\mathcal B_+ \subset U + W$이므로 $\Span \mathcal B_+ \subseteq U + W$이고, $\Span \mathcal B_+ \supseteq U + W$임을 보이면 된다.
+    
+    $U + W$의 원소 $\vec x$를 고르면, $\vec x = \vec u + \vec w$가 되는
+    \begin{equation*}
+        \vec u = c_1 \vec v_1 + \dots + c_l \vec v_l + d_1 \vec u_1 + \dots + d_n \vec u_n
+    \end{equation*}
+    과
+    \begin{equation*}
+        \vec v = c_1' \vec v_1 + \dots + c_l' \vec v_l + e_1 \vec w_1 + \dots + e_n \vec w_k
+    \end{equation*}
+    이 존재한다.
+    따라서
+    \begin{equation*}
+        \vec x = (c_1 + c_1') \vec v_1 + \dots + (c_l + c_l') \vec v_l + d_1 \vec u_1 + \dots + d_n \vec u_n + e_1 \vec w_1 + \dots + e_k \vec w_k
+    \end{equation*}
+    는 $\mathcal B_+$의 일차결합이므로 $\vec x = \vec u + \vec w \in \Span \mathcal B_+$이다.
+    따라서 $\Span \mathcal B_+ \supseteq U + W$이고, $\Span \mathcal B_+ = U + W$이다.
 
-    $\mathcal B_U \cup \mathcal B_W$는 $U + W$를 생성하고 일차독립이므로, $U + W$의 기저이다.
-    결국
-    \begin{align*}
-        \dim (U + W) &= |\mathcal B_U \cup \mathcal B_W|\\
-                     &= l + n + m\\
-                     &= (l + n) + (l + m) - l\\
-                     &= \dim U + \dim W - \dim (U \cap W)\qedhere
-    \end{align*}
+    그러므로 $\mathcal B_+$는 $U + W$의 기저가 되어,
+    \begin{equation*}
+        \dim (U + W) = l + n + m = \dim U + \dim W - \dim (U \cap W)
+    \end{equation*}
+    이다.
 \end{proof}
-
-\begin{myremark}
-    위 증명에서 $\mathcal B_\cap = \mathcal B_U \cap \mathcal B_W$임을 보이자.\footnote{참고로, $\mathcal B_U \setminus \mathcal B_W$는 $U \setminus W$의 기저가 아니다.
-    $\vecz \in U \cap W$임에 따라 $\vecz \notin U \setminus W$이므로, $U \setminus W$는 벡터공간이 아니기 때문이다.}
-    위 증명이 성립하기 위해서는 $\{\vec u_1, \dots, \vec u_n\}$와 $\{\vec w_1, \dots, \vec w_m\}$의 모든 원소가 달라야하기 때문이다.
-    먼저 $\mathcal B_\cap \subseteq \mathcal B_U \cap \mathcal B_W$임은 자명하다.
-    $\mathcal B_U \cap \mathcal B_W$에 속하는 원소 $\vec x$를 고르자.
-    $\mathcal B_U \cap \mathcal B_W \subseteq U \cap W$이므로, $\vec x \in \Span \mathcal B_\cap$이다.
-    나아가 $\mathcal B_U$와 $\mathcal B_W$의 원소인 $\vec x$는 $\mathcal B_\cap$의 모든 원소들과 일차독립이므로, $\vec x \in \mathcal B_\cap$이어야 한다.
-    따라서 $\mathcal B_U \cap \mathcal B_W \subseteq B_\cap$이다.
-\end{myremark}
 
 \begin{definition}
     체 $F$에 대한 벡터공간 $V, W$에서, 임의의 $\vec v_1, \vec v_2 \in V$와 $c_1, c_2 \in F$에 대해
@@ -512,12 +538,95 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     벡터공간 $V$와 $W$간의 선형사상 $L: V \rightarrow W$에 대해 $\Null (L) < V$이고 $\Range (L) < W$이다.
 \end{theorem}
 
+\begin{proof}
+    $\Null (L)$은
+    \begin{equation*}
+        \Null(L) = \{\vec v \in V \mid L(\vec v) = \vecz\}
+    \end{equation*}
+    이므로, $\vec v_1$과 $\vec v_2$를 $\Null (L)$에서 고르면 둘의 일차결합 $c_1 \vec v_1 + c_2 \vec v_2$의 함숫값은
+    \begin{equation*}
+        L(c_1 \vec v_1 + c_2 \vec v_2) = c_1 L(\vec v_1) + c_2 L(\vec v_2) = \vecz
+    \end{equation*}
+    이다.
+    따라서 $c_1 \vec v_1 + c_2 \vec v_2$도 $\Null (L)$의 원소이다.
+    $\Null (L)$은 일차결합에 대해 닫혀있고 $V$의 부분집합이므로 $V$의 부분공간이다.
+
+    $\Range (L)$은
+    \begin{equation*}
+        \Range (L) = \{\vec w \mid \vec u \in V \wedge \vec w = L(\vec v)\}
+    \end{equation*}
+    와 같이 정의되고, $\Range(L)$의 원소 $\vec w_1, \vec w_2$에 대해서
+    \begin{align*}
+        \vec w_1 &= L(\vec v_1)\\
+        \vec w_2 &= L(\vec v_2)
+    \end{align*}
+    인 $\vec v_1, \vec v_2 \in V$가 존재한다.
+    따라서
+    \begin{equation*}
+        L(c_1 \vec v_1 + c_2 \vec v_2) = c_1 L(\vec v_1 ) + c_2 L(\vec v_2) = c_1 \vec w_1 + c_2 \vec w_2
+    \end{equation*}
+    는 $\Range(L)$에 속한다.
+    그러므로 $\Range(L)$도 일차결합에 대해 닫혀있고 $W$의 부분집합이므로 $W$의 부분공간이다.
+\end{proof}
+
 \begin{theorem}[계수(rank)--퇴화 차수(nullity) 정리]\label{thm:rank_nullity}
     벡터공간 $V$와 $W$간의 선형사상 $L: V \rightarrow W$에 대해 다음이 성립한다:
     \begin{equation*}
         \dim \Null (L) + \dim \Range (L) = \dim V.\footnote{계수와 퇴화 차수에 대해서는 다음 강좌에 정의한다.}
     \end{equation*}
 \end{theorem}
+
+\begin{proof}
+    정리~\ref{thm:nullspace_range}에 의해 $\Null(L)$은 $V$의 부분공간이므로, $\Null(L)$의 기저를 확장해 $V$의 기저를 구성할 수 있다.
+    따라서 $\Null (L)$의 기저 $\mathcal B_N$를 $\{\vec v_1, \dots, \vec v_n\}$으로 놓는다면, $V$의 기저 $\mathcal B_V$를 $\{\vec u_1, \dots, \vec u_n, \vec v_1, \dots, \vec v_l\}$로 확장할 수 있다.
+    이제 $\mathcal B_R = \{L(\vec u_1), \dots, L(\vec u_l)\}$이 $\Range(L)$의 기저임을 보이자.
+    먼저 $\mathcal B_R$이 일차독립임을 보이자.
+
+    $\mathcal B_R$의 일차결합
+    \begin{equation*}
+        c_1 L(\vec u_1) + \dots + c_l L(\vec u_l) = \vecz
+    \end{equation*}
+    이면
+    \begin{equation*}
+        L(c_1 \vec u_1 + \dots + c_l \vec u_l) = \vecz
+    \end{equation*}
+    이므로
+    \begin{equation*}
+        \vec z = c_1 \vec u_1 + \dots + c_l \vec u_l
+    \end{equation*}
+    로 두면 $\vec z \in \Null(L)$이다.
+    그런데 $\vec z \in V$이기도 하므로
+    \begin{equation*}
+        \vec z = c_1 \vec u_1 + \dots + c_l \vec u_l + 0 \vec v_1 + \dots + 0 \vec v_n = d_1 \vec v_1 + \dots d_n \vec v_n
+    \end{equation*}
+    이다.
+    따라서 기저의 일차결합 표현의 유일성에 의해 계수 $c_i, d_j$는 모두 0이다.
+    그러므로 $\mathcal B_R$은 일차독립이다.
+
+    이제 $\Span \mathcal B_R = \Range(L)$임을 보이다.
+    $\mathcal B_R \subset \Range(L)$이고 $\Range(L)$은 정리~\ref{thm:nullspace_range}에 따라 벡터공간이므로 $\Span \mathcal B_R \subseteq \Range(L)$이다.
+    따라서 $\Span \mathcal B_R \supseteq \Range(L)$임을 보이면 된다.
+
+    $\vec w \in \Range(L)$를 고르면 $\vec w = L(\vec v)$인 $\vec v \in V$가 존재한다.
+    $\vec v \in \Span \mathcal B_V$이므로
+    \begin{equation*}
+        \vec v = c_1 \vec v_1 + \dots + c_n \vec v_n + d_1 \vec u_1 + \dots + d_l \vec u_l
+    \end{equation*}
+    로 나타낼 수 있다.
+    그러므로
+    \begin{equation*}
+        \vec w = c_1 L(\vec v_1) + \dots + c_n L(\vec v_n) + d_1 L(\vec u_1) + \dots + d_l L(\vec u_l)
+    \end{equation*}
+    이고, $L(\vec v_i) = \vecz$이므로
+    \begin{equation*}
+        \vec w = d_1 L(\vec u_1) + \dots + d_l L(\vec u_l)
+    \end{equation*}
+    이다.
+    즉, $\vec w \in \Span \mathcal B_R$이고, $\Range(L) \subseteq \Span \mathcal B_R$이다.
+    결국 $\Span \mathcal B_R = \Range(L)$이므로, $\mathcal B_R$은 $\Range(L)$의 기저이다.
+
+    따라서 $\dim \Range(L) = l = \dim V - \dim \Null(L)$이다.
+\end{proof}
 
 \begin{example}
     이전 예시에서 $\Null (L) = \left<(1, -2, 1)\right>$이고 $\Range (L) = \left<(1, 4, 7), (2, 5, 8)\right>$이므로, $\dim \Null (L) + \dim \Range (L) = 1 + 2 = 3$이 성립한다.
@@ -530,6 +639,20 @@ Field는 수학과 물리학에서 지칭하는 대상이 다르다:\marginpar{\
     \end{equation*}
     이다.
 \end{theorem}
+
+\begin{proof}
+    $L(\vec v_1), \dots, L(\vec v_n)$은 $\Range(L)$의 원소이므로 $\left< L(\vec v_1), \dots, L(\vec v_n) \right> \subseteq \Range(L)$이다.
+
+    $\Range(L)$의 원소 $\vec w$를 고르자.
+    그러면 $L(\vec v) = \vec w$인 $\vec v \in V$가 존재한다.
+    따라서
+    \begin{equation*}
+        \vec w = L(\vec v) = c_1 L(\vec v_1) + \dots + c_n L(\vec v_n)
+    \end{equation*}
+    으로 표현할 수 있고, $\vec w \in \left<L(\vec v_1), \dots, L(\vec v_n)\right>$이다.
+    즉 $\Range(L) \subseteq \left<L(\vec v_1), \dots, L(\vec v_n)\right>$이다.
+    결국 $\Range(L) = \left<L(\vec v_1), \dots, L(\vec v_n)\right>$이다.
+\end{proof}
 
 \begin{remark}
     위에서 $\{L(\vec v_1), \dots, L(\vec v_n)\}$이 기저일 필요는 없다.
@@ -843,28 +966,25 @@ $n \times n$ 행렬 $A, B$에 대해서 $AB = BA = I$이라면, $A = B^{-1}$이�
     이제 임의의 일차독립인 벡터들 $\vec v_1, \dots, \vec v_k$에 대해서 $L(\vec v_1), \dots, L(\vec v_k)$가 일차독립이라고 가정하자.
     $L(\vec v_1) = L(\vec v_2)$인 $\vec v_1, \vec v_2 \in V$를 고르자.
     그런데 $L(\vec v_1) = L(\vec v_2)$이므로, 가정한 명제의 대우에 따라서 $\vec v_1$과 $\vec v_2$는 일차종속이다.
-    따라서
+    따라서 일반성을 잃지 않고
     \begin{equation*}
-        c_1 \vec v_1 + c_2 \vec v_2 = \vecz
+        \vec v_1 = k\vec v_2
     \end{equation*}
-    인 $(0, 0)$이 아닌 $(c_1, c_2)$가 존재한다.
-    일반성을 잃지 않고 $c_1 \neq 0$이라고 하면,
+    라고 놓을 수 있다.
+    그러면
     \begin{equation*}
-        \vec v_1 = - \frac{c_2}{c_1} \vec v_2
+        L(\vec v_2) = L(\vec v_1) = L(k \vec v_2) = k L(\vec v_2)
     \end{equation*}
-    가 성립한다.
-    그런데 $L(\vec v_1 - \vec v_2) = \vecz$이므로,
-    \begin{align*}
-        L(\vec v_1 - \vec v_2) &= L\left(-\frac{c_2}{c_1} \vec v_2 - \vec v_2\right)\\
-                             &= L\left(-\left(1 + \frac{c_2}{c_1}\right) \vec v_2\right)\\
-                             &= -\left(1 + \frac{c_2}{c_1}\right) L(\vec v_2)\\
-                             &= \vecz
-    \end{align*}
+    이 되어
+    \begin{equation*}
+        (k - 1) L(\vec v_2) = \vecz
+    \end{equation*}
     이다.
-    여기서 $L(\vec v_2) = \vecz$일 경우는 모든 벡터에 대한 함숫값이 $\vecz$라는 것이고, 가정이 성립하려면 $V$와 $W$는 자명한 벡터공간 $\{\vecz\}$이어야만 한다.
-    이 경우 가능한 선형변환은 유일하며, $\vecz \in V$를 $\vecz \in W$와 대응시키는 일대일(이면서 위로의) 함수이다.
-    자명하지 않은 벡터공간의 경우, $\frac{c_2}{c_1} = -1$이어야 하고 따라서 $\vec v_1 = \vec v_2$이다.
-    따라서 $L$은 일대일 함수이다.
+    만약 $k = 1$이면 $\vec v_1 = \vec v_2$가 되어 $L$이 일대일 함수이다.
+    만약 $k \neq 1$일 경우, $L(\vec v_2) = \vecz$이며 $L(\vec v_1) = \vecz$가 된다.
+    $\vec v_1 \neq \vecz$인 경우, $L(\vec v_1) = \vecz$가 되어 일차독립인 벡터들에 대해 함숫값이 일차독립이라는 가정에 모순이다.\footnote{$\{\vec v_1\} \neq \{\vecz\}$는 일차독립인 집합이고, $\{\vecz\}$는 일차종속이기 때문이다.}
+    따라서 $\vec v_1 = \vec v_2 = \vecz$이어야 한다.
+    즉 $L(\vec v_1) = L(\vec v_2)$인 벡터에 대해서 항상 $\vec v_1 = \vec v_2$이므로 $L$은 일대일 함수이다.
 \end{proof}
 
 \begin{theorem} \label{thm:basis_span}
