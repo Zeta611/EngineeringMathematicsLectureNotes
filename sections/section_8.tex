@@ -1,0 +1,1293 @@
+\documentclass[../engineering_mathematics_lecture_note.tex]{subfiles}
+
+\begin{document}
+
+\begin{definition}
+    $\mathbb R^n$의 두 벡터 $\vec a = (a_1, \dots, a_n)$과 $\vec b = (b_1, \dots, b_n)$에 대해서 스칼라곱(scalar product), 점곱(dot product), 혹은 단순히 내적(inner product)은 다음을 말한다:
+    \begin{equation*}
+        \vec a \cdot \vec b = \sum_{i = 1}^n a_i b_i
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+    $\mathbb R^n$의 벡터 $\vec a, \tilde{\vec a}, \vec b$와 실수 $c, \tilde c$에 대해서 다음이 성립한다:
+    \begin{enumerate}
+        \item $\vec a \cdot \vec b = \vec b \cdot \vec a$ (대칭성(symmetricity))
+        \item $(c \vec a + \tilde c \tilde{\vec a}) \cdot \vec b = c \vec a \cdot \vec b + \tilde c \tilde{\vec a} \cdot \vec b$ (쌍선형성(bilinearlity))
+        \item $\vec a \cdot \vec a \geq 0$ (등호 성립 조건은 $\vec a = \vecz$) (양의 정부호성 positive definiteness)
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+    체 $F$에 대한 벡터공간 $V$에 속하는 원소 $\vec a, \tilde{\vec a}, \vec b$와 스칼라 $c, \tilde c$에 대해, 내적(inner product) $\left<\cdot, \cdot\right>: V \times V \rightarrow F$은 다음을 말한다:
+    \begin{enumerate}
+        \item $\left<\vec a, \vec b\right> = \left<\vec b, \vec a\right>$ (대칭성(symmetricity))
+        \item $\left<c \vec a + \tilde c \tilde{\vec a}, \vec b\right> = \left<c \vec a, \vec b\right> + \left<\tilde c \tilde{\vec a}, \vec b\right>$ (쌍선형성(bilinearlity))
+        \item $\left<\vec a, \vec a\right> \geq 0$ (등호 성립 조건은 $\vec a = \vecz$) (양의 정부호성(positive definiteness))
+    \end{enumerate}
+    또한 내적이 정의되는 벡터공간을 내적공간(inner product space)이라고 부른다.
+\end{definition}
+
+\begin{example}
+    \leavevmode
+    \begin{enumerate}
+        \item $\left< (a, b), (c, d) \right> = ab + cd$는 쌍선형성을 만족하지 않으므로 내적이 아니다.
+        \item $\left< (a, b), (c, d) \right> = ad + bc$는 양의 정부호성을 만족하지 않으므로 내적이 아니다.
+        \item $\left< (a, b, c), (d, e, f) \right> = ad + be + kcf$에서 $k = 3$일 경우 내적이고, $k = -1$일 경우 양의 정부호성을 만족하지 않으므로 내적이 아니다.
+        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right>_I = \int_I f g\,\dd x$는 내적이다.
+        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right> = \int_{-1}^1 e^x f g\,\dd x$는 내적이다. 이때 $e^x$를 $[-1, 1]$에서 내적의 무게함수(weight function)이라고 한다.
+        \item 실함수 $f, g \in \mathcal C^0$에 대해서 $\left<f, g\right>_I = \int_I r f g\,\dd x$는 내적이다. 이때
+            \begin{equation*}
+                \forall x \in I\quad r(x) \geq 0
+            \end{equation*}
+            이며 $r(x) = 0$이 되는 $x$들은 서로 떨어져 있다.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem} \label{thm:sym_bilinear}
+    함수 $\left<\cdot, \cdot\right>: \mathbb R^n \times \mathbb R^n \rightarrow \mathbb R$가 대칭 쌍선형형식(symmetric bilinear form)이라는 것은 벡터 $\vec a, \vec b \in \mathbb R^n$에 대해 어떤 $n \times n$ 대칭행렬 $A$가 존재해서 다음을 만족한다는 것과 동치이다:
+    \begin{equation*}
+        \left<\vec a, \vec b\right> = \vec b^t A \vec a
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    먼저 $\left<\cdot, \cdot\right>$가 대칭 쌍선형형식이면 $\vec a, \vec b \in \mathbb R^n$에 대해 $\left<\vec a, \vec b\right> = \vec b^t A \vec a$인 $n \times n$ 대칭행렬 $A$가 존재한다는 것을 보이자.
+
+    $\vec a = (a_1, \dots, a_n), \vec b = (b_1, \dots, b_n)$이라고 하자.
+    쌍선형성에 의해 $\left<\vec a, \vec b\right>$은 다음과 같이 정리할 수 있다:
+    \begin{equation*}
+        \left<\vec a, \vec b\right> = \left<a_1 \vec e_1 + \dots + a_n \vec e_n, b_1 \vec e_1 + \dots + b_n \vec e_n\right> = \sum_{i, j = 1}^n a_i b_j \left<\vec e_i, \vec e_j\right>
+    \end{equation*}
+    대칭성에 따라 $\left<\vec e_i, \vec e_j\right> = \left<\vec e_j, \vec e_i\right>$이며, 따라서 $A_{ij} = \left<\vec e_i, \vec e_j\right>$일 때 $A = (A_{ij}) = (A_{ji})$는 대칭행렬이다.
+    이때
+    \begin{align*}
+        \left<\vec a, \vec b \right> &= \sum_{i, j = 1}^n a_i b_j A_{ij} = \sum_{j = 1}^n b_j \left(\sum_{i = 1}^n A_{ij} a_i\right) = \sum_{j = 1}^n b_j \left(\sum_{i = 1}^n A_{ji} a_i\right)\\
+                                     &=
+                                     \begin{pmatrix}
+                                         b_1 & \dots & b_n
+                                     \end{pmatrix}
+                                     \begin{pmatrix}
+                                         \sum_{i = 1}^n A_{1i} a_i\\
+                                         \vdots\\
+                                         \sum_{i = 1}^n A_{ni} a_i
+                                     \end{pmatrix}\\
+                                     &=
+                                     \begin{pmatrix}
+                                         b_1 & \dots & b_n
+                                     \end{pmatrix}
+                                     \begin{pmatrix}
+                                         A_{11} & \dots & A_{1n}\\
+                                         \vdots & \ddots & \vdots\\
+                                         A_{n1} & \dots & A_{nn}
+                                     \end{pmatrix}
+                                     \begin{pmatrix}
+                                         a_1\\
+                                         \vdots\\
+                                         a_n
+                                     \end{pmatrix}
+    \end{align*}
+    이므로 대칭행렬 $A$에 대해 $\left<\vec a, \vec b\right> = \vec b^t A \vec a$임을 알 수 있다.
+
+    이제 대칭행렬 $A$에 대해 $\vec a, \vec b \in \mathbb R^n$일 때 $\left<\vec a, \vec b\right> = \vec b^t A \vec a$이면 $\left<\cdot, \cdot\right>$이 대칭 쌍선형형식임을 보이자.
+
+    $\vec a = (a_1, \dots, a_n), \vec b = (b_1, \dots, b_n)$이라고 하자.
+    그러면
+    \begin{align*}
+        \left<\vec a, \vec b\right> &= \vec b^t A \vec a\\
+                                    &=
+                                    \begin{pmatrix}
+                                        b_1 & \dots & b_n
+                                    \end{pmatrix}
+                                    \begin{pmatrix}
+                                        A_{11} & \dots & A_{1n}\\
+                                        \vdots & \ddots & \vdots\\
+                                        A_{n1} & \dots & A_{nn}
+                                    \end{pmatrix}
+                                    \begin{pmatrix}
+                                        a_1\\
+                                        \vdots\\
+                                        a_n
+                                    \end{pmatrix}\\
+                                    &= \sum_{i, j = 1}^n a_i b_j A_{ij} = \sum_{i = 1}^n a_i \left(\sum_{j = 1}^n A_{ij} b_j\right)\\
+                                    &=
+                                    \begin{pmatrix}
+                                        a_1 & \dots & a_n
+                                    \end{pmatrix}
+                                    \begin{pmatrix}
+                                        A_{11} & \dots & A_{1n}\\
+                                        \vdots & \ddots & \vdots\\
+                                        A_{n1} & \dots & A_{nn}
+                                    \end{pmatrix}
+                                    \begin{pmatrix}
+                                        b_1\\
+                                        \vdots\\
+                                        b_n
+                                    \end{pmatrix}\\
+                                    &= \vec a^t A \vec b = \left<\vec b, \vec a\right>
+    \end{align*}
+    이므로 대칭성을 만족한다.
+    또한 벡터 $\tilde{\vec a} \in \mathbb R^n$을 $(\tilde a_1, \dots, \tilde a_n)$으로 놓고 스칼라 $c, \tilde c \in \mathbb R$에 대해서 쌍선형성을 만족한다:
+    \begin{equation*}
+        \left<c \vec a + \tilde c \tilde{\vec a}, \vec b\right> = \vec b^t A (c \vec a + \tilde c \tilde{\vec a}) = c \vec b^t A \vec a + \tilde c \vec b^t A \tilde{\vec a}
+    \end{equation*}
+
+    따라서 $\left<\cdot, \cdot\right>$이 쌍선형형식이라는 것과 $\left<\vec a, \vec b\right> = \vec b^t A \vec a$인 대칭행렬 $A$가 존재한다는 것은 동치이다.
+\end{proof}
+
+\begin{example}
+    두 벡터 $(a, b, c)$와 $(d, e, f)$에 대한 내적 $ae + bd + 4cf$에 대해서,
+    \begin{equation*}
+        \left<(a, b, c), (d, e, f)\right> = ae + bd + 4cd =
+        \begin{pmatrix}
+            d & e & f
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 & 1 & 0\\
+            1 & 0 & 0\\
+            0 & 0 & 4
+        \end{pmatrix}
+        \begin{pmatrix}
+            a \\ b \\ c
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+\end{example}
+
+\begin{definition}
+    내적공간에 속하는 벡터 $\vec v$에 대해
+    \begin{equation*}
+        \lVert \vec v \rVert = \sqrt{\left<\vec v, \vec v\right>}
+    \end{equation*}
+    를 $\vec v$의 노름(norm)이라고 한다.
+\end{definition}
+
+\begin{theorem} [코시-부냐콥스키-슈바르츠(Cauchy-Bunyakovsky-Schwarz) 부등식] \label{thm:CBS}
+    내적공간에 속하는 두 벡터 $\vec a$와 $\vec b$에 대해 다음 부등식이 성립한다:
+    \begin{equation*}
+        \bigl|\left<\vec a, \vec b\right>\bigr| \leq \sqrt{\left<\vec a, \vec a\right>} \sqrt{\left<\vec b, \vec b\right>} = \lVert \vec a \rVert \lVert \vec b \rVert
+    \end{equation*}
+    등호 성립 조건은 $\vec a$와 $\vec b$가 일차종속일 경우이다.
+    위 부등식을 코시-부냐콥스키-슈바르츠(Cauchy-Bunyakovsky-Schwarz) 부등식 혹은 CBS 부등식이라고 한다.
+\end{theorem}
+
+\begin{proof}
+    벡터 $\vec a$와 $\vec b$에 대해 다음과 같은 함수 $f$를 정의하자:
+    \begin{equation*}
+        f(t) = \left<\vec a + t \vec b, \vec a + t \vec b\right>
+    \end{equation*}
+    내적은 양의 정부호성을 가지므로 $f(t) \geq 0$임을 알 수 있다.
+    또한 내적의 쌍선형성과 대칭성에 따라 $f(t)$는 다음과 같이 정리할 수 있다:
+    \begin{equation*}
+        f(t) = \left<\vec b, \vec b\right> t^2 + 2 \left<\vec a, \vec b\right> t + \left<\vec a, \vec a\right>
+    \end{equation*}
+    따라서 $f(t)$는 $t$에 관한 이차함수이며, 항상 0 이상이므로 판별식이 $\sfrac D4 \leq 0$를 만족한다.
+    즉,
+    \begin{equation*}
+       \left<\vec a, \vec b\right>^2 \leq \left<\vec a, \vec a\right> \left<\vec b, \vec b\right>
+    \end{equation*}
+    이다.
+\end{proof}
+
+\begin{definition}
+    내적공간의 두 벡터 $\vec a$와 $\vec b$가 이루는 각도 $\theta$를 다음과 같이 정의한다:
+    \begin{equation*}
+        \cos \theta = \frac{\left<\vec a, \vec b\right>}{\lVert \vec a\rVert \lVert \vec b \rVert}
+    \end{equation*}
+    이때 $-1 \leq \frac{\left<\vec a, \vec b\right>}{\lVert \vec a\rVert \lVert \vec b \rVert} \leq 1$임은 정리~\ref{thm:CBS}의 CBS 부등식에 의해 보장된다.
+\end{definition}
+
+\begin{definition}
+    내적공간에 속하는 두 벡터 $\vec a$와 $\vec b$가 서로 수직이라는 것은 $\left<\vec a, \vec b\right> = 0$이라는 것이다.
+    나아가 $\vec a$와 $\vec b$가 단위 벡터이면 둘이 정규직교(orthonormal)한다고 한다.
+
+    벡터들의 집합 $S$의 모든 원소들이 서로 직교하면 $S$를 직교 집합(orthogonal set), 서로 정규직교하면 $S$를 정규직교 집합(orthonormal set)이라고 부른다.
+\end{definition}
+
+\begin{theorem}
+    내적공간에 속하는 정규직교 집합은 일차독립이다.
+\end{theorem}
+
+\begin{proof}
+    내적공간 $V$에 속하는 벡터들 $\vec a_1, \dots, \vec a_n$의 집합이 정규직교 집합이라고 하자.
+    이때 $\vec a_i$들의 선형결합
+    \begin{equation*}
+        c_1 \vec a_1 + \dots + c_n \vec a_n = 0
+    \end{equation*}
+    의 양변에 $i \in \{1, \dots, n\}$인 $\vec a_i$를 내적하면
+    \begin{equation*}
+        \left<(c_1 \vec a_1 + \dots + c_n \vec a_n), \vec a_i\right> = \sum_{j \in \{1, \dots, n\} \setminus \{i\}} c_j \left<\vec a_j, \vec a_i\right> + c_i \left<\vec a_i, \vec a_i\right>
+    \end{equation*}
+    인데, 모든 벡터들은 서로 직교하므로 $i \neq j$이면 $\left<\vec a_j, \vec a_i\right> = 0$이다.
+    나아가 모든 벡터들은 단위 벡터이므로 $\left<\vec a_i, \vec a_i\right> = 1$이다.
+    따라서
+    \begin{equation*}
+        \left<(c_1 \vec a_1 + \dots + c_n \vec a_n), \vec a_i\right> = c_i = 0
+    \end{equation*}
+    이며, $c_i = 0$이 된다.
+    임의의 $i \in \{1, \dots, n\}$에 대해서 위 과정을 반복하면, 모든 $i$에 대해서 $c_i = 0$임을 알 수 있다.
+    따라서 $\vec a_1, \dots, \vec a_n$은 일차독립이다.
+\end{proof}
+
+\begin{definition}
+    내적공간 $V$와 $V$의 부분공간 $W$에 대해서, $\vec a \in V$를 잡자.
+    이때 $\vec a$의 $W$ 위로의 정사영 $\vec v$는 
+    \begin{equation*}
+        \forall \vec w \in W \qquad \left<\vec a - \vec v, \vec w\right> = 0
+    \end{equation*}
+    을 만족한다.
+    이때 $\vec v = p_W (\vec a)$로 표기한다.
+
+    $\vec a \in V$의 어떤 벡터 $\vec u \in V$가 생성하는 벡터공간 $\left<\vec u\right>$로의 정사영을 $p_{\vec u} (\vec a)$로도 표기한다.
+\end{definition}
+
+\begin{theorem}
+    내적공간 $V$와 부분공간 $W$에 대해서 $W$의 직교 기저가 $\{\vec w_1, \dots, \vec w_n\}$일 때, $\vec v \in V$의 $W$ 위로의 정사영 $p_W (\vec v)$는 다음과 같다:
+    \begin{equation*}
+        p_W (\vec v) = \frac{\left<\vec v, \vec w_1\right>}{\left<\vec w_1, \vec w_1\right>} + \dots + \frac{\left<\vec v, \vec w_n\right>}{\left<\vec w_n, \vec w_n\right>}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    $\vec v \in V$의 $W$ 위로의 정사영 $p_W (\vec v)$는 $W$의 원소이므로, $W$의 직교 기저 $\{\vec w_1, \dots \vec w_n\}$의 선형결합으로 표현할 수 있다:
+    \begin{equation*}
+        p_W (\vec v) = c_1 \vec w_1 + \dots + c_n \vec w_n
+    \end{equation*}
+    그리고 정사영의 정의에 따라
+    \begin{equation*}
+        \forall i \in \{1, \dots, n\} \qquad \left<\vec v - p_W (\vec v), \vec w_i\right> = 0
+    \end{equation*}
+    를 만족한다.
+    정리하면,
+    \begin{align*}
+        \left<\vec v - p_W (\vec v), \vec w_i\right> &= \left<\vec v, \vec w_i\right> - \left<p_W (\vec v), \vec w_i\right>\\
+                                                     &= \left<\vec v, \vec w_i \right> - \left<c_1 \vec w_1 + \dots + c_n \vec w_n, \vec w_i\right>\\
+                                                     &= \left<\vec v, \vec w_i \right> - \sum_{j \in \{1, \dots, n\} \setminus \{i\}} c_j \left<\vec w_j, \vec w_i\right> - c_i \left<\vec w_i, \vec w_i\right>\\
+                                                     &= \left<\vec v, \vec w_i \right> - c_i \left<\vec w_i, \vec w_i\right> = 0
+    \end{align*}
+    이므로
+    \begin{equation*}
+        c_i = \frac{\left<\vec v, \vec w_i\right>}{\left<\vec w_i, \vec w_i\right>}
+    \end{equation*}
+    이다.
+    따라서 정사영 $p_W (\vec v)$는
+    \begin{equation*}
+        p_W (\vec v) = \frac{\left<\vec v, \vec w_1\right>}{\left<\vec w_1, \vec w_1\right>} + \dots + \frac{\left<\vec v, \vec w_n\right>}{\left<\vec w_n, \vec w_n\right>}
+    \end{equation*}
+    이다.
+\end{proof}
+
+\begin{theorem} [그람-슈미트(Gram-Schmidt) 과정]
+    내적공간 $W$의 기저 $\{\vec v_1, \dots, \vec v_n\}$에 대해서, 다음의 과정을 그람-슈미트(Gram-Schmidt) 과정이라고 부른다:
+    \begin{align*}
+        \vec w_1 &= \vec v_1\\
+        \vec w_2 &= \vec v_2 - p_{\vec w_1} (\vec v_2)\\
+        \vec w_3 &= \vec v_3 - p_{\vec w_1} (\vec v_3) - p_{\vec w_2} (\vec v_3)\\
+                 &\vdots\\
+        \vec w_n &= \vec v_n - \sum_{i = 1}^{n - 1} p_{\vec w_i} (\vec v_n)
+    \end{align*}
+    이렇게 구한 $\vec w_1, \dots, \vec w_n$의 집합은 $W$의 직교 기저이다.
+\end{theorem}
+
+\begin{example}
+    \leavevmode
+    \begin{enumerate}
+        \item $\mathbb R^3 = \langle (1, 0, 0), (0, 1, 1), (1, 2, 3) \rangle$와 스칼라곱으로 주어진 내적에 그람-슈미트 과정을 다음과 같이 실행한다:
+            \begin{align*}
+                \vec w_1 &= (1, 0, 0)\\
+                \vec w_2 &= (0, 1, 1) - \frac{(1, 0, 0) \cdot (0, 1, 1)}{(1, 0, 0) \cdot (1, 0, 0)} (1, 0, 0) = (0, 1, 1)\\
+                \vec w_3 &= (1, 2, 3) - \frac{(1, 0, 0) \cdot (1, 2, 3)}{(1, 0, 0) \cdot (1, 0, 0)}(1, 0, 0) - \frac{(0, 1, 1) \cdot (1, 2, 3)}{(0, 1, 1) \cdot (0, 1, 1)}(0, 1, 1)\\
+                         &= (1, 2, 3) - (1, 0, 0) - \frac 52 (0, 1, 1) = \left(0, -\frac 12, \frac 12\right)
+            \end{align*}
+            따라서 $\mathbb R^3$는 직교 기저 $\left\{(1, 0, 0), (0, 1, 1), \left(0, -\frac12, \frac12\right)\right\}$로 생성된다.
+        \item 벡터공간 $W = \left< 1, x, x^2 \right>$에 대해서 $I = [-1, 1]$이고 $r(x) = 1$인 내적 $\langle \cdot, \cdot \rangle_{I, r(x)}$가 주어졌다고 하자.
+            즉,
+            \begin{equation*}
+                \langle f, g \rangle = \int_{-1}^1 f(x) g(x)\,\dd x
+            \end{equation*}
+            이다.
+            이때 $\{1, x, x^2\}$에 대해서 그람-슈미트 과정을 다음과 같이 실행한다:
+            \begin{align*}
+                \vec w_1 &= 1\\
+                \vec w_2 &= x - \frac{\langle 1, x \rangle}{\langle 1, 1\rangle} 1 = x - \frac{\left. \frac{x^2}{2}\right|_{-1}^1}{\left. x\right|_{-1}^1} = x\\
+                \vec w_3 &= x^2 - \frac{\langle x^2, 1 \rangle}{\langle 1, 1\rangle} 1 - \frac{\langle x^2, x\rangle}{\langle x, x \rangle} x = x^2 - \frac{\left.\frac{x^3}{3}\right|_{-1}^1}{\left. x \right|_{-1}^1} - \frac{\left. \frac{x^4}{4} \right|_{-1}^1}{\left. \frac{x^3}{3} \right|_{-1}^1} x = x^2 - \frac13
+            \end{align*}
+            따라서 $\left< 1, x, x^2 \right>$는 직교 기저 $\left\{1, x, x^2 - \frac13\right\}$로 생성된다.
+        \item 벡터공간 $W = \left< 1, x, x^2, x^3 \right>$에 대해서 $I = [-1, 1]$이고 $r(x) = 1$인 내적 $\langle \cdot, \cdot \rangle_{I, r(x)}$가 주어졌다고 하자.
+            이때 $\{1, x, x^2, x^3\}$에 대해서 그람-슈미트 과정을 실행할 때, 세 번째 직교 기저 벡터까지는 위에서 $\{1, x, x^2\}$에 대해서 그람-슈미트 과정을 실행한 것과 동일하다:
+            \begin{align*}
+                \vec w_1 &= 1\\
+                \vec w_2 &= x\\
+                \vec w_3 &= x^2 - \frac13\\
+                \vec w_4 &= x^3 - \frac{\langle x^3, 1 \rangle}{\langle 1, 1\rangle} 1 - \frac{\langle x^3, x\rangle}{\langle x, x \rangle} x - \frac{\left\langle x^3, x^2 - \frac13\right\rangle}{\left\langle x^2 - \frac13, x^2 - \frac13 \right\rangle} \left(x^2 - \frac13\right)\\
+                         &= x^3 - \frac{\left.\frac{x^4}{4}\right|_{-1}^1}{\left. x \right|_{-1}^1} - \frac{\left. \frac{x^5}{5} \right|_{-1}^1}{\left. \frac{x^3}{3} \right|_{-1}^1} x - \frac{\left. \frac{x^6}{6} - \frac{x^4}{12} \right|_{-1}^1}{\left. \frac{x^5}{5} - \frac{2x^3}{9} + \frac x9 \right|_{-1}^1}\left(x^2 - \frac13\right)\\
+                         &= x^3 - \frac{3}{5}x
+            \end{align*}
+            따라서 $\left< 1, x, x^2, x^3 \right>$는 직교 기저 $\left\{1, x, x^2 - \frac13, x^3 - \frac{3}{5}x\right\}$로 생성된다.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem} \label{thm:orthogonal_mat}
+    $n \times n$ 행렬 $A$와 $\mathbb R^n$에 스칼라곱이 주어져 있을 때, 다음의 명제들은 동치이다:
+    \begin{enumerate}
+        \item $A^t A = I$
+        \item $A A^t = I$
+        \item $\forall \vec x \in \mathbb R^n \quad \lVert A \vec x \rVert = \lVert \vec x \rVert$
+        \item $\forall \vec x, \vec y \in \mathbb R^n \quad A \vec x \cdot A \vec y = \vec x \cdot \vec y$
+        \item $A$의 행벡터들이 정규직교한다.
+        \item $A$의 열벡터들이 정규직교한다.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    먼저 1과 2가 동치임은 $A^t = A^{-1}$이기에 자명하다.
+    1, 2와 5, 6이 동치임을 보이자.
+
+    $n \times n$ 행렬 $A$의 열벡터들을 $\vec a_1, \dots, \vec a_n$, 행벡터들을 $\vec b_1, \dots, \vec b_n$이라 하자.
+    즉,
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            \vec a_1 & \dots & \vec a_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec b_1 \\ \vdots \\ \vec b_n
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    그렇다면 $A$의 전치행렬 $A^t$는
+    \begin{equation*}
+        A^t =
+        \begin{pmatrix}
+            \vec a_1^t \\ \vdots \\ \vec a_n^t
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec b_1^t & \dots & \vec b_n^t
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    따라서 $A$와 $A^t$의 곱은 다음과 같다:
+    \begin{align*}
+        &A^tA =
+        \begin{pmatrix}
+            \vec a_1^t \\ \vdots \\ \vec a_n^t
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vec a_1 & \dots & \vec a_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec a_1 \cdot \vec a_1 & \dots & \vec a_1 \cdot \vec a_n\\
+            \vdots & \ddots & \vdots\\
+            \vec a_n \cdot \vec a_1 & \dots & \vec a_n \cdot \vec a_n\\
+        \end{pmatrix}
+        \\
+        = &AA^t =
+        \begin{pmatrix}
+            \vec b_1 \\ \vdots \\ \vec b_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vec b_1^t & \dots & \vec b_n^t
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec b_1 \cdot \vec b_1 & \dots & \vec b_1 \cdot \vec b_n\\
+            \vdots & \ddots & \vdots\\
+            \vec b_n \cdot \vec b_1 & \dots & \vec b_n \cdot \vec b_n\\
+        \end{pmatrix}
+    \end{align*}
+    따라서 $A^t A$ 혹은 $AA^t$가 $I$라는 것은
+    \begin{equation*}
+        \vec a_i \cdot \vec a_j = \vec b_i \cdot \vec b_j = \delta_{ij}
+    \end{equation*}
+    이라는 것과 동치이다.
+    이때 $\delta_{ij}$는 크로넥커(Kronecker) 델타이며, 이는 $i = j$일 때 1, $i \neq j$일 때 0을 가지는 함수이다.
+    그러므로 1, 2와 5, 6은 동치이다.
+
+    3과 4가 동치임을 보이자.
+    4에서 $\vec x = \vec y$인 경우에 3이 되는 것은 자명하다.
+    따라서 3에서 4가 성립함을 보이자.
+
+    임의의 $\vec x \in \mathbb R^n$에 대해서 $\lVert A \vec x \rVert = \lVert \vec x \rVert$라고 하자.
+    벡터 $\vec a, \vec b \in \mathbb R^n$을 고르면,
+    \begin{equation*}
+        \lVert A (\vec a + \vec b) \rVert = \lVert \vec a + \vec b \rVert
+    \end{equation*}
+    가 성립한다.
+    이때
+    \begin{align*}
+        \lVert A (\vec a + \vec b) \rVert &= \sqrt{A (\vec a + \vec b) \cdot A (\vec a + \vec b) }\\
+                                          &= \sqrt{(A \vec a + A \vec b) \cdot (A \vec a + A \vec b)}\\
+                                          &= \sqrt{A \vec a \cdot A \vec a + 2A \vec a \cdot A \vec b + A \vec b \cdot A \vec b}\\
+                                          &= \sqrt{\lVert A \vec a \rVert^2 + 2A \vec a \cdot A \vec b + \lVert A \vec b \rVert^2}\\
+                                          &= \sqrt{\lVert \vec a \rVert^2 + 2A \vec a \cdot A \vec b + \lVert \vec b \rVert^2}
+    \end{align*}
+    이고
+    \begin{align*}
+        \lVert \vec a + \vec b \rVert &= \sqrt{(\vec a + \vec b \cdot \vec a + \vec b)}\\
+                                      &= \sqrt{\vec a \cdot \vec a + 2 \vec a \cdot \vec b + \vec b \cdot \vec b}\\
+                                      &= \sqrt{\lVert \vec a \rVert^2 + 2 \vec a \cdot \vec b + \lVert \vec b \rVert^2}
+    \end{align*}
+    이므로,
+    \begin{equation*}
+        A \vec a \cdot A \vec b = \vec a \cdot \vec b
+    \end{equation*}
+    를 만족한다.
+    따라서 3이면 4가 성립하며, 3과 4는 동치이다.
+
+    마지막으로 4와 6이 동치임을 보이자. 먼저 4이면 6임을 보이자.
+
+    $A$의 열벡터들 $\vec a_1, \dots, \vec a_n$은 각각 $A \vec e_1, \dots, A \vec e_n$와 같다.
+    따라서 각 열벡터들이 정규직교한다는 것은
+    \begin{equation*}
+        \lVert A \vec e_i \rVert = 1
+    \end{equation*}
+    이고
+    \begin{equation*}
+        A \vec e_i \cdot A \vec e_j = \delta_{ij}
+    \end{equation*}
+    라는 것이다.
+    그런데 $\vec e_i \cdot \vec e_j = \delta_{ij}$이며 4에 의해 $A \vec e_i \cdot A \vec e_j = \vec e_i \cdot \vec e_j$이므로, $A \vec e_i \cdot A \vec e_j = \delta_{ij}$이다.
+    나아가 4와 동치인 3에 의해 $\lVert A \vec e_i\rVert = \lVert A \vec e_i \rVert = 1$이다.
+    따라서 4이면 6이다.
+
+    이제 6이면 4를 보이자.
+    벡터 $\vec a, \vec b \in \mathbb R^n$에 대해서,
+    \begin{align*}
+        \vec a &= (a_1, \dots, a_n)\\
+        \vec b &= (b_1, \dots, b_n)
+    \end{align*}
+    라고 하면
+    \begin{align*}
+        A \vec a \cdot A \vec b &= A(a_1 \vec e_1 + \dots + a_n \vec e_n) \cdot A (b_1 \vec e_1 + \dots + b_n \vec e_n)\\
+                                &= \sum_{i, j = 1}^n A a_i \vec e_i \cdot A b_j \vec e_j = \sum_{i, j = 1}^n a_i b_j A \vec e_i \cdot A \vec e_j\\
+                                &= \sum_{i, j = 1}^n a_i b_j \delta_{ij} = \sum_{i = 1}^n a_i b_i = \vec a \cdot \vec b
+    \end{align*}
+    이므로 4가 성립한다.
+    따라서 4와 6이 동치이며, 1, 2, 3, 4, 5, 6 모두가 동치인 명제임을 알 수 있다.
+\end{proof}
+
+\begin{definition} \label{def:orthogonal_mat}
+    $n \times n$ 행렬 $A$에 대해서 정리~\ref{thm:orthogonal_mat}의 조건들을 만족하는 행렬을 직교(orthogonal)행렬이라고 한다.
+\end{definition}
+
+\begin{theorem}
+    선형 등거리 변환(linear isometry) $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대응되는 행렬 $A$는 직교행렬이다.
+\end{theorem}
+
+\begin{example}
+    \leavevmode
+    \begin{enumerate}
+        \item $\mathbb R^2 \rightarrow \mathbb R^2$에서 원점을 기준으로 $\theta$만큼 회전시키는 회전변환 
+            \begin{equation*}
+                \vec x \mapsto \begin{pmatrix}\cos \theta & -\sin \theta \\ \sin \theta & \cos \theta\end{pmatrix} \vec x
+            \end{equation*}
+        의 행렬은 직교행렬이다.
+        \item $\mathbb R^2 \rightarrow \mathbb R^2$에서 원점을 지나고 $x$축과 $\theta$의 각을 이루는 직선에 대한 대칭변환 
+            \begin{equation*}
+                \vec x \mapsto \begin{pmatrix}\cos \theta & \sin \theta \\ \sin \theta & -\cos \theta\end{pmatrix} \vec x
+            \end{equation*}
+        의 행렬은 직교행렬이다.
+    \end{enumerate}
+\end{example}
+
+\begin{remark}
+    $\mathbb R^3 \rightarrow \mathbb R^3$에서\marginpar{\small 2018.10.8.} 벡터 $\vec v$를 기준으로 $\alpha$만큼 회전시키는 회전변환 $R_{\vec v}(\alpha)$를 구하자.
+
+    우선 $z$ 축을 중심으로 $\alpha$만큼 회전하는 $R_{\vec e_3}(\alpha)$는 $\mathbb R^2$에서의 회전변환을 통해
+    \begin{equation*}
+        R_{\vec e_3}(\alpha)
+        \begin{pmatrix}
+            x \\ y \\ z
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \cos \alpha & -\sin \alpha & 0\\
+            \sin \alpha & \cos \alpha & 0\\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            x \\ y \\ z
+        \end{pmatrix}
+    \end{equation*}
+    임을 쉽게 알 수 있다.
+
+    이제 $\vec v$와 직교를 이루는 $\vec u, \vec w$를 잡자.
+    이때 $\vec w \times \vec u$가 $\vec v$와 평행이 되도록 하자.
+    이들을 정규화한 $\sfrac{\vec w}{\lVert \vec w \rVert}, \sfrac{\vec u}{\lVert \vec u \rVert}, \sfrac{\vec v}{\lVert \vec v \rVert}$를 각각 $\vec e_1, \vec e_2, \vec e_3$로 변환하는 선형변환 $L$을 잡자.
+    즉,
+    \begin{align*}
+        L\left(\frac{\vec w}{\lVert \vec w \rVert}\right) &= \vec e_1\\
+        L\left(\frac{\vec u}{\lVert \vec u \rVert}\right) &= \vec e_2\\
+        L\left(\frac{\vec v}{\lVert \vec v \rVert}\right) &= \vec e_3
+    \end{align*}
+    이다.
+    그런데 $L$은 회전변환이므로 반드시 역함수 $L^{-1}$가 존재한다.
+    따라서
+    \begin{align*}
+        \frac{\vec w}{\lVert \vec w \rVert} &= L^{-1}(\vec e_1)\\
+        \frac{\vec u}{\lVert \vec u \rVert} &= L^{-1}(\vec e_2)\\
+        \frac{\vec v}{\lVert \vec v \rVert} &= L^{-1}(\vec e_3)
+    \end{align*}
+    이고, $L$에 대응되는 행렬은 
+    \begin{equation*}
+        \begin{pmatrix}
+            \frac{\vec w}{\lVert \vec w \rVert} & \frac{\vec u}{\lVert \vec u \rVert} & \frac{\vec v}{\lVert \vec v \rVert}
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    그런데 $\sfrac{\vec w}{\lVert \vec w \rVert}, \sfrac{\vec u}{\lVert \vec u \rVert}, \sfrac{\vec v}{\lVert \vec v \rVert}$는 정규직교하므로 이는 직교행렬이고, 따라서 역행렬은
+    \begin{equation*}
+        \begin{pmatrix}
+            \frac{\vec w^t}{\lVert \vec w \rVert} \\ \frac{\vec u^t}{\lVert \vec u \rVert} \\ \frac{\vec v^t}{\lVert \vec v \rVert}
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+
+    $\vec v$를 기준으로 $\alpha$만큼의 회전은 $\sfrac{\vec v}{\lVert \vec v\rVert}$가 $\vec e_3$가 되도록 회전한 후, $z$ 축을 중심으로 $\alpha$만큼의 회전, 즉 $R_{\vec e_3}(\alpha)$를 한 후, 다시 원래대로 $\vec e_3$를 $\sfrac{\vec v}{\lVert \vec v\rVert}$의 위치로 옮기는 것이다.
+    따라서 $R_{\vec v}(\alpha)$는 아래와 같은 행렬에 대응된다:
+    \begin{equation*}
+        \begin{pmatrix}
+            \frac{\vec w}{\lVert \vec w \rVert} & \frac{\vec u}{\lVert \vec u \rVert} & \frac{\vec v}{\lVert \vec v \rVert}
+        \end{pmatrix}
+        \begin{pmatrix}
+            \cos \alpha & -\sin \alpha & 0\\
+            \sin \alpha & \cos \alpha & 0\\
+            0 & 0 & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \frac{\vec w^t}{\lVert \vec w \rVert} \\ \frac{\vec u^t}{\lVert \vec u \rVert} \\ \frac{\vec v^t}{\lVert \vec v \rVert}
+        \end{pmatrix}
+    \end{equation*}
+\end{remark}
+
+벡터함수 $\vec F = (f_1, \dots, f_n)$가 $\mathbb R^m \rightarrow \mathbb R^n$으로 갈 때, 점 $P$에서 다음과 같이 근사할 수 있다:
+\begin{align*}
+    \vec F(\vec x) &=
+    \begin{pmatrix}
+        f_1(\vec x) \\ \vdots \\ f_n(\vec x)
+    \end{pmatrix}
+    \approx
+    \begin{pmatrix}
+        f_1(P) + f_1'(P) (\vec x - P)\\
+        \vdots\\
+        f_n(P) + f_n'(P) (\vec x - P)
+    \end{pmatrix}\\
+              &=
+              \begin{pmatrix}
+                  f_1'(P) \\ \vdots \\ f_n'(P)
+              \end{pmatrix}
+              (\vec x - P) + \vec F(P)
+\end{align*}
+이때 $\vec F$의 $P$에서의 야코비 행렬(Jacobian matrix)을 다음과 같이 정의하여 더 간단하게 표현할 수 있다.
+
+\begin{definition}
+    벡터함수 $\vec F: \mathbb R^m \rightarrow \mathbb R^n$에 대해 야코비 행렬(Jacobian matrix)을 다음과 같이 정의한다:
+    \begin{equation*}
+        \vec F' = \jacob{f_1, \dots, f_n}{x_1, \dots, x_m} =
+        \begin{pmatrix}
+            f_1' \\ \vdots \\ f_n'
+        \end{pmatrix}
+    \end{equation*}
+    이때 $\vec F = (f_1, \dots, f_n)$이다.
+\end{definition}
+
+따라서 $\vec F$의 $P$에서의 근사는
+\begin{equation*}
+    \vec F(\vec x) \approx \vec F'(P) (\vec x - P) + \vec F(P)
+\end{equation*}
+로 쓸 수 있다.
+
+\begin{example}
+    각도를 보존하는 사상을 등각사상(conformal mapping)이라고 하는데, 어떤 사상의 야코비 행렬이 직교행렬의 상수 배이면 해당 사상은 등각사상임이 알려져 있다.
+    $\vec F(x, y) = (f(x, y), g(x, y)) = (x^2 - y^2, -2xy)$로 정의된 벡터함수의 야코비 행렬을 구하면
+    \begin{equation*}
+        \vec F' =
+        \begin{pmatrix}
+            \diffp{f}{x} & \diffp{f}{y}\\
+            \diffp{g}{x} & \diffp{g}{y}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            2x & -2y\\
+            -2y & -2x
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    그런데 $\vec F'$의 열벡터 $2(x, -y)$와 $2(-y, -x)$의 내적이 0이므로 두 열벡터는 직교한다.
+    따라서 $\vec F'$는 직교행렬의 상수배임을 알 수 있고, $\vec F$는 등각사상이다.
+\end{example}
+
+\begin{definition}
+    $n \times n$ 행렬 $A$에 대해서 $A \vec x = \lambda \vec x$가 되는 $\vec x \neq \vecz$가 존재한다.
+    이때 $\lambda$를 특성값(eigenvalue), $\vec x$를 $\lambda$-특성벡터(eigenvector) 혹은 단순히 특성벡터라고 부르며, $\lambda$-특성벡터들과 $\vecz$의 집합 $E_\lambda$를 $\lambda$-특성공간(eigenspace)이라고 부른다.
+    또한 $\det (A - \lambda I)$을 특성다항식(characteristic polynomial)이라고 부르고, $\Char A$라고 쓴다.
+\end{definition}
+
+\begin{remark}
+    $n \times n$ 행렬 $A$의 특성값 $\lambda$와 특성벡터 $\vec x$를 구하기 위해서,
+    \begin{equation*}
+        A \vec x = \lambda \vec x
+    \end{equation*}
+    에서 우변을 좌변으로 이항한다:
+    \begin{equation*}
+        (A - \lambda I) \vec x = \vecz
+    \end{equation*}
+    그런데 $\vec x \neq \vecz$이므로 $A - \lambda I$는 정리~\ref{thm:one_to_one_nullspace}와 \ref{thm:nonzero_det}에 의해 $\det (A - \lambda I) = 0$이어야 한다.
+    따라서 특성다항식 $\Char A = \det (A - \lambda I) = 0$을 풀면 특성값 $\lambda$를 구할 수 있다.
+    $\lambda$-특성벡터 $\vec x$의 경우, $(A - \lambda I) \vec x = \vecz$이므로 $\Null (A - \lambda I)$의 원소를 구하면 된다.
+    이는 $A - \lambda I$를 행사다리꼴 형태로 바꾸어 구할 수 있다.
+\end{remark}
+
+\begin{example}
+    \leavevmode
+    \begin{enumerate}
+        \item 행렬 $\begin{pmatrix}2 & 1\\1 & 2\end{pmatrix}$의 특성값들과 각각의 특성벡터들을 찾기 위해 특성다항식을 푼다:
+            \begin{equation*}
+                \det
+                \begin{pmatrix}
+                    2 - \lambda & 1\\
+                    1 & 2 - \lambda
+                \end{pmatrix}
+                = (2 - \lambda)^2 - 1 = (\lambda - 3)(\lambda - 1) = 0
+            \end{equation*}
+            따라서 $\lambda = 3$일 경우와 $\lambda = 1$일 경우를 나누어 특성벡터를 찾는다.
+            \begin{enumerate}
+                \item $\lambda = 1$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            1 & 1\\
+                            1 & 1
+                        \end{pmatrix}
+                        \vec x = \vecz
+                    \end{equation*}
+                    이므로 $k \in \mathbb R$에 대해 1-특성벡터 $\vec x = k(1, -1)$이며 1-특성공간 $E_1 = \langle 1, -1 \rangle$이다.
+                \item $\lambda = 3$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            -1 & 1\\
+                            1 & -1
+                        \end{pmatrix}
+                        \vec x = \vecz
+                    \end{equation*}
+                    이므로 $k \in \mathbb R$에 대해 3-특성벡터 $\vec x = k(1, 1)$이며 3-특성공간 $E_3 = \langle 1, 1 \rangle$이다.
+            \end{enumerate}
+        \item $0 < \alpha < \pi$에 대해 행렬 $A = \begin{pmatrix}\cos \alpha & -\sin \alpha\\\sin \alpha & \cos \alpha\end{pmatrix}$의 특성값은 실수 범위에서 존재하지 않는다.
+            이는
+            \begin{equation*}
+                \Char A = \lambda^2 - 2 \lambda \cos \alpha + 1
+            \end{equation*}
+            인데, $\lambda$에 대한 이차방정식의 판별식에서 $\sfrac D4 = \cos^2 \alpha - 1 < 0$이기 때문에 실근을 가지지 않는다.
+            하지만 복소수 범위에서 $\lambda = e^{i \alpha}$ 혹은 $\lambda = e^{-i \alpha}$임을 알 수 있다.
+        \item 행렬\marginpar{\small 2018.10.10.}  $\begin{pmatrix}-2 & 2 & -3\\2 & 1 & -6\\-1 & -2 & 0\end{pmatrix}$의 특성값들과 각각의 특성벡터들을 찾기 위해 특성다항식을 푼다:
+            \begin{equation*}
+                \det
+                \begin{pmatrix}
+                    -2 - \lambda & 2 & -3\\
+                    2 & 1 - \lambda & -6\\
+                    -1 & -2 & -\lambda
+                \end{pmatrix}
+                = - (\lambda - 5)(\lambda + 3)^2
+            \end{equation*}
+            따라서 $\lambda = 5$일 경우와 $\lambda = -3$일 경우를 나누어 특성벡터를 찾는다.
+            \begin{enumerate}
+                \item $\lambda = 5$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            -7 & 2 & -3\\
+                            2 & -4 & -6\\
+                            -1 & -2 & -5
+                        \end{pmatrix}
+                        \rightarrow
+                        \begin{pmatrix}
+                            -7 & 2 & -3\\
+                            0 & 1 & 2\\
+                            0 & 0 & 0
+                        \end{pmatrix}
+                        \rightarrow
+                        \begin{pmatrix}
+                            1 & 0 & 1\\
+                            0 & 1 & 2\\
+                            0 & 0 & 0
+                        \end{pmatrix}
+                    \end{equation*}
+                    이므로 $k \in \mathbb R$에 대해 5-특성벡터 $\vec x = k(-1, -2, 1)$이며 5-특성공간 $E_5 = \langle (-1, -2, 1) \rangle$이다.
+                \item $\lambda = -3$일 때
+                    \begin{equation*}
+                        \begin{pmatrix}
+                            1 & 2 & -3\\
+                            2 & 4 & -6\\
+                            -1 & -2 & 3
+                        \end{pmatrix}
+                        \rightarrow
+                        \begin{pmatrix}
+                            1 & 2 & -3\\
+                            0 & 0 & 0\\
+                            0 & 0 & 0
+                        \end{pmatrix}
+                    \end{equation*}
+                    이므로 $k, l \in \mathbb R$에 대해 $-3$-특성벡터 $\vec x = k(-2, 1, 0) + l(3, 0, 1)$이며 $-3$-특성공간 $E_{-3} = \langle (-2, 1, 0), (3, 0, 1)\rangle$이다.
+            \end{enumerate}
+            여기서 $\lambda = 5$일 때 $\Char A$에서는 $\lambda - 5$ 항이 하나이고 $\dim E_5 = 1$로 같고, $\lambda = -3$일 때 $\Char A$에서 $\lambda + 3$ 항이 두 개, $\dim E_{-3} = 2$로 동일하다.
+            그러나 이렇게 특성방정식에서 중근의 개수와 해당 특성값에 대응되는 특성공간의 차원이 항상 같은 것은 아니다.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    행렬 $A$에 대해서, $\Char A$의 어떤 해, 즉 특성값이 나타나는 횟수를 대수적 중복도(algebraic multiplicity), 해당 특성값에 대응되는 특성공간의 차원을 기하적 중복도(geometric multiplicity)라고 한다.
+\end{definition}
+
+\begin{theorem}
+    행렬 $A$의 기하적 중복도는 대수적 중복도를 초과하지 못한다.
+\end{theorem}
+
+\begin{example}
+    $\begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}$의 특성방정식은 $(\lambda - 1)^2 = 0$이다.
+    따라서 $\lambda = 1$의 대수적 중복도는 1이고, $A - \lambda I = O$이므로 $\mathbb R^2$의 임의의 벡터가 특성벡터이다.
+    그러므로 특성공간은 $\mathbb R^2$이고, 기하적 중복도는 2이다.
+
+    $\begin{pmatrix}0 & 1\\0 & 0\end{pmatrix}$의 특성방정식은 $\lambda^2 = 0$이다.
+    따라서 $\lambda = 0$의 대수적 중복도는 2이고, $k \in \mathbb R$에 대해 $(k, 0)$이 특성벡터이므로, 특성공간은 $\langle (1, 0) \rangle$로 기하적 중복도가 1이다.
+
+    위의 두 경우 모두 기하적 중복도가 대수적 중복도 이하임을 확인할 수 있다.
+\end{example}
+
+\begin{definition}
+    벡터공간 $V$와 부분공간 $U, W$에 대해서 $U \cap W = \{\vecz\}$일 때 $U$와 $W$의 합을 직합(direct sum)이라고 하고 $U \oplus W$라고 쓴다.
+\end{definition}
+
+\begin{remark}
+    그라스만 공식(정리~\ref{thm:grassmann})에서 $\dim (U + W) = \dim U + \dim W$임을 알 수 있다.
+\end{remark}
+
+\begin{theorem}
+    두 벡터공간 $U$와 $W$의 교집합이 $\{\vecz\}$일 때, $\vec x \in U \oplus W$에 대해서
+    \begin{equation*}
+        \vec x = \vec u_1 + \vec w_1 = \vec u_2 + \vec w_2
+    \end{equation*}
+    이고 $\vec u_1, \vec u_2 \in U$, $\vec w_1, \vec w_2 \in W$일 때, $\vec u_1 = \vec u_2$이고 $\vec w_1 = \vec w_2$이다.
+    즉, $U \oplus W$의 원소의 합 표현은 유일하다.
+\end{theorem}
+
+\begin{proof}
+    $\vec x \in U \oplus W$에 대해서 $\vec u_1 + \vec w_1 = \vec u_2 + \vec w_2 = \vec x$이고 $\vec u_1, \vec u_2 \in U$, $\vec w_1, \vec w_2 \in W$라고 하자.
+    그러면 $\vec u_1 - \vec u_2 = \vec w_2 - \vec w_1$이므로 $U \cap W = \{\vecz\}$의 원소이다.
+    따라서 $\vec u_1 - \vec u_2 = \vec w_2 - \vec w_1 = \vecz$이어서 $\vec x$의 합 표현은 유일하다.
+\end{proof}
+
+\begin{definition}
+    벡터공간 $V$의 부분공간 $U_1, \dots, U_k$에 대해서 어떤 벡터 $\vec x \in U_1 + \dots + U_k$의 합 표현이 유일할 때
+    \begin{equation*}
+        U_1 + \dots + U_k = U_1 \oplus \dots \oplus U_k
+    \end{equation*}
+    로 쓴다.
+\end{definition}
+
+\begin{theorem} \label{thm:linear_independence_directsum}
+    벡터공간 $U_1, \dots, U_k$에 대해서 $U_1 \oplus \dots \oplus U_k$가 존재할 때,
+    \begin{equation*}
+        \bigl\{\vec u_i \bigm| \vec u_i \in U_i \setminus \{\vecz\},\ i \in \{1, \dots, k\}\bigr\}
+    \end{equation*}
+    은 일차독립이다.
+\end{theorem}
+
+\begin{proof}
+    스칼라 $c_1, \dots, c_k$에 대해서
+    \begin{equation*}
+        c_1 \vec u_1 + \dots + c_k \vec u_k = \vecz
+    \end{equation*}
+    라고 가정하자.
+    $\vec x$를
+    \begin{equation*}
+        \vec x = c_1 \vec u_1 + \dots + c_{k - 1} \vec u_{k - 1} = -c_k \vec u_k
+    \end{equation*}
+    로 두면,
+    \begin{align*}
+        \vec x &= c_1 \vec u_1 + \dots + c_{k - 1} \vec u_{k - 1} + 0 \vec u_k\\
+               &= 0 \vec u_1 + \dots + 0 \vec u_{k - 1} + (-c_k) \vec u_k
+    \end{align*}
+    이고 합 표현의 유일성에 따라 $c_1 = \dots = c_k = 0$이다.
+    그러므로 $\bigl\{\vec u_i \bigm| \vec u_i \in U_i \setminus \{\vecz\},\ i \in \{1, \dots, k\}\bigr\}$은 일차독립이다.
+\end{proof}
+
+\begin{theorem} \label{thm:eigenspace_directsum}
+    $n \times n$ 행렬 $A$에 대해서 서로 다른 특성값 $\lambda_1, \dots, \lambda_k$에 대응되는 특성공간 $E_1, \dots, E_n$에 대해, 다음이 성립한다:
+    \begin{equation*}
+        E_1 + \dots + E_k = E_1 \oplus \dots \oplus E_k
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    $k$에 대한 수학적 귀납법으로 증명한다.
+
+    먼저 $k = 2$일 경우, 어떤 벡터 $\vec v \in E_1 \cap E_2$를 고르자.
+    그러면
+    \begin{equation*}
+        A \vec v = \lambda_1 \vec v = \lambda_2 \vec v
+    \end{equation*}
+    이므로,
+    \begin{equation*}
+        (\lambda_1 - \lambda_2) \vec v = \vecz
+    \end{equation*}
+    이다.
+    그런데 $\lambda_1 \neq \lambda_2$이므로 $\vec v = \vecz$이다.
+    따라서 $E_1 + E_2 = E_1 \oplus E_2$이다.
+
+    이제 $k > 2$의 경우에, $E_1 + \dots + E_{k - 1} = E_1 \oplus \dots \oplus E_{k - 1}$가 성립한다고 가정하자.
+    $\vec x \in E_1 + \dots + E_k$에 대해서 $\vec v_i, \vec u_i \in E_i$일 때
+    \begin{equation*}
+        \vec x = \vec v_1 + \dots + \vec v_k = \vec u_1 + \dots + \vec u_k \in E_1 + \dots + E_k
+    \end{equation*}
+    라고 하자.
+    그러면
+    \begin{equation*}
+        (\vec v_1 - \vec u_1) + \dots + (\vec v_{k - 1} - \vec u_{k - 1}) = \vec u_k - \vec v_k
+    \end{equation*}
+    이고, $\vec v_i - \vec u_i = \vec w_i$로 놓자.
+    따라서
+    \begin{equation*}
+        \vec w_1 + \dots + \vec w_{k - 1} = -\vec w_k
+    \end{equation*}
+    이고 $\vec w_i \in E_i$이다.
+    양변에 $A$를 왼쪽에 곱하면
+    \begin{align*}
+        &A(\vec w_1 + \dots + \vec w_{k - 1}) = A(-\vec w_k)\\
+        \Leftrightarrow\quad &A \vec w_1 + \dots + A \vec w_{k - 1} = -A \vec w_k\\
+        \Leftrightarrow\quad &\lambda_1 \vec w_1 + \dots + \lambda_{k - 1} \vec w_{k - 1} = - \lambda_k \vec w_k
+    \end{align*}
+    이다.
+    또한 양변에 $\lambda_k$를 곱한 것은
+    \begin{equation*}
+        \lambda_k \vec w_1 + \dots + \lambda_k \vec w_{k - 1} = -\lambda_k \vec w_k
+    \end{equation*}
+    이다.
+    둘을 양변에서 빼면
+    \begin{equation*}
+        (\lambda_1 - \lambda_k) \vec w_1 + \dots + (\lambda_{k - 1} - \lambda_k) \vec w_{k - 1} = \vecz
+    \end{equation*}
+    이다.
+    따라서 $i \in \{1, \dots, k - 1\}$에 대해 $\lambda_i \neq \lambda_k$이므로 $\vec w_1, \dots, \vec w_{k - 1}$는 일차종속이다.
+    그런데 귀납 가정에 따라 $E_1 + \dots + E_{k - 1} = E_1 \oplus \dots \oplus E_{k - 1}$이며 정리~\ref{thm:linear_independence_directsum}에 따라 $\vecz$가 아닌 벡터들은 일차독립이어야 하므로, $\vec w_1, \dots, \vec w_{k - 1}$은 $\vecz$이다.
+    그러므로 $\vec v_i = \vec u_i$이고, 벡터 $\vec x \in E_1 + \dots + E_k$의 합 표현은 유일하고, $E_1 + \dots + E_k = E_1 \oplus \dots \oplus E_k$이다.
+    이로써 귀납 증명이 완료된다.
+\end{proof}
+
+\begin{remark}
+    벡터공간 $U_1, \dots, U_k$에 대해서
+    \begin{equation*}
+        U_1 + \dots + U_k = U_1 \oplus \dots \oplus U_k \Rightarrow \bigl(\forall i, j \in \{1, \dots, k\}\quad i \neq j \Rightarrow U_i \cap U_j = \{\vecz\}\bigr)
+    \end{equation*}
+    이지만 그 역은 성립하지 않는다.
+    예를 들어, $\mathbb R^2$ 좌표평면에서 원점을 지나는 세 직선으로 나타내어지는 벡터공간의 교집합은 원점뿐이지만, $\mathbb R^2$의 벡터들은 세 직선에 속하는 벡터들의 합 표현으로 유일하게 나타내지지 않는다.
+
+    그러나 벡터공간 $U_1, \dots, U_k$들의 집합 $\mathcal U$에 대해서,
+    \begin{equation*}
+        \forall \mathcal P_1, \mathcal P_2 \subseteq \mathcal U \qquad \mathcal P_1 \cap \mathcal P_2 = \varnothing \Rightarrow \sum_{U \in \mathcal P_1} U\ \cap \sum_{\tilde U \in \mathcal P_2} \tilde U = \{\vecz\}
+    \end{equation*}
+    인 것은 $U_1 + \dots + U_k = U_1 \oplus \dots \oplus U_k$와 동치이다.
+\end{remark}
+
+\begin{theorem}
+    행렬 $A$의 서로 다른 특성공간 $E_1, \dots E_k$와 각각의 기저가 $\mathcal B_1, \dots, \mathcal B_k$이라고 하자.
+    그러면 $\mathcal B_1 \cup \dots \cup \mathcal B_k$는 $E_1 \oplus \dots \oplus E_k$의 기저이다.
+\end{theorem}
+
+\begin{proof}
+    $i \in \{1, \dots, k\}$에 대해 $E_i$의 기저 $\mathcal B_i = \{\vec v_{i1}, \dots, \vec v_{ij_i}\}$라고 하자.
+    먼저 $\mathcal B_1 \cup \dots \cup \mathcal B_k$가 $E_1 \oplus \dots \oplus E_k$를 생성하는 것은 각각의 $\mathcal B_i$가 $E_i$를 생성하므로 당연하다.
+    이제 $\mathcal B_1 \cup \dots \cup \mathcal B_k$가 일차독립임을 보이자.
+
+    기저 $\mathcal B_i$에 속하는 기저 벡터들의 선형결합들의 합을
+    \begin{equation*}
+        \sum_{i = 1}^k (c_{i1} \vec v_{i1} + \dots + c_{ij_i} \vec v_{ij_i}) = \vecz
+    \end{equation*}
+    라고 하자.
+    $l \in \{1, \dots, k\}$를 하나 골라서 우변으로 이항하면,
+    \begin{equation*}
+        \sum_{i \neq l} (c_{i1} \vec v_{i1} + \dots + c_{ij_i} \vec v_{ij_i}) = -(c_{l1} \vec v_{l1} + \dots + c_{lj_l} \vec v_{lj_l})
+    \end{equation*}
+    이다.
+    그런데 정리~\ref{thm:eigenspace_directsum}에 따라 양변은 $E_1 \oplus \dots \oplus E_k$의 원소이므로 합 표현이 유일하고, 따라서 모든 $c_{ij_i}$는 0이다.
+    따라서 $\mathcal B_1 \cup \dots \cup \mathcal B_k$가 일차독립이다.
+\end{proof}
+
+\begin{definition}
+    $L_A: \mathbb R^n \rightarrow \mathbb R^n$에 대응되는 $n \times n$ 행렬 $A$가 있을 때, $\vec v_1, \dots, \vec v_n$이 $\mathbb R^n$에 대한 행렬 $A$의 특성기저(eigenbasis)라는 것은 $\vec v_1, \dots, \vec v_n$이 $A$의 특성벡터이면서 $\mathbb R^n$의 기저벡터라는 것을 말한다.
+\end{definition}
+
+\begin{remark}
+    $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저가 존재한다는 것은 $\Char A$의 중근을 포함한 실근의 개수가 $n$개라는 것이고, 이는 대수적 중복도의 합과 기하적 중복도의 합이 $n$으로 같다는 것이다.
+\end{remark}
+
+\begin{definition}
+    $n \times n$\marginpar{2018.10.15} 행렬 $A$와 $B$에 대해서 $A$와 $B$가 닮았다(similar)는 것은 $n \times n$ 가역행렬 $P$가 존재해서
+    \begin{equation*}
+        A = P^{-1} B P
+    \end{equation*}
+    라는 것이다.
+    이 때 $A \sim B$라고 표기한다.
+\end{definition}
+
+\begin{theorem}
+    $n \times n$ 행렬 $A$와 $B$에 대해서 다음이 성립한다:
+    \begin{enumerate}
+        \item $A \sim A$ (반사성(reflexivity))
+        \item $A \sim B \Rightarrow B \sim A$ (대칭성(symmetricity))
+        \item $A \sim B \,\wedge\, B \sim A \Rightarrow A \sim C$ (추이성(transivity))
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \leavevmode
+    \begin{enumerate}
+        \item 반사성은 자명하게 성립한다.
+        \item 대칭성은 $A = P^{-1} B P$이면 $B = (P^{-1})^{-1} A (P^{-1})$이므로 성립한다.
+        \item 추이성은 $A = P^{-1}BP$이고 $B = Q^{-1} C Q$일 때 $A = (QP)^{-1} C (QP)$이므로 성립한다.
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    $n \times n$ 행렬의 주대각선을 제외한 곳의 원소가 모두 0이면 대각행렬(diagonal matrix)이라고 부른다.
+    또한 대각행렬과 닮은 행렬을 대각화 가능 행렬(diagonalizable matrix)이라고 부른다.
+\end{definition}
+
+\begin{theorem}
+    $n \times n$ 행렬 $A$가 대각화 가능 행렬일 필요충분조건은 $A$이 $\mathbb R^n$에 대해 특성기저를 가지는 것이다.
+\end{theorem}
+
+\begin{proof}
+    먼저 $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저가 존재하면 $A$가 대각화 가능하다는 것을 보이자.
+
+    $\mathbb R^n$에 대한 $n \times n$ 행렬 $A$의 특성기저를 $\{\vec v_1, \dots, \vec v_n\}$, 각각에 대응되는 특성값을 $\lambda_1, \dots, \lambda_n$이라고 하자.
+    즉,
+    \begin{align*}
+        A\vec v_1 &= \lambda_1 \vec v_1\\
+                  &\vdots\\
+        A\vec v_n &= \lambda_n \vec v_n
+    \end{align*}
+    이며, 이는 다시
+    \begin{equation*}
+        A
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+    \end{equation*}
+    로 쓸 수 있다.
+    따라서
+    \begin{equation*}
+        A
+        =
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}^{-1}
+    \end{equation*}
+    이므로 $A$는 대각화 가능 행렬이다.
+
+    이제 $A$가 대각화 가능하면 $\mathbb R^n$에 대해 $n \times n$ 행렬 $A$의 특성기저가 존재한다는 것을 보이자.
+
+    $n \times n$ 가역행렬 $P$과 대각행렬 $D$에 대해서 $A = PDP^{-1}$이라고 하자.
+    $P$의 열벡터들을 $\vec v_1, \dots, \vec v_n$으로 놓고, $i \in \{1, \dots, n\}$일 때 $D$의 $i$행 $i$열의 원소를 $\lambda_i$로 놓자.
+    $\lambda_i$들이 $A$의 특성값이고, $\vec v_i$가 $\lambda_i$에 대응되는 특성벡터임을 보이자.
+    \begin{equation*}
+        A
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \vec v_1 & \dots & \vec v_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+    \end{equation*}
+    이므로 모든 $\vec v_i$에 대해 $A \vec v_i = \lambda_i \vec v_i$임을 알 수 있다.
+    따라서 $\lambda_i$들은 $A$의 특성값이고 $\vec v_i$는 $\lambda_i$-특성벡터이다.
+    이제 $\vec v_i$들이 $\mathbb R^n$의 기저벡터임을 보이자.
+    $P$는 가역행렬이므로 열벡터들이 일차독립이다(쪽~\pageref{page:equiv_remark_update}의 7과 9).
+    나아가 정리~\ref{thm:basis_span}에 따라 $\vec v_i$들은 기저를 이룬다.
+\end{proof}
+
+\begin{remark}
+    위의 증명 과정에서 임의의 특성기저를 상수배하여도 대각화할 때 사용되는 가역행렬의 열벡터로 사용할 수 있다는 것을 알 수 있다.
+    또한, 두 열벡터를 교환하면 각각의 특성벡터에 해당하는 특성값을 교환하면 여전히 대각화가 성립한다.
+    즉,
+    \begin{align*}
+        A &=
+        \begin{pmatrix}
+            1 & 4 & 7\\
+            2 & 5 & 8\\
+            3 & 6 & 10
+        \end{pmatrix}
+        \begin{pmatrix}
+            4 & 0 & 0\\
+            0 & 5 & 0\\
+            0 & 0 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 4 & 7\\
+            2 & 5 & 8\\
+            3 & 6 & 10
+        \end{pmatrix}^{-1}\\
+          &=
+        \begin{pmatrix}
+            2 & 4 & 7\\
+            4 & 5 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}
+        \begin{pmatrix}
+            4 & 0 & 0\\
+            0 & 5 & 0\\
+            0 & 0 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 4 & 7\\
+            4 & 5 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}^{-1}\\
+          &=
+        \begin{pmatrix}
+            4 & 2 & 7\\
+            5 & 4 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}
+        \begin{pmatrix}
+            5 & 0 & 0\\
+            0 & 4 & 0\\
+            0 & 0 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            4 & 2 & 7\\
+            5 & 4 & 8\\
+            6 & 6 & 10
+        \end{pmatrix}^{-1}
+    \end{align*}
+    이다.
+\end{remark}
+
+\begin{theorem}
+    $n \times n$ 행렬 $A$가 대각화 가능하면, 즉 어떤 $n \times n$ 가역행렬 $P$와 대각행렬 $D$에 대해서 $A = PDP^{-1}$일 때,
+    \begin{equation*}
+        A^k = PD^k P^{-1}
+    \end{equation*}
+    이다.
+\end{theorem}
+
+\begin{proof}
+    $A = PDP^{-1}$일 때
+    \begin{equation*}
+        A^k = (PDP^{-1})^k = \underbrace{(PDP^{-1}) \dots (PDP^{-1})}_\text{$k$ 개} = P\underbrace{D\dots D}_\text{$k$ 개}P^{-1} = PD^kP^{-1}
+    \end{equation*}
+    이다.
+\end{proof}
+
+\begin{theorem}
+    대칭 실행렬 $A$는 대각화 가능 행렬이다.
+    즉, $A = A^t$인 것은 $\Char A$의 모든 근이 실수이고 모든 근에 대해 대수적 중복도와 기하적 중복도가 같은 것과 동치이다.
+\end{theorem}
+
+\begin{lemma} \label{lem:self_adjoint_sym}
+    $n \times n$ 행렬 $A$가 대칭행렬인 것은 $A$가 스칼라곱에 대해 자기 수반(self-adjoint)이라는 것이다.
+    즉,
+    \begin{equation*}
+        A = A^t \qquad \Longleftrightarrow \qquad \forall \vec x, \vec y \in \mathbb R^n \quad A\vec x \cdot \vec y = \vec x \cdot A \vec y
+    \end{equation*}
+    이다.
+\end{lemma}
+
+\begin{proof}
+    우선 $A$가 대칭행렬이면 스칼라곱에 대해 자기 수반이라는 것을 보이자.
+
+    어떤 $\vec x, \vec y \in \mathbb R^n$을 고르자.
+    그러면
+    \begin{equation*}
+        \vec x \cdot A \vec y = (A\vec y)^t \vec x = \vec y^t A^t \vec x = \vec y^t A \vec x = A \vec x \cdot \vec y
+    \end{equation*}
+    이므로 $A$는 스칼라곱에 대해 자기 수반이다.
+
+    이제 $A$가 스칼라곱에 대해 자기 수반이면 $A$가 대칭행렬임을 보이자.
+
+    $A = (\vec v_1 \quad \dots \quad \vec v_n) = (a_{ij})$라고 하자.
+    $A \vec e_i = \vec v_i$이고, $\vec v_i \cdot \vec e_j = a_{ji}$이다.
+    그런데
+    \begin{equation*}
+        A \vec e_i \cdot e_j = e_i \cdot A \vec e_j
+    \end{equation*}
+    이므로,
+    \begin{equation*}
+        a_{ji} = a_{ij}
+    \end{equation*}
+    이다.
+    따라서 $A = A^t$이다.
+    그러므로 $A$가 대칭행렬인 것은 $A$가 스칼라곱에 대해 자기 수반인 것과 동치이다.
+\end{proof}
+
+\begin{remark}
+    $L: \mathcal C^\infty \rightarrow \mathcal C^\infty$에 대해서도 내적 $\langle \cdot, \cdot \rangle$이 주어졌을 때 임의의 $x, y$에 대해 $\langle L x, y \rangle = \langle x, Ly \rangle$인 변환을 생각할 수 있다.
+\end{remark}
+
+\begin{theorem} \label{thm:sym_eigenvector_orthogonal}
+    대칭 실행렬 $A$의 서로 다른 특성값 $\lambda$와 $\mu$에 대해서, 대응되는 특성벡터 $\vec x$와 $\vec y$는 직교한다.
+\end{theorem}
+
+\begin{proof}
+    $A$가 대칭 실행렬인 것은 도움정리~\ref{lem:self_adjoint_sym}에 따라 $A$가 스칼라곱에 대해 자기 수반인 것을 의미한다.
+    따라서 $\lambda$-특성벡터 $\vec x$와 $\mu$-특성벡터 $\vec y$에 대해
+    \begin{equation*}
+        A \vec x \cdot \vec y = \vec x \cdot A \vec y
+    \end{equation*}
+    이며, 따라서
+    \begin{equation*}
+        \lambda \vec x \cdot \vec y = \vec x \cdot \mu \vec y
+    \end{equation*}
+    이다.
+    우변을 좌변으로 이항하면
+    \begin{equation*}
+        (\lambda - \mu) \vec x \cdot \vec y = 0
+    \end{equation*}
+    이고, $\lambda \neq \mu$이므로 $\vec x \cdot \vec y = 0$이다.
+\end{proof}
+
+\begin{example}
+    $A = \begin{pmatrix}1 & 3\\2 & 4\end{pmatrix} \begin{pmatrix}7 & 0\\ 0 & 8\end{pmatrix}\begin{pmatrix}1 & 3\\2 & 4\end{pmatrix}^{-1}$는 대칭행렬이 아니다.
+    $(1, 2) \cdot (3, 4) \neq 0$이기 때문이다.
+\end{example}
+
+\begin{remark}
+    정리~\ref{thm:sym_eigenvector_orthogonal}에 따라 대칭행렬은 가역 직교행렬을 통해 대각화할 수 있음을 알 수 있다.
+    예를 들어, 어떤 행렬 $A$가 다음과 같이 대각화된다고 하자:
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            \vec v_1 & \vec v_2 & \vec v_3 & \vec w_1 & \vec w_2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 0 & 0 & 0 & 0\\
+            0 & 2 & 0 & 0 & 0\\
+            0 & 0 & 2 & 0 & 0\\
+            0 & 0 & 0 & 3 & 0\\
+            0 & 0 & 0 & 0 & 3
+        \end{pmatrix}
+        \begin{pmatrix}
+            \vec v_1 & \vec v_2 & \vec v_3 & \vec w_1 & \vec w_2
+        \end{pmatrix}^{-1}
+    \end{equation*}
+    이 때 $A$의 특성값 2, 3과 2-특성공간 $E_2 = \langle \vec v_1, \vec v_2, \vec v_3 \rangle$과 3-특성공간 $E_3 = \langle \vec w_1, \vec w_2\rangle$을 알 수 있다.
+    각각의 특성공간의 기저에 그람-슈미트 과정을 통해서 직교 기저를 얻을 수 있고, 정규화하여 정규직교 기저를 구할 수 있다.
+    $E_2$와 $E_3$의 기저들을 정규직교화하여 $\{\tilde{\vec v}_1, \tilde{\vec v}_2, \tilde{\vec v}_3\}$와 $\{\tilde{\vec w}_1, \tilde{\vec w}_2\}$를 구했을 때, $A$는 다음과 같이 직교 대각화할 수 있다:
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            \tilde{\vec{v}}_1 & \tilde{\vec{v}}_2 & \tilde{\vec{v}}_3 & \tilde{\vec{w}}_1 & \tilde{\vec{w}}_2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 0 & 0 & 0 & 0\\
+            0 & 2 & 0 & 0 & 0\\
+            0 & 0 & 2 & 0 & 0\\
+            0 & 0 & 0 & 3 & 0\\
+            0 & 0 & 0 & 0 & 3
+        \end{pmatrix}
+        \begin{pmatrix}
+            \tilde{\vec{v}}_1^t \\ \tilde{\vec{v}}_2^t \\ \tilde{\vec{v}}_3^t \\ \tilde{\vec{w}}_1^t \\ \tilde{\vec{w}}_2^t
+        \end{pmatrix}
+    \end{equation*}
+    
+    즉, 대칭행렬은 직교 대각화 가능하다:
+    대각행렬 $A$에 대해서
+    \begin{equation*}
+        A = PDP^t \quad \wedge \quad PP^t = I
+    \end{equation*}
+    인 $P$가 존재한다.
+\end{remark}
+
+\begin{theorem}
+    함수\marginpar{\small 2018.10.17} $\left<\cdot, \cdot\right>: \mathbb R^n \times \mathbb R^n \rightarrow \mathbb R$가 내적이라는 것은 벡터 $\vec a, \vec b \in \mathbb R^n$에 대해 특성값이 모두 양수인 어떤 $n \times n$ 대칭행렬 $A$가 존재해서 다음을 만족한다는 것과 동치이다:
+    \begin{equation*}
+        \left<\vec a, \vec b\right> = \vec b^t A \vec a
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    정리~\ref{thm:sym_bilinear}에 의해 어떤 $n \times n$ 대칭행렬 $A$가 존재하여 $\langle \vec a, \vec b \rangle = \vec b^t A \vec a$인 것은 $\langle\cdot, \cdot\rangle$이 대칭 쌍선형형식인 것과 동치이다.
+    따라서 $n \times n$ 대칭행렬 $A$의 특성값이 모두 양수이면 $\langle \cdot, \cdot \rangle$이 양의 정부호성을 가지는 것과 동치인 것만을 보이면 된다.
+
+    $A = PDP^t$와 같이 대각화를 하고, $D$의 $i$행 $i$열의 원소를 특성값 $\lambda_i$라 하자.
+    어떤 벡터 $\vec x \in \mathbb R^n$에 대해 $\langle \vec x, \vec x\rangle$은 다음과 같이 정리할 수 있다:
+    \begin{equation*}
+        \langle \vec x, \vec x\rangle = \vec x^t A \vec x = \vec x^t PDP^t \vec x = (P^t \vec x)^t D (P^t \vec x)
+    \end{equation*}
+    이때 $P^t \vec x = \vec y = (y_1, \dots, y_n)$이라 두면,
+    \begin{align*}
+        \langle \vec x, \vec x\rangle &=
+        \begin{pmatrix}
+            y_1 & \dots & y_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            \lambda_1 & \dots & 0\\
+            \vdots & \ddots & \vdots\\
+            0 & \dots & \lambda_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            y_1 \\ \vdots \\ y_n
+        \end{pmatrix}\\
+                                      &=
+        \begin{pmatrix}
+            \lambda_1 y_1 & \dots & \lambda_n y_n
+        \end{pmatrix}
+        \begin{pmatrix}
+            y_1 \\ \vdots \\ y_n
+        \end{pmatrix}
+        = \lambda_1 y_1^2 + \dots + \lambda_n y_n^2
+    \end{align*}
+    그런데 $P^t \vec x = \vec y$은 $\vec x = P \vec y$인 것과 동치이므로, $\vec x$와 $\vec y$는 $P$에 의해 일대일 대응된다.
+    그러므로 임의의 $\vec x$에 대해 $\langle \vec x, \vec x\rangle$이 양의 정부호를 가진다는 것은 임의의 $\vec y$에 대해 $\sum_{i = 1}^n \lambda_i y_i^2$이 0 이상이고, 0일 경우는 $\vec y = \vecz$이라는 것과 동치이다.
+    임의의 $\vec y$에 대해 $\sum_{i = 1}^n \lambda_i y_i^2$이 0 이상이고 $\vec y = \vecz$일 때만 0이라는 것은 $\lambda_i > 0$이라는 것이다.
+    그러므로 $\langle \cdot, \cdot \rangle$이 양의 정부호를 가질 필요충분조건은 모든 특성값이 양수인 것이다.
+\end{proof}
+
+\begin{definition}
+    대칭행렬 $A$의 모든 특성값이 양수이면 양의 정부호(positive-definite)를 가진다고 하고, 음수가 아니면 양의 준정부호(positive semi-definite)를 가지며, 양의 특성값과 음의 특성값 모두를 가지면 부정부호(indefinite)를 가진다고 한다.
+\end{definition}
+
+\begin{example}
+    $A = \begin{pmatrix}a & b\\b & c\end{pmatrix}$가 양의 정부호를 가질 조건을 구하여라.
+    \begin{solution}
+        특성방정식을 구하면
+        \begin{equation*}
+            \Char A = \det(A - \lambda I) = (a - \lambda)(c - \lambda) - b^2 = \lambda^2 - (\tr A) \lambda + \det A
+        \end{equation*}
+        이므로, $\Char A = 0$의 모든 해가 양수이려면 아래로 볼록인 이차함수가 원점 오른쪽에서 $x$축과 두 번 교차할 조건에 따라
+        \begin{equation*}
+            ac - b^2 > 0 \quad \wedge \quad \frac{a + c}{2} > 0 \quad \wedge \quad (a + c)^2 - 4(ac - b^2) \geq 0
+        \end{equation*}
+        이다.
+        그런데 마지막 식은 $(a - c)^2 + 4b^2 \geq 0$으로 정리되어 항등식이므로,
+        \begin{equation*}
+            \det A > 0 \quad \wedge \quad \tr A > 0
+        \end{equation*}
+        가 $A$가 양의 정부호를 가질 조건이다.
+    \end{solution}
+\end{example}
+
+\end{document}

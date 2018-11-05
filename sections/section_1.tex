@@ -1,0 +1,32 @@
+\documentclass[../engineering_mathematics_lecture_note.tex]{subfiles}
+
+\begin{document}
+
+\section{First-Order ODEs}
+미분방정식
+\begin{equation*}
+    y' = y
+\end{equation*}
+를 만족하는 $y(x)$를 구하면,
+\begin{equation*}
+    y = ke^x \quad (k \in \mathbb R)
+\end{equation*}
+임을 알 수 있다.
+이때 위 해들의 집합 $\{ke^x \mid k \in \mathbb R\}$을 해집합(solution set)이라고 한다.
+또한, $y' = y$와 같이 하나의 독립변수만을 가지는 함수를 구하는 미분방정식을 상미분방정식(ordinary differential equation, ODE)이라고 한다.
+특히 $y' = y$는 1계 제차 선형 상미분방정식의 예시이다.
+
+\begin{definition}
+    상미분방정식이 $y$의 도함수의 일차결합으로 나타낼 수 있는 경우, 선형 상미분방정식(linear ODE)이라고 한다.
+    즉,
+    \begin{equation*}
+        L[y] = q_n(x) y^{(n)} + q_{n - 1}(x) y^{(n - 1)} + \dots + q_1(x) y' + q_0(x) y = r(x)
+    \end{equation*}
+    와 같이 나타낼 수 있는 상미분방정식을 선형 상미분방정식이라고 한다.
+    이때 $q_i(x)$를 계수(coefficient) 함수, $r(x)$를 초항(source term)이라고 한다.
+
+    $r(x) = 0$일 경우를 제차 선형 상미분방정식(homogeneous linear ODE), $r(x) \neq 0$일 경우를 비제차 선형 상미분방정식(nonhomogeneous linear ODE)이라고 한다.
+    특히 $q_n(x) \neq 0$인 경우 
+\end{definition}
+
+\end{document}
