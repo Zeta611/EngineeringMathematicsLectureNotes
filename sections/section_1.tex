@@ -26,7 +26,385 @@
     이때 $q_i(x)$를 계수(coefficient) 함수, $r(x)$를 초항(source term)이라고 한다.
 
     $r(x) = 0$일 경우를 제차 선형 상미분방정식(homogeneous linear ODE), $r(x) \neq 0$일 경우를 비제차 선형 상미분방정식(nonhomogeneous linear ODE)이라고 한다.
-    특히 $q_n(x) \neq 0$인 경우 
+    특히 $q_n(x) \neq 0$인 경우 $n$계 선형 상미분방정식($n$-th order linear ODE)이라고 부른다.
+
+    반면
+    \begin{equation*}
+        L[y] = y'' + \cos y = x
+    \end{equation*}
+    와 같이 $y$의 도함수의 일차결합이 아닌 경우 비선형 상미분방정식(nonlinear ODE)이라고 부른다.
 \end{definition}
 
+\begin{theorem}
+    제차 선형 상미분방정식 $L[y] = 0$의 두 해 $y_1$과 $y_2$에 대해서, 둘의 일차결합 $c_1 y_1 + c_2 y_2$도 $L[y] = 0$의 해이다.
+    즉, 제차 선형 상미분방정식의 해집합은 벡터공간을 이루어 해공간이라고 부를 수 있다.
+\end{theorem}
+
+\begin{proof}
+    제차 선형 상미분방정식
+    \begin{equation*}
+        L[y] = q_n(x) y^{(n)} + \dots + q_1(x) y' + q_0(x) y = 0
+    \end{equation*}
+    의 두 해 $y_1, y_2$에 대해서
+    \begin{align*}
+        &\quad L[c_1 y_1 + c_2 y_2]\\
+        &= q_n(x) (c_1 y_1 + c_2 y_2)^{(n)} + \dots + q_1(x) (c_1 y_1 + c_2 y_2)' + q_0(x) (c_1 y_1 + c_2 y_2)\\
+        &= q_n(x) \left(c_1 y_1^{(n)} + c_2 y_2^{(n)}\right) + \dots + q_1(x) \left(c_1 y_1' + c_2 y_2'\right) + q_0(x) \left(c_1 y_1 + c_2 y_2\right)\\
+        &= \left(c_1 q_n(x) y_1^{(n)} + \dots + c_1 q_1(x) y_1' + c_1 q_0(x) y_1\right) + \left(c_2 q_n(x) y_2^{(n)} + \dots\right.\\
+        &\qquad\left.+ c_2 q_1(x) y_2' + c_2 q_0(x) y_2\vphantom{y^{(n)}}\right)\\
+                             &= c_1 L[y_1] + c_2 L[y_2] = 0
+    \end{align*}
+    이므로 $c_1 y_1 + c_2 y_2$ 또한 $L[y] = 0$의 해이다.
+\end{proof}
+
+\begin{theorem} \label{thm:general_particular}
+    비제차 선형 상미분방정식 $L[y] = r(x)$의 해는 $L[y] = 0$의 일반해(general solution) $y_h$와 $L[y] = r(x)$를 만족하는 특수해(particular solution) $y_p$의 합으로 나타낼 수 있다.
+\end{theorem}
+
+\begin{example}
+    미분방정식
+    \begin{equation*}
+        y' = y
+    \end{equation*}
+    를 풀기 위해, $y$에 관한 항을 좌변으로 이동한다:
+    \begin{equation*}
+        \frac{y'}{y} = 1
+    \end{equation*}
+    이때 $y \neq 0$을 가정하였다.
+    양변을 $x$에 대해서 적분하면
+    \begin{equation*}
+        \ln \abs{y} = x + C \quad C \in \mathbb R
+    \end{equation*}
+    이 되고, $e$의 지수를 취하면
+    \begin{equation*}
+        \abs{y} = e^C e^x = k e^x \qquad k \in \mathbb R_{> 0}
+    \end{equation*}
+    이 된다.
+    절댓값을 없애주면
+    \begin{equation*}
+        y = k e^x \qquad k \in \mathbb R \setminus \{0\}
+    \end{equation*}
+    가 되는데, 위에서 $y \neq 0$일 경우를 제외하였다.
+    $y = 0$의 경우도 원래 미분방정식 $y' = y$의 해를 만족하므로, 최종적으로 해는
+    \begin{equation*}
+        y = k e^x \qquad k \in \mathbb R
+    \end{equation*}
+    이 된다.
+    이처럼 한 변수를 한쪽에 모두 몰아 미분방정식을 푸는 방식을 변수분리법(separation of variables)이라고 하며, 이러한 방식으로 풀 수 있는 미분방정식을 분리 가능하다(separable)고 한다.
+\end{example}
+
+\begin{definition}
+    함수 $u(x, y)$의 전미분(total derivative) $\dd{u}$를 제1미분형식(differential 1-form)으로 나타내면
+    \begin{equation*}
+        \dd{u} = u_x \dd{x} + u_y \dd{y}
+    \end{equation*}
+    와 같다.
+    이때 $u_x$와 $u_y$는 각각 $x$와 $y$에 대한 $u$의 편미분(partial derivative)이다.
+\end{definition}
+
+\begin{remark}
+    함수 $u(x, y)$의 전미분은 벡터장
+    \begin{equation*}
+        \grad u = (u_x, u_y)
+    \end{equation*}
+    와 대응된다.
+\end{remark}
+
+\begin{definition}
+    함수 $u(x, y)$의 전미분
+    \begin{equation*}
+        \dd{u} = u_x \dd{x} + u_y \dd{y}
+    \end{equation*}
+    에 대해서 $u(x, y)$가 상수 함수이면 $\dd{u} = 0$이 되어,
+    \begin{equation*}
+        P(x, y) \dd{x} + Q(x, y) \dd{y} = 0
+    \end{equation*}
+    의 꼴로 나타낼 수 있다.
+    이를 완전미분방정식(exact differential equation)이라고 한다.
+    이때 $u(x, y)$를 잠재함수(potential function)라고 한다.
+\end{definition}
+
+\begin{example}
+    $u: \mathbb R^2 \rightarrow \mathbb R$를
+    \begin{equation*}
+        u(x, y) = x^2 + xy - \cos y = c
+    \end{equation*}
+    로 정의하자.
+    이때 $y$는 $x$의 함수이다.
+    이를 $x$로 미분하면,
+    \begin{equation*}
+        2x + y + x \dv{y}{x} + \sin y \dv{y}{x} = 0
+    \end{equation*}
+    이 되고, 정리하여
+    \begin{equation*}
+        (2x + y) + (x + \sin y) \dv{y}{x} = 0
+    \end{equation*}
+    이 된다.
+    미분형식으로 나타낸다면
+    \begin{equation*}
+        (2x + y) \dd{x} + (x + \sin y) \dd{y} = 0
+    \end{equation*}
+    으로 쓸 수 있다.
+
+    역으로
+    \begin{equation*}
+        (2x + y) \dd{x} + (x + \sin y) \dd{y} = 0
+    \end{equation*}
+    를 풀고자 한다면,
+    \begin{align*}
+        u_x &= 2x + y\\
+        u_y &= x + \sin y
+    \end{align*}
+    인 $u(x, y)$를 찾으면 된다.
+    $u_x$를 $x$로 적분하면
+    \begin{equation*}
+        u = x^2 + xy + h(y)
+    \end{equation*}
+    가 된다.
+    이때 $h(y)$는 $y$에 대한 함수로, 적분상수이다.
+    이를 다시 $y$로 미분하여 원래 식의 $u_y$랑 비교하자.
+    \begin{equation*}
+        \pdv{u}{x} = x + h'(y)
+    \end{equation*}
+    에서 $h'(y) = \sin y$가 되므로,
+    \begin{equation*}
+        h(y) = -\cos y + C \qquad C \in \mathbb R
+    \end{equation*}
+    이다.
+    따라서 해 $u(x, y)$는
+    \begin{equation*}
+        u(x, y) = x^2 + xy - \cos y + C = 0 \qquad C \in \mathbb R
+    \end{equation*}
+    꼴임을 알 수 있다.
+    처음의 식과 상수 차이만 나는 것을 볼 수 있다.
+\end{example}
+
+위 예시의 미분방정식이 잘 풀린 이유는
+\begin{equation*}
+    \pdv{y}(2x + y) = \pdv{x}(x + \sin y)
+\end{equation*}
+이기 때문이다.
+아래의 예시의 미분방정식은 원래 꼴로는 위 방법처럼 풀 수 없다.
+
+\begin{example}
+    미분방정식
+    \begin{equation*}
+        -y \dd{x} + x \dd{y} = 0
+    \end{equation*}
+    은
+    \begin{equation*}
+        \pdv{y}(-y) \neq \pdv{x}{x}
+    \end{equation*}
+    이므로 완전미분방정식이 아니다.
+    그러나 아래와 같이
+    \begin{equation*}
+        \frac{-y}{x^2 + y^2} \dd{x} + \frac{x}{x^2 + y^2} \dd{y} = 0
+    \end{equation*}
+    과 같이 $x^2 + y^2$으로 나누어주면 완전미분방정식의 꼴이 되어
+    \begin{equation*}
+        u = \arctan \frac yx = c \qquad c \in \mathbb R
+    \end{equation*}
+    로 풀 수 있다.
+    이는 곧
+    \begin{equation*}
+        \frac yx = c,
+    \end{equation*}
+    즉
+    \begin{equation*}
+        y = kx \qquad k \in \mathbb R
+    \end{equation*}
+    이다.
+\end{example}
+
+위 예시의 $\sfrac{1}{(x^2 + y^2)}$와 같이 곱하여 완전미분방정식의 꼴이 되도록 하는 항을 적분인자(integrating factor)라고 한다.
+미분방정식
+\begin{equation*}
+    P(x, y) \dd{x} + Q(x, y) \dd{y} = 0
+\end{equation*}
+의 적분인자를 찾기 위해서는 먼저
+\begin{equation*}
+    P_y - Q_x = 0
+\end{equation*}
+인지를 확인해야 한다.
+만약 $P_y - Q_x$가 0이라면 완전미분방정식이므로 바로 잠재함수 $u(x, y)$를 찾을 수 있다.
+그렇지 않은 경우에만 적분인자를 찾으면 된다.
+
+어떤 적분인자 $F$에 대해서,
+\begin{equation*}
+    FP(x, y) \dd{x} + FQ(x, y) \dd{y} = 0
+\end{equation*}
+이 완전미분방정식, 즉
+\begin{equation*}
+    \pdv{(FP)}{y} - \pdv{(FQ)}{x} = 0
+\end{equation*}
+이 되어야 한다.
+전개하면
+\begin{equation*}
+    F_y P + FP_y = F_x Q + FQ_x
+\end{equation*}
+가 된다.
+이때 $F$가 $x$만의 함수인 경우와 $y$만의 함수인 경우로 나눌 수 있다.
+\begin{enumerate}
+    \item $F$가 $x$만의 함수인 경우:\\
+        $F_y = 0$이므로
+        \begin{equation*}
+            FP_y = F'Q + FQ_x
+        \end{equation*}
+        가 된다.
+        이는 변수분리를 통해
+        \begin{equation*}
+            \frac{F'}{F} = \frac 1Q (P_y - Q_x)
+        \end{equation*}
+        로 변형할 수 있고\footnote{$u$를 구하려면 당연히 $F \neq 0$이어야 한다.}, 적분하면
+        \begin{equation*}
+            \ln \abs{F} = \int{\frac 1Q (P_y - Q_x) \dd{x}}
+        \end{equation*}
+        가 되어 $F$는
+        \begin{equation*}
+            F = \exp(\int{\frac 1Q (P_y - Q_x) \dd{x}})
+        \end{equation*}
+        로 하나를 정할 수 있다.
+    \item $F$가 $y$만의 함수인 경우:\\
+        $F_x = 0$이므로
+        \begin{equation*}
+            \dv{F}{y} P + FP_y = FQ_x
+        \end{equation*}
+        가 된다.
+        이는 변수분리를 통해
+        \begin{equation*}
+            \frac{1}{F} \dv{F}{y} = \frac 1P (Q_x - P_y)
+        \end{equation*}
+        로 변형할 수 있고, 적분하면
+        \begin{equation*}
+            \ln \abs{F} = \int{\frac 1P (Q_x - P_y) \dd{y}}
+        \end{equation*}
+        가 되어 $F$는
+        \begin{equation*}
+            F = \exp(\int{\frac 1P (Q_x - P_y) \dd{y}})
+        \end{equation*}
+        로 하나를 정할 수 있다.
+\end{enumerate}
+
+\begin{example}
+    미분방정식
+    \begin{equation*}
+        (e^{x + y} + y e^y) \dd{x} + (xe^y - 1) \dd{y} = 0
+    \end{equation*}
+    의 적분 인자를 구하자.
+    우선
+    \begin{equation*}
+        \pdv{y}(e^{x + y} + ye^y) - \pdv{x}(xe^y - 1) = e^{x + y} + e^y + ye^y - e^y = e^{x + y} + ye^y \neq 0
+    \end{equation*}
+    이므로, 완전상미분방정식이 아니다.
+    \begin{equation*}
+        \frac{e^{x + y} + y e^y}{xe^y - 1}
+    \end{equation*}
+    은 $x$만의 함수가 아니다.
+    \begin{equation*}
+        \frac{e^{x + y} + y e^y}{e^{x + y} + ye^y} = -1
+    \end{equation*}
+    은 상수 함수이므로 $y$만의 함수라고 할 수 있다.
+    따라서 적분 인자 $F$는
+    \begin{equation*}
+        F = \exp(\int{-1 \dd{y}}) = e^{-y}
+    \end{equation*}
+    가 되어, 원래 미분방정식을 완전상미분방정식
+    \begin{equation*}
+        (e^x + y) \dd{x} + (x - e^{-y}) \dd{y} = 0
+    \end{equation*}
+    으로 변형할 수 있다.
+    따라서 잠재함수 $u(x, y)$는
+    \begin{equation*}
+        u(x, y) = e^x + xy + e^{-y}
+    \end{equation*}
+    가 된다.
+\end{example}
+
+1계 선형 상미분방정식
+\begin{equation*}
+    y' + p(x) y = r(x)
+\end{equation*}
+을 생각해보자.
+이때
+\begin{enumerate}
+    \item 제차 미분방정식인 경우, 즉 $r(x) = 0$인 경우 변수분리법을 통해
+        \begin{equation*}
+            \frac{y'}{y} = -p(x)
+        \end{equation*}
+        로 변형할 수 있다.
+        이를 풀면
+        \begin{equation*}
+            y = k \exp(\int{-p(x) \dd{x}}) \qquad k \in \mathbb R
+        \end{equation*}
+        이다.
+    \item 비제차 미분방정식인 경우, 즉 $r(x) \neq 0$인 경우, 완전상미분방정식인 경우 바로 잠재함수를 구한다.
+        그렇지 않을 경우, 적분인자를 구하여 완전상미분방정식으로 꼴을 변형할 수 있다.
+\end{enumerate}
+
+\begin{example}
+    1계 선형 비제차 상미분방정식
+    \begin{equation*}
+        y' + (\tan x) y = \sin(2x)
+    \end{equation*}
+    는 정리~\ref{thm:general_particular} 제차 상미분방정식
+    \begin{equation*}
+        y' + (\tan x) y = 0
+    \end{equation*}
+    의 해 $y_h$와 원래 미분방정식의 특수해 $y_p$의 합으로 나타낼 수 있다.
+    만약
+    \begin{equation*}
+        y(0) = 1
+    \end{equation*}
+    와 같은 초기값(initial condition)이 주어진다면, 일반적으로 유일한 해를 구할 수 있다.
+    이처럼 초기값이 주어지는 문제를 초기값 문제(initial value problem)라고 부른다.
+\end{example}
+
+\begin{definition}
+    1계 비선형 상미분방정식
+    \begin{equation*}
+        y' + p(x) y = g(x) y^a
+    \end{equation*}
+    의 꼴을 가지는 미분방정식을 베르누이 방정식(Bernoulli equation)이라고 부른다.
+\end{definition}
+
+베르누이 방정식은
+\begin{equation*}
+    u(x) = y(x)^{1 - a}
+\end{equation*}
+를 새로 정의하여 선형 상미분방정식으로 변형할 수 있다.
+양변을 $x$에 대해 미분하면
+\begin{equation*}
+    u' = (1 - a) y^{-a} y'
+\end{equation*}
+가 되는데, 원래 미분방정식에서 $y'$을 대입하면
+\begin{equation*}
+    u' = (1 - a) y^{-a} (gy^a - py) = (1 - a) \left(g - py^{1 - a}\right) = (1 - a) (y - pu)
+\end{equation*}
+이 되어 정리하면
+\begin{equation*}
+    u' + (1 - a)pu = (1 - a)g
+\end{equation*}
+로, 선형 상미분방정식이 된다.
+
+\begin{definition}
+    \begin{enumerate}
+        \item 맬더스(Malthus)는 시각 $t$에 따른 인구$y$를 다음과 같이 나타내었다:
+            \begin{equation*}
+                y' = ky
+            \end{equation*}
+            위 미분방정식을 맬더스의 인구방정식이라고 한다.
+            이를 풀면
+            \begin{equation*}
+                y = A e^{kt}
+            \end{equation*}
+            이 되는데, 무한히 증가하는 문제가 있다.
+        \item 벨허스트(Velhulst)는 이를 보정하여
+            \begin{equation*}
+                y' = ky - cy^2
+            \end{equation*}
+            꼴로 변형하였다.
+            위 방정식은 베르누이 방정식의 일종이다.
+            이처럼 $y' = f(y)$의 꼴이 되어 독립변수에 직접적으로 의존하지 않는 미분방정식을 자율미분방정식(autonomous differential equation)이라고 부른다.
+    \end{enumerate}
+\end{definition}
 \end{document}

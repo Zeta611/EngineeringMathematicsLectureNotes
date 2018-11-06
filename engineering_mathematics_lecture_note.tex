@@ -13,6 +13,9 @@
 
 \usepackage{amsmath,mathtools,amssymb,amsthm,thmtools}
 
+\usepackage{silence}
+\WarningFilter{hyperref}{Draft mode on}
+
 \theoremstyle{definition}
 \newtheorem{definition}{정의}[section]
 
@@ -48,25 +51,24 @@ numbered=no
 ]{solstyle}
 \declaretheorem[style=solstyle,name=풀이]{solution}
 
-\usepackage{diffcoeff}
-\diffset[roman = true]
+% \usepackage{diffcoeff}
+% \diffset[roman = true]
+\usepackage{physics}
 
 \usepackage{xfrac}
 
 \renewcommand{\vec}[1]{\bm{\mathit{#1}}}
 \newcommand{\vecz}{\bm{\mathrm{0}}}
-\newcommand{\dd}{\mathrm{d}}
 \newcommand{\dD}{\mathrm{D}}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Null}{N}
-\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Image}{im}
 \DeclareMathOperator{\Range}{R}
-\DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Vol}{Vol}
 \DeclareMathOperator{\sVol}{\widetilde{Vol}}
 \DeclareMathOperator{\Char}{char}
-\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Grad}{grad}
 
 \usepackage{comment}
 % \excludecomment{proof}

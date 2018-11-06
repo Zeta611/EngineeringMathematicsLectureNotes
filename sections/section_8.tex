@@ -586,7 +586,7 @@
 \begin{definition}
     벡터함수 $\vec F: \mathbb R^m \rightarrow \mathbb R^n$에 대해 야코비 행렬(Jacobian matrix)을 다음과 같이 정의한다:
     \begin{equation*}
-        \vec F' = \jacob{f_1, \dots, f_n}{x_1, \dots, x_m} =
+        \vec F' = \pdv{(f_1, \dots, f_n)}{(x_1, \dots, x_m)} =
         \begin{pmatrix}
             f_1' \\ \vdots \\ f_n'
         \end{pmatrix}
@@ -606,8 +606,8 @@
     \begin{equation*}
         \vec F' =
         \begin{pmatrix}
-            \diffp{f}{x} & \diffp{f}{y}\\
-            \diffp{g}{x} & \diffp{g}{y}
+            \pdv{f}{x} & \pdv{f}{y}\\
+            \pdv{g}{x} & \pdv{g}{y}
         \end{pmatrix}
         =
         \begin{pmatrix}
