@@ -407,4 +407,40 @@
             이처럼 $y' = f(y)$의 꼴이 되어 독립변수에 직접적으로 의존하지 않는 미분방정식을 자율미분방정식(autonomous differential equation)이라고 부른다.
     \end{enumerate}
 \end{definition}
+
+\begin{theorem}[피카르(Picard)의 반복법]
+    1계 상미분방정식\marginpar{\small 2018.10.24} $y' = f(x, y)$에 대해서 $f$가 연속인 2변수 함수라면 미분방정식의 해가 존재한다.
+\end{theorem}
+
+\begin{proof}
+    미분방정식
+    \begin{equation*}
+        y' = f(x, y)
+    \end{equation*}
+    는 양변을 적분하면
+    \begin{equation*}
+        y(x) = \int_a^x{f(t, y(t)) \dd{t}} + y(a)
+    \end{equation*}
+    가 된다.
+    이때 함수열
+    \begin{equation*}
+        y_0(t),\ y_1(t),\ \dots
+    \end{equation*}
+    를 다음과 같이 정의하자:
+    \begin{itemize}
+        \item $y_0(x) = y(a)$
+        \item $y_{n + 1}(x) = \int_a^x{f(t, y_n(t)) \dd{t}} + y(a)$
+    \end{itemize}
+    이제 $y$를
+    \begin{equation*}
+        y = \lim_{n \rightarrow \infty} y_n(x)
+    \end{equation*}
+    와 같이 정의하면\footnote{$y$의 존재성은 보이지 않는다.},
+    \begin{align*}
+        y(x) &= \lim_{n \rightarrow \infty} \int_a^x{f(t, y_n(t)) \dd{t}} + y(a)\\
+             &= \int_a^x{\lim_{n \rightarrow \infty} f(t, y_n(t)) \dd{t}} + y(a)\\
+             &= \int_a^x{f(t, y(t)) \dd{t}} + y(a)\\
+    \end{align*}
+    이 되어\footnote{$\lim$을 $\int$ 안에 넣을 수 있는 것도 보이지 않는다.} 해가 존재한다.
+\end{proof}
 \end{document}
