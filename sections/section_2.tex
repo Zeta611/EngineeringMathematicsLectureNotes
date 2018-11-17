@@ -1,0 +1,169 @@
+\documentclass[../engineering_mathematics_lecture_note.tex]{subfiles}
+\begin{document}
+2계 선형 상미분방정식
+\begin{equation*}
+    L[y] = y'' + p(x) y' + q(x) y = 0
+\end{equation*}
+의 해공간은 벡터공간을 이루는데, 차원이 2임을 뒤에서 보일 것이다.
+따라서, 일차독립인 두 해를 찾으면 그 일차결합이 해공간을 구성하게 된다.
+
+\begin{example}[라그랑주(Lagrange)의 계수 축소법(reduction of order)] \label{def:reduction}
+    2계 선형 상미분방정식
+    \begin{equation*}
+        L[y] = y'' + p(x) y' + q(x) y = 0
+    \end{equation*}
+    의 해 중 하나가 $y_1(x)$로 알려진 경우, $y_2(x) = u(x)y_1(x)$와 같이 함수 $u(x)$를 두면
+    \begin{equation*}
+        y_1 u'' + \left( p(x) y_1 + 2y_1' \right) u' = 0
+    \end{equation*}
+    의 $u'$에 대해 변수 가능한 1계 선형 상미분방정식이 구해진다.
+\end{example}
+
+\begin{example}
+    \begin{equation*}
+        (x^2 - x) y'' - xy' + y = 0
+    \end{equation*}
+    의 미분방정식의 한 해가 $y_1 = x$임은 쉽게 알 수 있다.
+    이제 다른 해를 $ux$라고 두면
+    \begin{equation*}
+        xu'' + \left( \frac{-x}{x^2 - x} + 2 \right) u' = 0
+    \end{equation*}
+    이 되고, 정리하면
+    \begin{equation*}
+        xu'' + \frac{x - 2}{x - 1} u' = 0
+    \end{equation*}
+    가 되어 변수분리법을 통해 풀 수 있다.
+\end{example}
+
+\begin{remark}
+    지수함수 $e^{a + bi}$에 대해서 $a, b \in \mathbb R$이고 $i$가 허수일 때,
+    \begin{equation*}
+        e^{a + bi} = e^a \cdot e^bi = e^a (\cos b + i \sin b)
+    \end{equation*}
+    이 성립한다.
+    따라서, 복소지수 $z_1, z_2$에 대해서도
+    \begin{equation*}
+        e^{z_1} \cdot e^{z_2} = e^{z_1 + z_2}, \qquad \frac{e_{z_1}}{e_{z_2}} = e^{z_1 - z_2}
+    \end{equation*}
+    의 지수법칙이 성립한다.
+
+    또, 양의 실수 $c$와 복소수 $z$에 대해서 지수함수 $c^z$를
+    \begin{equation*}
+        c^z = e^{z \ln c}
+    \end{equation*}
+    와 같이 정의한다.
+\end{remark}
+
+\begin{example}[오일러-코시(Euler-Cauchy) 방정식]
+    다음과 같은 선형 동차 상미분방정식을 오일러-코시 방정식이라고 한다:
+    \begin{equation*}
+        x^2 y'' + ax y' + by = 0
+    \end{equation*}
+    여기에 $y = x^\alpha$ 꼴을 대입하면
+    \begin{equation*}
+        \alpha (\alpha - 1) x^2 \cdot x^{\alpha - 2} + a \alpha x \cdot x^{\alpha - 1} + b x^\alpha = 0
+    \end{equation*}
+    이 되고, 양변에서 $x^\alpha$를 나눠주면
+    \begin{equation*}
+        \alpha (\alpha - 1) + a\alpha + b = 0
+    \end{equation*}
+    이 되며 이를 결정방정식(indicial equation)이라고 부른다.
+
+    결정방정식의 해가 두 실근, 중근, 두 허근을 가지는 경우를 각각 살펴본다.
+    \begin{enumerate}
+        \item 두 실근 $\alpha_1, \alpha_2$를 가지는 경우\\
+            두 해
+            \begin{equation*}
+                y_1 = x^{\alpha_1}, \qquad y_2 = x^{\alpha_2}
+            \end{equation*}
+            는 독립이므로 일반해 $y$는
+            \begin{equation*}
+                y = c_1 x^{\alpha_1} + c_2 x^{\alpha_2}
+            \end{equation*}
+            와 같은 일차결합으로 표현할 수 있다.
+
+        \item 중근 $\alpha$를 가지는 경우, $y_1 = x^\alpha$로 놓고 계수 축소법으로 다른 해를 구한다.
+
+        \item 두 허근 $\alpha_1 = p + qi, \alpha_2 = p - qi$를 가지는 경우\\
+            먼저 두 허근으로 표현되는 해 $\tilde y_1, \tilde y_2$를
+            \begin{equation*}
+                \tilde y_1 = x^{p + qi}, \qquad \tilde y_2 = x^{p - qi}
+            \end{equation*}
+            으로 놓자.
+            변형하면
+            \begin{equation*}
+                \tilde y_1 = x^p \cdot x^{qi} = x^p e^{q_i \ln x} = x^p \left( \cos (q \ln x) + i\sin(q \ln x) \right)
+            \end{equation*}
+            와 마찬가지로
+            \begin{equation*}
+                \tilde y_2 = x^p \left( \cos (q \ln x) - i \sin(q \ln x) \right)
+            \end{equation*}
+            가 된다.
+            두 해를 더하고 빼서 실근으로 만들면
+            \begin{equation*}
+                y_1 = \frac12 (\tilde y_1 + \tilde y_2), \qquad y_2 = \frac{1}{2i} (\tilde y_1 - \tilde y_2)
+            \end{equation*}
+            가 되어 일반해
+            \begin{equation*}
+                y = c_1 y_1 + c_2 y_2
+            \end{equation*}
+            를 구할 수 있다.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    상수계수 제차 선형 2계 상미분방정식
+    \begin{equation*}
+        y'' + ay' + by = 0
+    \end{equation*}
+    은 $y = e^{tx}$ 꼴을 해로 가지므로 대입하면,
+    \begin{equation*}
+        t^2 e^{tx} + at e^{tx} + b e^{tx} = 0
+    \end{equation*}
+    이 되고, 양변을 $e^{tx}$로 나누면
+    \begin{equation*}
+        t^2 + at + b = 0
+    \end{equation*}
+    이 된다.
+    이를 특성방정식(characteristic equation)이라고 한다.
+
+    특성방정식의 해가 두 실근, 중근, 두 허근을 가지는 경우를 각각 살펴본다.
+    \begin{enumerate}
+        \item 두 실근 $t_1, t_2$를 가지는 경우\\
+            두 해
+            \begin{equation*}
+                y_1 = x^{t_1}, \qquad y_2 = x^{t_2}
+            \end{equation*}
+            는 독립이므로 일반해 $y$는
+            \begin{equation*}
+                y = c_1 e^{t_1 x} + c_2 e^{t_2 x}
+            \end{equation*}
+            와 같은 일차결합으로 표현할 수 있다.
+
+        \item 중근 $t$를 가지는 경우\\
+            한 해 $y_1 = e^{tx}$로 놓고 계수 축소법으로 다른 해를 구하면 $y_2 = x e^{tx}$가 된다.
+            따라서 일반해는
+            \begin{equation*}
+                y = c_1 e^{tx} + c_2 x e^{tx}
+            \end{equation*}
+            와 같이 표현된다.
+
+        \item 두 허근 $t_1 = \alpha + \beta i, t_2 = \alpha - \beta i$를 가지는 경우\\
+            먼저 두 허근으로 표현되는 해 $\tilde y_1, \tilde y_2$를
+            \begin{equation*}
+                \tilde y_1 = e^{\alpha + \beta i}, \qquad \tilde y_2 = e^{\alpha - \beta i}
+            \end{equation*}
+            으로 놓자.
+            오일러-코시 방정식의 경우와 마찬가지로 두 해를 더하고 빼서 실근으로 만들면
+            \begin{equation*}
+                y_1 = \frac12 (\tilde y_1 + \tilde y_2), \qquad y_2 = \frac{1}{2i} (\tilde y_1 - \tilde y_2)
+            \end{equation*}
+            가 되어 일반해
+            \begin{equation*}
+                y = c_1 y_1 + c_2 y_2
+            \end{equation*}
+            를 구할 수 있다.
+    \end{enumerate}
+\end{example}
+
+\end{document}
