@@ -166,4 +166,337 @@
     \end{enumerate}
 \end{example}
 
+\begin{example}
+    먼저\marginpar{2018.10.29} 다음의 상수계수 제차 선형 2계 상미분방정식
+    \begin{equation*}
+        y'' + 4y' + 4y = 0
+    \end{equation*}
+    은 특성방정식
+    \begin{equation*}
+        t^2 + 4t + 4 = 0
+    \end{equation*}
+    를 가진다.
+    이는 중근 $t = -2$를 가지므로 두 해
+    \begin{equation*}
+        y_1 = e^{-2x},\qquad y_2 = xe^{-2x}
+    \end{equation*}
+    를 해로 가진다.
+    만약 $y_2$를 계수 축소법을 통해 푼다면, $y_2 = u(x) y_1$으로 놓을 수 있다.
+    원 미분방정식에 대입하면
+    \begin{equation*}
+        \left( u'' y_1 + 2 u' y_1' + u y_1'' \right) + \left( 4u' y_1 + 4uy_1' \right) + 4uy_1 = 0
+    \end{equation*}
+    가 되고,
+    \begin{equation*}
+        uy_1'' + 4u y_1' + 4u y_1 = 0
+    \end{equation*}
+    이므로
+    \begin{equation*}
+        u'' y_1 + 2u' y_1' + 4u' y_1 = 0
+    \end{equation*}
+    으로 정리된다.
+    $y_1 = e^{-2x}$이므로 대입하면
+    \begin{equation*}
+        u'' e^{-2x} - 4 u' e^{-2x} + 4u' e^{-2x} = u'' e^{-2x} = 0
+    \end{equation*}
+    이므로 $u'' = 0$이다.
+    이를 만족하는 $u$ 중에는 $u = x$가 있으므로,
+    \begin{equation*}
+        y_2 = x e^{-2x}
+    \end{equation*}
+    로 결정할 수 있다.
+
+    따라서 일반해는
+    \begin{equation*}
+        y = c_1 e^{-2x} + c_2 xe^{-2x}
+    \end{equation*}
+    이다.
+\end{example}
+
+\begin{example}
+    위 예시의 제차 상미분방정식에서 초항을 $x$로 두자:
+    \begin{equation*}
+        y'' + 4y' + 4y = x.
+    \end{equation*}
+    위에서 일반해 $y_h$를
+    \begin{equation*}
+        y_h = c_1 e^{-2x} + c_2 xe^{-2x}
+    \end{equation*}
+    로 찾았으므로 특수해 $y_p$를 찾으면 된다.
+
+    먼저
+    \begin{equation*}
+        y_p = ax + b
+    \end{equation*}
+    꼴을 시도하면,
+    \begin{equation*}
+        y_p'' = 0,\qquad y_p' = a
+    \end{equation*}
+    이므로 원 미분방정식에 대입하면
+    \begin{equation*}
+        4a + 4ax + 4b = x
+    \end{equation*}
+    의 항등식이 나와
+    \begin{equation*}
+        a = -b = \frac14
+    \end{equation*}
+    가 된다.
+    따라서 특수해 $y_p$는
+    \begin{equation*}
+        y_p = \frac14 x - \frac14
+    \end{equation*}
+    로 결정할 수 있고, 일반해 $y$는
+    \begin{equation*}
+        y = c_1 e^{-2x} + c_2 xe^{-2x} + \frac14 x - \frac14
+    \end{equation*}
+    이다.
+\end{example}
+
+\begin{example}
+    위 예시의 초항을 $x$에서 $e^x$로 바뀌면,
+    \begin{equation*}
+        y'' + 4y' + 4y = e^x
+    \end{equation*}
+    가 되고, 특수해
+    \begin{equation*}
+        y_p = Ae^x
+    \end{equation*}
+    로 두고 풀 수 있다.
+
+    반면 초항을 $e^{-2x}$로 두면 특수해를
+    \begin{equation*}
+        y_p = Ae^{-2x}
+    \end{equation*}
+    혹은
+    \begin{equation*}
+        y_p = Axe^{-2x}
+    \end{equation*}
+    로 시도하면, 원 미분방정식의 좌변이 0이 된다.
+    그러나
+    \begin{equation*}
+        y_p = Ax^2 e^{-2x}
+    \end{equation*}
+    를 대입하면 풀 수 있다.
+\end{example}
+
+\begin{example}
+    일반적으로 상수계수 비제차 선형 상미분방정식
+    \begin{equation*}
+        y'' + ay' + by = r(x)
+    \end{equation*}
+    에 대해서, $r(x)$가
+    \begin{enumerate}
+        \item 다항식인 경우 $y_p(x)$를 다항식으로,
+        \item $\sin x$ 혹은 $\cos x$인 경우 $y_p(x) = A \cos x + B \sin x$로,
+        \item $e^{px} \cos (qx)$인 경우 $y_p(x) = A e^{px} \cos (qx) + B e^{px} \sin (qx)$로
+    \end{enumerate}
+    두고 시도할 수 있다.
+\end{example}
+
+\begin{theorem}
+    2계 상미분방정식
+    \begin{equation*}
+        y'' + p(x) y' + q(x) y = r(x)
+    \end{equation*}
+    에 대해서
+    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, 해 $y: I \rightarrow \mathbb R$이 존재한다.
+\end{theorem}
+
+\begin{theorem} [초기값 문제(Initial Value Problem)] \label{thm:ivp}
+    2계 상미분방정식
+    \begin{equation*}
+        y'' + p(x) y' + q(x) y = r(x)
+    \end{equation*}
+    에 대해서
+    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때,
+    \begin{equation*}
+        y(a) = y_0, \qquad y'(a) = y_1
+    \end{equation*}
+    을 만족하는 $y: I \rightarrow \mathbb R$이 유일하게 존재한다.
+\end{theorem}
+
+\begin{definition} [론스키안(Wronskian)]
+    미분방정식의 해 $y_1(x), \dots, y_k(x)$에 대해서 론스키안 $W$는
+    \begin{equation*}
+        W(y_1, \dots, y_k) = \det \begin{pmatrix}
+            y_1 & \dots & y_k\\
+            y_1' & \dots & y_k'\\
+            \vdots & \ddots & \vdots\\
+            y_k^{(k - 1)} & \dots & y_k^{(k - 1)}
+        \end{pmatrix}_{k \times k}
+    \end{equation*}
+    로 정의한다.
+\end{definition}
+
+\begin{theorem} \label{thm:wronskian_independence}
+    2계 상미분방정식
+    \begin{equation*}
+        L[y] = y'' + p(x) y' + q(x) y = r(x)
+    \end{equation*}
+    에 대해서
+    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, $y_1, y_2$를 해로 가진다고 하자.
+    이때 다음의 명제들이 동치다:
+    \begin{enumerate}
+        \item 어떤 $x_0 \in I$에 대해 $W(y_1, y_2)(x_0) = 0$이다.
+        \item 모든 $x \in I$에 대해 $W(y_1, y_2)(x) = 0$이다.
+        \item $y_1$과 $y_2$가 일차종속이다.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    우선 2에서 1임은 당연하다.
+    1에서 3임을 보이자.
+
+    론스키안이 0이므로,
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1(x_0) & y_2(x_0)\\
+            y_1'(x_0) & y_2'(x_0)
+        \end{pmatrix} \begin{pmatrix}
+            c_1 \\ c_2
+        \end{pmatrix} = \begin{pmatrix}
+            0 \\ 0
+        \end{pmatrix}
+    \end{equation*}
+    을 만족하는 비자명한 $(c_1, c_2)$가 존재한다.
+    이러한 $(c_1, c_2)$에 대해
+    \begin{equation*}
+        y = c_1 y_1 + c_2 y_2
+    \end{equation*}
+    를 놓으면, $y(x_0) = y'(x_0) = 0$을 만족하므로 정리~\ref{thm:ivp}에 의해 초기값 문제
+    \begin{equation*}
+        L[y] = 0, \qquad y(x_0) = y'(x_0) = 0
+    \end{equation*}
+    의 유일한 해이다.
+    그런데 영함수도 위 초기값 문제를 만족하므로 $y$는 영함수이다.
+    따라서
+    \begin{equation*}
+        c_1 y_1(x_0) + c_2 y_2(x_0) = 0
+    \end{equation*}
+    에서 $c_1$과 $c_2$가 동시에 0이 아니므로 $y_1$과 $y_2$는 일차종속이다.
+
+    이제 3에서 2를 보이자.
+
+    $y_1$과 $y_2$가 종속이므로
+    \begin{equation*}
+        c_1 y_1 + c_2 y_2 = 0
+    \end{equation*}
+    을 만족하는 비자명한 $(c_1, c_2)$가 존재한다.
+    이러한 $(c_1, c_2)$에 대해
+    \begin{equation*}
+        c_1 y_1' + c_2 y_2' = 0
+    \end{equation*}
+    을 만족하므로
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1 & y_2\\
+            y_1' & y_2'
+        \end{pmatrix} \begin{pmatrix}
+            c_1 \\ c_2
+        \end{pmatrix} = \begin{pmatrix}
+            0 \\ 0
+        \end{pmatrix}
+    \end{equation*}
+    에서 론스키안이 0이다.
+\end{proof}
+
+\begin{remark}
+    오일러-코시 방정식
+    \begin{equation*}
+        x^2 y'' - 2xy' + 2y = 0
+    \end{equation*}
+    에 대해서 두 해
+    \begin{equation*}
+        y_1 = x, \qquad y_2 =x^2
+    \end{equation*}
+    은 일차독립이다.
+    이때 론스키안
+    \begin{equation*}
+        \det
+        \begin{pmatrix}
+            x & x^2\\
+            1 & 2x
+        \end{pmatrix}
+        = x^2
+    \end{equation*}
+    은 $x = 0$에서 0이므로 정리~\ref{thm:wronskian_independence}에 상충되는 것으로 보인다.
+    그러나 정리~\ref{thm:wronskian_independence}에서 다룬 형태와 같이 $y''$의 계수를 1로 변형하면
+    \begin{equation*}
+        y'' - \frac2x y' + \frac{2}{x^2} y = 0
+    \end{equation*}
+    이 되고, 이는 $x = 0$에서 불연속이므로 정리와 모순되지 않는다.
+\end{remark}
+
+\begin{theorem} \label{thm:2nd_order_sol_space_at_least_dim_2}
+    2계 상미분방정식
+    \begin{equation*}
+        L[y] = y'' + p(x) y' + q(x) y = r(x)
+    \end{equation*}
+    에 대해서
+    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, 해공간의 차원은 2보다 작지 않다.
+\end{theorem}
+
+\begin{proof}
+    두 초기값 문제
+    \begin{equation*}
+        L[y] = 0, \quad y(x_0) = 1, \quad y'(x_0) = 0
+    \end{equation*}
+    과
+    \begin{equation*}
+        L[y] = 0, \quad y(x_0) = 0, \quad y'(x_0) = 1
+    \end{equation*}
+    의 해는 각각 어떤 $y_1$와 $y_2$로 유일하게 존재한다.
+    그런데 론스키안 $W(y_1, y_2)(x_0)$는
+    \begin{equation*}
+        W(y_1, y_2)(x_0) = \det \begin{pmatrix}
+            1 & 0\\
+            0 & 1
+        \end{pmatrix}
+        = 1 \neq 0
+    \end{equation*}
+    이므로 $y_1$과 $y_2$는 일차독립이다.
+    따라서 $L[y] = r(x)$는 적어도 두 개의 일차독립인 해를 가지므로 차원이 적어도 2 이상이다.
+\end{proof}
+
+\begin{theorem}
+    2계 상미분방정식
+    \begin{equation*}
+        L[y] = y'' + p(x) y' + q(x) y = r(x)
+    \end{equation*}
+    에 대해서
+    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, 해공간의 차원은 2보다 크지 않다.
+\end{theorem}
+
+\begin{proof}
+    $L[y] = r(x)$는 정리~\ref{thm:2nd_order_sol_space_at_least_dim_2}에 따라 일차독립인 두 해 $y_1$과 $y_2$를 가진다.
+    이제 $y_1$과 $y_2$와 다른 어떤 해 $y$를 잡자.
+    이렇게 잡은 $y$가 $y_1$과 $y_2$의 일차결합으로 나태내어진다는 것을 보이자.
+
+    방정식
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1(x_0) & y_2(x_0)\\
+            y_1'(x_0) & y_2'(x_0)
+        \end{pmatrix} \begin{pmatrix}
+            x \\ y
+        \end{pmatrix}
+        = \begin{pmatrix}
+            y(x_0) \\ y'(x_0)
+        \end{pmatrix}
+    \end{equation*}
+    에서 계수 행렬의 행렬식은 $y_1$과 $y_2$에 대한 론스키안이므로 정리~\ref{thm:wronskian_independence}에 의해 0이 아니다.
+    따라서 비자명한 해 $(x, y) = (c_1, c_2)$가 존재한다.
+    즉,
+    \begin{align*}
+        y(x_0) &= c_1 y_1(x_0) + c_2 y_2(x_0)\\
+        y'(x_0) &= c_1 y'_1(x_0) + c_2 y'_2(x_0)
+    \end{align*}
+    이 성립하여 $y$와 $c_1 y_1 + c_2 y_2$가 동일한 초기값 문제의 해이다.
+    그러므로 정리~\ref{thm:ivp}에 따라
+    \begin{equation*}
+        y = c_1 y_1 + c_2 y_2
+    \end{equation*}
+    이다.
+    결국 $L[y] = r(x)$의 모든 해는 $y_1$과 $y_2$의 일차결합으로 표현할 수 있는 2차원 벡터공간이다.
+\end{proof}
 \end{document}
