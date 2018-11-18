@@ -329,9 +329,9 @@
 \end{definition}
 
 \begin{theorem} \label{thm:wronskian_independence}
-    2계 상미분방정식
+    제차 2계 상미분방정식
     \begin{equation*}
-        L[y] = y'' + p(x) y' + q(x) y = r(x)
+        L[y] = y'' + p(x) y' + q(x) y = 0
     \end{equation*}
     에 대해서
     $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, $y_1, y_2$를 해로 가진다고 하자.
@@ -428,9 +428,9 @@
 \end{remark}
 
 \begin{theorem} \label{thm:2nd_order_sol_space_at_least_dim_2}
-    2계 상미분방정식
+    제차 2계 상미분방정식
     \begin{equation*}
-        L[y] = y'' + p(x) y' + q(x) y = r(x)
+        L[y] = y'' + p(x) y' + q(x) y = 0
     \end{equation*}
     에 대해서
     $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, 해공간의 차원은 2보다 작지 않다.
@@ -459,16 +459,16 @@
 \end{proof}
 
 \begin{theorem}
-    2계 상미분방정식
+    제차 2계 상미분방정식
     \begin{equation*}
-        L[y] = y'' + p(x) y' + q(x) y = r(x)
+        L[y] = y'' + p(x) y' + q(x) y = 0
     \end{equation*}
     에 대해서
-    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, 해공간의 차원은 2보다 크지 않다.
+    $p, q, r$이 $I \subset \mathbb R$에서 연속인 실함수일 때, 해공간의 차원은 2이다.
 \end{theorem}
 
 \begin{proof}
-    $L[y] = r(x)$는 정리~\ref{thm:2nd_order_sol_space_at_least_dim_2}에 따라 일차독립인 두 해 $y_1$과 $y_2$를 가진다.
+    $L[y] = 0$는 정리~\ref{thm:2nd_order_sol_space_at_least_dim_2}에 따라 일차독립인 두 해 $y_1$과 $y_2$를 가진다.
     이제 $y_1$과 $y_2$와 다른 어떤 해 $y$를 잡자.
     이렇게 잡은 $y$가 $y_1$과 $y_2$의 일차결합으로 나태내어진다는 것을 보이자.
 
@@ -497,6 +497,144 @@
         y = c_1 y_1 + c_2 y_2
     \end{equation*}
     이다.
-    결국 $L[y] = r(x)$의 모든 해는 $y_1$과 $y_2$의 일차결합으로 표현할 수 있는 2차원 벡터공간이다.
+    결국 $L[y] = 0$의 모든 해는 $y_1$과 $y_2$의 일차결합으로 표현할 수 있는 2차원 벡터공간이다.
 \end{proof}
+
+\begin{example}[라그랑주의 매개변수 변환법(Variation of Parameters)]
+    비제차\marginpar{2018.10.31} 상미분방정식
+    \begin{equation*}
+        L[y] = y'' + p(x) y' + q(x) y = r(x)
+    \end{equation*}
+    가 주어졌을 때, 우선 $y_1$과 $y_2$가 $L[y] = 0$의 제차 방정식 일차독립인 두 해라고 하자.
+    즉 $L[y] = 0$의 일반해 $y$는 $c_1 y_1 + c_2 y_2$로 나타낼 수 있다.
+    
+    매개변수 변환법은 비제차 상미분방정식 $L[y] = r(x)$의 특수해 $y_p$를
+    \begin{equation*}
+        y_p = u(x) y_1 + v(x) y_2
+    \end{equation*}
+    와 같이 나타내는 방법을 말한다.
+    양변을 미분하면
+    \begin{equation*}
+        y_p' = \left( u' y_1 + u y_1' \right) + \left( v' y_2 + v y_2' \right)
+    \end{equation*}
+    가 되는데, 특히
+    \begin{equation*}
+        u' y_1 + v' y_2 = 0
+    \end{equation*}
+    인 경우를 다룬다.
+    따라서
+    \begin{equation*}
+        y_p'= u y_1' + v y_2'
+    \end{equation*}
+    로 정리할 수 있고, 양변을 한 번 더 미분하면
+    \begin{equation*}
+        y_p'' = u' y_1' + u y_1'' + v' y_2' + v y_2''
+    \end{equation*}
+    가 된다.
+    원 미분방정식에 대입하면
+    \begin{align*}
+        L[y_p] &= \left( u' y_1' + u y_1'' + v' y_2' + v y_2'' \right) + p(x) \left( uy_1' + vy_2' \right) + q(x) (u y_1 + v y_2)\\
+               &= \left( u y_1'' + u y_1' + u y_1 \right) + \left( v y_2'' + v y_2' + v y_2 \right) + \left( u' y_1' + v' y_2' \right)\\
+               &= u' y_1' + v' y_2' = r(x)
+    \end{align*}
+    이 된다.
+    따라서
+    \begin{align*}
+        u' y_1 + v' y_2 &= 0\\
+        u' y_1' + v' y_2' &= r
+    \end{align*}
+    이 되고, 행렬로 표현하면
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1 & y_2\\
+            y_1' & y_2'
+        \end{pmatrix}
+        \begin{pmatrix}
+            u' \\ v'
+        \end{pmatrix}
+        = \begin{pmatrix}
+            0 \\ r
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+    $y_1$과 $y_2$는 일차독립이므로 정의역의 모든 $x$에 대해 론스키언, 즉 행렬
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1 & y_2\\
+            y_1' & y_2'
+        \end{pmatrix}
+    \end{equation*}
+    의 행렬식이 0이 아니다.
+    따라서 위 행렬은 가역행렬이고,
+    \begin{equation*}
+        \begin{pmatrix}
+            u' \\ v'
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            y_1 & y_2\\
+            y_1' & y_2'
+        \end{pmatrix}^{-1}
+        \begin{pmatrix}
+            0 \\ r
+        \end{pmatrix}
+        = \frac{1}{W(y_1, y_2)} \begin{pmatrix}
+            -ry_2 \\ ry_1
+        \end{pmatrix}
+    \end{equation*}
+    이다.
+\end{example}
+
+\begin{example}
+    비제차 상미분방정식
+    \begin{equation*}
+        y'' + y = \sec x
+    \end{equation*}
+    의 일반해를 구하기 위해, 먼저 특성방정식
+    \begin{equation*}
+        t^2 + 1 = 0
+    \end{equation*}
+    의 해 $t = \pm i$를 통해 제차 상미분방정식의 해 $y_h$를
+    \begin{equation*}
+        y_h = c_1 \cos x + c_2 \sin x
+    \end{equation*}
+    를 구할 수 있다.
+
+    위의 매개변수 변환법을 통해 특수해 $y_p$를
+    \begin{equation*}
+        y_p = u_1 \cos x + u_2 \sin x
+    \end{equation*}
+    로 놓자.
+    그러면 론스키언은
+    \begin{equation*}
+        W(y_1, y_2) = \det \begin{pmatrix}
+            \cos x & \sin x\\
+            - \sin x & \cos x
+        \end{pmatrix} = 1
+    \end{equation*}
+    이 된다.
+    따라서
+    \begin{equation*}
+        u' = \frac{1}{W(y_1, y_2)} (-r y_2) = - \sec x \sin x = -\tan x = \frac{- \sin x}{\cos x} 
+    \end{equation*}
+    이고,
+    \begin{equation*}
+        u = \ln \left| \cos x \right|
+    \end{equation*}
+    를 알 수 있다.
+    또,
+    \begin{equation*}
+        v' = \frac{1}{W(y_1, y_2)} (r y_1) = \sec x \cos x = 1
+    \end{equation*}
+    이므로 $v = x$를 결정할 수 있다.
+    그러므로 특수해 $y_p$는
+    \begin{equation*}
+        y_p = \cos x \ln \left| \cos x \right| + x \sin x
+    \end{equation*}
+    이며, 따라서 일반해 $y$는
+    \begin{equation*}
+        y = (c_1 + \ln \left| \cos x \right|) \cos x + (c_2 + x) \sin x
+    \end{equation*}
+    로 나타낼 수 있다.
+\end{example}
 \end{document}
