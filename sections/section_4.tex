@@ -1,0 +1,156 @@
+\documentclass[../engineering_mathematics_lecture_note.tex]{subfiles}
+\begin{document}
+\begin{definition}
+    연립 상미분방정식은
+    \begin{align*}
+        y_1' &= f_1 (x, y_1, \dots, y_n)\\
+             &\qquad\vdots \\
+        y_n' &= f_n (x, y_1, \dots, y_n)
+    \end{align*}
+    와 같이 $y_1, \dots, y_n$에 대해 주어진 미분방정식들의 계를 의미한다.
+    
+    특히 위와 같이 1계 상미분방정식들의 계는 1계 연립 상미분방정식이라고 한다.
+\end{definition}
+
+\begin{example}
+    1계 선형 연립 상미분방정식
+    \begin{align*}
+        y_1' &= a_{11} y_1 + \dots + a_{1n} y_n + b_1(x)\\
+             &\phantom{= a_{11} y_1 + \dots} \vdots\\
+        y_n' &= a_{n1} y_1 + \dots + a_{nn} y_n + b_n(x)
+    \end{align*}
+    을 행렬 표현으로 다시 정리하면
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1' \\ \vdots \\ y_n'
+        \end{pmatrix}
+        = \begin{pmatrix}
+            a_{ij}
+        \end{pmatrix}_{n \times n}
+        \begin{pmatrix}
+            y_1 \\ \vdots \\ y_n
+        \end{pmatrix}
+        + \begin{pmatrix}
+            b_1 \\ \vdots \\ b_n
+        \end{pmatrix}
+    \end{equation*}
+    이 되는데,
+    \begin{equation*}
+        \vec y =
+        \begin{pmatrix}
+            y_1 \\ \vdots \\ y_n
+        \end{pmatrix}, \quad
+        A = \begin{pmatrix}
+            a_{ij}
+        \end{pmatrix}_{n \times n}, \quad
+        \vec b =
+        \begin{pmatrix}
+            b_1 \\ \vdots \\ b_n
+        \end{pmatrix}
+    \end{equation*}
+    으로 두면
+    \begin{equation*}
+        \vec y' = A \vec y + \vec b
+    \end{equation*}
+    로 쓸 수 있다.
+    만약 $\vec b = \vecz$라면 위 1계 선형 연립 상미분방정식은 제차이고, 그렇지 않은 경우 비제차이다.
+\end{example}
+
+\begin{theorem}
+    제차 연립 상미분방정식 $\vec y' = A \vec y$에 대해서 $\vec y_1$과 $\vec y_2$가 해라면 일차결합 $c_1 \vec y_1 + c_2 \vec y_2$도 해이다.
+\end{theorem}
+
+\begin{theorem}
+    비제차 연립 상미분방정식 $\vec y' = A \vec y + \vec b$의 해 $\vec y$는 제차 연립 상미분방정식 $\vec y' = A \vec y$의 해 $\vec y_h$와 특수해 $\vec y_p$의 합 $\vec y_h + \vec y_p$이다.
+\end{theorem}
+
+\begin{theorem}
+    제차 연립 상미분방정식 $\vec y' = A \vec y$의 계수 행렬 $A$의 모든 성분이 연속이면 해공간의 차원은 $n$이다.
+\end{theorem}
+
+\begin{example}
+    상수계수 제차 연립 1계 상미분방정식 $\vec y' = A \vec y$에 대해서, $\vec v$가 상수 벡터일 때
+    \begin{equation*}
+        \vec y = e^{tx} \vec v
+    \end{equation*}
+    를 대입한다:
+    \begin{equation*}
+        t e^{tx} \vec v = A e^{tx} \vec v
+    \end{equation*}
+    가 되고, 정리하면
+    \begin{equation*}
+        A \vec v = t \vec v
+    \end{equation*}
+    가 된다.
+    따라서 $t$는 $A$의 특성값이며, $\vec v$는 $A$의 $t$-특성벡터이다.
+\end{example}
+
+\begin{example}
+    상수계수 제차 연립 1계 상미분방정식
+    \begin{equation*}
+        \vec y' = \begin{pmatrix}
+            -3 & 1 \\
+            1 & -3
+        \end{pmatrix}
+        \vec y
+    \end{equation*}
+    이 주어졌을 때, 계수 행렬의 특성방정식 $\Char A$는
+    \begin{equation*}
+        \Char A = t^2 + 6t + 8
+    \end{equation*}
+    이므로 해는 $t = -2$ 혹은 $t = -4$ 이다.
+    \begin{enumerate}
+        \item $t = -2$인 경우
+            \begin{equation*}
+                A + 2I = \begin{pmatrix}
+                    -1 & 1\\
+                    1 & -1
+                \end{pmatrix}
+            \end{equation*}
+            이므로 특성벡터는 $(1, 1)$ 이다.
+        \item $t = -4$인 경우
+            \begin{equation*}
+                A + 4I = \begin{pmatrix}
+                    1 & 1\\
+                    1 & 1
+                \end{pmatrix}
+            \end{equation*}
+            이므로 특성벡터는 $(1, -1)$ 이다.
+    \end{enumerate}
+    이제 특성값과 특성벡터를 통해 연립 상미분방정식의 두 해
+    \begin{equation*}
+        \vec y_1 = e^{-2x} \begin{pmatrix}
+            1 \\ 1
+        \end{pmatrix}, \quad \vec y_2 = e^{-4x} \begin{pmatrix}
+            1 \\ -1
+        \end{pmatrix}
+    \end{equation*}
+    을 구할 수 있다.
+    따라서 일반해는
+    \begin{equation*}
+        \vec y = c_1 \vec y_1 + c_2 \vec y_2
+    \end{equation*}
+    이므로
+    \begin{align*}
+        y_1 &= c_1 e^{-2x} + c_2 e^{-4x}\\
+        y_2 &= c_1 e^{-2x} - c_2 e^{-4x}
+    \end{align*}
+    로 해를 구할 수 있다.
+
+    만약 초기조건이 $\vec y(x_0) = (y_0, y_1)$으로 주어졌다면,
+    \begin{align*}
+        c_1 e^{-2 x_0} + c_2 e^{-4 x_0} &= y_0\\
+        c_1 e^{-2 x_0} - c_2 e^{-4 x_0} &= y_1
+    \end{align*}
+    이므로 항상 $c_1$과 $c_2$를 유일하게 결정할 수 있다.
+\end{example}
+
+지금까지의 예시에서 종속변수 $y$의 독립변수 $x$를 $t$로 표기하고, 특성값 $t$를 $\lambda$로 표기하자.
+$\vec y$의 $t$에 따른 자취를 $y_1$-$y_2$ 평면에 그린 것을 위상도(phase portrait)라고 한다.
+
+위의 예시에서처럼 특성값이 -2와 -4로 나오고, 그에 따른 특성벡터가 $(1, 1)$과 $(1, -1)$일 경우, 다음과 같은 위상도를 그릴 수 있다:
+% TODO 위상도 그리기
+
+특성값이 2와 5가 나오고, 특성벡터가 각각 $(1, 1)$과 $(1, -1)$로 나오면 다음과 같이 위상도를 그릴 수 있다:
+% TODO 위상도 그리기
+\end{document}
