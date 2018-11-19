@@ -2,19 +2,16 @@
 
 \usepackage{kotex}
 \usepackage{subfiles}
+\usepackage{float,graphicx}
 
 \usepackage{microtype}
-\usepackage{bm}
-
-\usepackage{mathpazo}
+\usepackage[noBBpl]{mathpazo}
+\usepackage[scaled=0.95]{helvet}
 \setmainfont{TeX Gyre Pagella}
 \setmainhangulfont[ItalicFont={*},ItalicFeatures={FakeSlant=.167}]{NanumMyeongjo}
 \usepackage{anyfontsize}
 
-\usepackage{amsmath,mathtools,amssymb,amsthm,thmtools}
-
-\usepackage{silence}
-\WarningFilter{hyperref}{Draft mode on}
+\usepackage{mathtools,amssymb,amsthm,thmtools}
 
 \theoremstyle{definition}
 \newtheorem{definition}{정의}[section]
@@ -51,8 +48,8 @@ numbered=no
 ]{solstyle}
 \declaretheorem[style=solstyle,name=풀이]{solution}
 
+\usepackage{bm}
 \usepackage{physics}
-
 \usepackage{xfrac}
 
 \renewcommand{\vec}[1]{\bm{\mathit{#1}}}
@@ -70,6 +67,11 @@ numbered=no
 
 \usepackage{comment}
 % \excludecomment{proof}
+
+\usepackage{silence}
+\WarningFilter{hyperref}{Draft mode on}
+
+\usepackage{todonotes}
 
 \makeatletter
 \newcommand\nextitem[1]{%
@@ -103,6 +105,7 @@ numbered=no
 \section{Second-Order ODEs}
 \subfile{sections/section_2}
 
+\setcounter{section}{3}
 \section{Systems of ODEs. Phase Plane. Qualitative Methods}
 \subfile{sections/section_4}
 
