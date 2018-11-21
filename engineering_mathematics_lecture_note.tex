@@ -1,25 +1,83 @@
-\documentclass[unfonts,oneside,a4paper]{oblivoir}
+%force-texpad-dependency: Fonts/texgyrepagella-regular.otf
+%force-texpad-dependency: Fonts/texgyrepagella-bold.otf
+%force-texpad-dependency: Fonts/texgyrepagella-italic.otf
+%force-texpad-dependency: Fonts/texgyrepagella-bolditalic.otf
+%force-texpad-dependency: Fonts/texgyrepagella-math.otf
 
-\usepackage{kotex}
+%force-texpad-dependency: Fonts/texgyreadventor-regular.otf
+%force-texpad-dependency: Fonts/texgyreadventor-bold.otf
+%force-texpad-dependency: Fonts/texgyreadventor-italic.otf
+%force-texpad-dependency: Fonts/texgyreadventor-bolditalic.otf
+%force-texpad-dependency: Fonts/texgyreadventor-math.otf
+
+%force-texpad-dependency: Fonts/texgyrecursor-regular.otf
+%force-texpad-dependency: Fonts/texgyrecursor-bold.otf
+%force-texpad-dependency: Fonts/texgyrecursor-italic.otf
+%force-texpad-dependency: Fonts/texgyrecursor-bolditalic.otf
+
+%force-texpad-dependency: Fonts/NanumMyeongjo.otf
+%force-texpad-dependency: Fonts/NanumMyeongjoBold.otf
+\PassOptionsToPackage{no-math}{fontspec}
+\documentclass[oneside,a4paper,microtype]{oblivoir}
+
 \usepackage{subfiles}
 \usepackage{float,graphicx}
 
-\usepackage{microtype}
-\usepackage[noBBpl]{mathpazo}
-\usepackage[scaled=0.95]{helvet}
-\setmainfont{TeX Gyre Pagella}
-\setmainhangulfont[ItalicFont={*},ItalicFeatures={FakeSlant=.167}]{NanumMyeongjo}
-\usepackage{anyfontsize}
-
 \usepackage{mathtools,amssymb,amsthm,thmtools}
+
+\renewcommand{\rmdefault}{zpltlf}
+\usepackage[vvarbb]{newpxmath}
+\usepackage{bm}
+
+\setmainfont{texgyrepagella}[
+	Path           = Fonts/,
+	Extension      = .otf,
+	Ligatures      = TeX,
+	UprightFont    = *-regular,
+	BoldFont       = *-bold,
+	ItalicFont     = *-italic,
+	BoldItalicFont = *-bolditalic
+]
+
+\setsansfont{texgyreadventor}[
+	Path           = Fonts/,
+	Extension      = .otf,
+	Ligatures      = TeX,
+	UprightFont    = *-regular,
+	BoldFont       = *-bold,
+	ItalicFont     = *-italic,
+	BoldItalicFont = *-bolditalic
+]
+
+\setmonofont{texgyrecursor}[
+	Path           = Fonts/,
+	Extension      = .otf,
+	Ligatures      = TeX,
+	UprightFont    = *-regular,
+	BoldFont       = *-bold,
+	ItalicFont     = *-italic,
+	BoldItalicFont = *-bolditalic
+]
+
+\setmainhangulfont{NanumMyeongjo}[
+	Path           = Fonts/,
+	Extension      = .otf,
+	Ligatures      = TeX,
+	UprightFont    = *,
+	BoldFont       = *Bold,
+	ItalicFont     = *,
+	ItalicFeatures = {FakeSlant=.167}
+]
+
+\setmainhanjafont{UnBatang}[Ligatures=TeX]
 
 \theoremstyle{definition}
 \newtheorem{definition}{정의}[section]
 
-\theoremstyle{theorem}
+\theoremstyle{plain}
 \newtheorem{theorem}[definition]{정리}
 
-\theoremstyle{theorem}
+\theoremstyle{plain}
 \newtheorem{lemma}[definition]{도움정리}
 
 \theoremstyle{remark}
@@ -48,7 +106,6 @@ numbered=no
 ]{solstyle}
 \declaretheorem[style=solstyle,name=풀이]{solution}
 
-\usepackage{bm}
 \usepackage{physics}
 \usepackage{xfrac}
 
@@ -82,7 +139,7 @@ numbered=no
 
 \title{공학 수학 I\\강의 노트}
 
-\author{최형규 교수님 강의\vspace{0.3cm}\\전기\textperiodcentered정보공학부 이재호 작성\\\href{mailto:jaeho.lee@snu.ac.kr}{\texttt{jaeho.lee@snu.ac.kr}}}
+\author{최형규 교수님 강의\vspace{0.3cm}\\전기\textperiodcentered정보공학부 이재호 엮음\\\href{mailto:jaeho.lee@snu.ac.kr}{\texttt{jaeho.lee@snu.ac.kr}}}
 
 \date{마지막 수정: \today}
 
