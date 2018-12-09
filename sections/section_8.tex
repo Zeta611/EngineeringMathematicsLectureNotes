@@ -283,7 +283,7 @@
         \vec w_1 &= \vec v_1\\
         \vec w_2 &= \vec v_2 - p_{\vec w_1} (\vec v_2)\\
         \vec w_3 &= \vec v_3 - p_{\vec w_1} (\vec v_3) - p_{\vec w_2} (\vec v_3)\\
-                 &\vdots\\
+                 &\vdotswithin{=}\\
         \vec w_n &= \vec v_n - \sum_{i = 1}^{n - 1} p_{\vec w_i} (\vec v_n)
     \end{align*}
     이렇게 구한 $\vec w_1, \dots, \vec w_n$의 집합은 $W$의 직교 기저이다.
@@ -809,7 +809,11 @@
                &= 0 \vec u_1 + \dots + 0 \vec u_{k - 1} + (-c_k) \vec u_k
     \end{align*}
     이고 합 표현의 유일성에 따라 $c_1 = \dots = c_k = 0$이다.
-    그러므로 $\bigl\{\vec u_i \bigm| \vec u_i \in U_i \setminus \{\vecz\},\ i \in \{1, \dots, k\}\bigr\}$은 일차독립이다.
+    그러므로
+    \begin{equation*}
+        \bigl\{\vec u_i \bigm| \vec u_i \in U_i \setminus \{\vecz\},\ i \in \{1, \dots, k\}\bigr\}
+    \end{equation*}
+    은 일차독립이다.
 \end{proof}
 
 \begin{theorem} \label{thm:eigenspace_directsum}
@@ -964,7 +968,7 @@
     즉,
     \begin{align*}
         A\vec v_1 &= \lambda_1 \vec v_1\\
-                  &\vdots\\
+                  &\vdotswithin{=}\\
         A\vec v_n &= \lambda_n \vec v_n
     \end{align*}
     이며, 이는 다시

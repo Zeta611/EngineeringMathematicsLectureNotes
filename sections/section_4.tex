@@ -4,7 +4,7 @@
     연립 상미분방정식은
     \begin{align*}
         y_1' &= f_1 (x, y_1, \dots, y_n)\\
-             &\qquad\vdots \\
+             &\vdotswithin{=}\\
         y_n' &= f_n (x, y_1, \dots, y_n)
     \end{align*}
     와 같이 $y_1, \dots, y_n$에 대해 주어진 미분방정식들의 계를 의미한다.
@@ -14,11 +14,11 @@
 
 \begin{example}
     1계 선형 연립 상미분방정식
-    \begin{align*}
-        y_1' &= a_{11} y_1 + \dots + a_{1n} y_n + b_1(x)\\
-             &\phantom{= a_{11} y_1 + \dots} \vdots\\
-        y_n' &= a_{n1} y_1 + \dots + a_{nn} y_n + b_n(x)
-    \end{align*}
+    \begin{alignat*}{2}
+        y_1' &&= a_{11} y_1 + &\dots + a_{1n} y_n + b_1(x)\\
+             &&&\vdotswithin{\dots}\\
+        y_n' &&= a_{n1} y_1 + &\dots + a_{nn} y_n + b_n(x)
+    \end{alignat*}
     을 행렬 표현으로 다시 정리하면
     \begin{equation*}
         \begin{pmatrix}
@@ -461,4 +461,207 @@ $\vec y$의 $t$에 따른 자취를 $y_1$-$y_2$ 평면에 그린 것을 상평�
         \end{figure}
         위의 상평면에서 원점을 나선점(spiral point)이라고 한다. 
 \end{enumerate}
+
+$\vec y = \bigl(y_1 (t), y_2 (t) \bigr)$인\marginpar{\small 2018.11.7} 미분방정식
+\begin{equation*}
+    \vec y' = A \vec y + \vec b
+\end{equation*}
+에 대해서 $A$가 상수 $2 \times 2$ 가역행렬일 때
+\begin{equation*}
+    \vec y' = A \left( \vec y + A^{-1} \vec b \right)
+\end{equation*}
+와 같이 쓸 수 있다.
+점 $P$를
+\begin{equation*}
+    P = -A^{-1} \vec b
+\end{equation*}
+와 같이 두면 원 미분방정식은
+\begin{equation*}
+    (\vec y - P)' = A(\vec y - P)
+\end{equation*}
+으로 쓸 수 있다.
+따라서 상평면을 그릴 때는 $\vec y' = A \vec y$의 상평면을 그린 후 원점 위치가 $P$가 되도록 옮기면 된다.
+
+$n$계 상미분방정식을 풀기 위해 $n$원 연립 상미분방정식으로 바꾸어 풀 수 있다.
+$n$계 상미분방정식
+\begin{equation*}
+    y^{(n)} = f \left( y, y', \dots, y^{(n - 1)}, t \right)
+\end{equation*}
+에서 변수 $y_1, \dots, y_n$을
+\begin{equation*}
+    y_1 = y,\quad y_2 = y_1',\quad \dots,\quad y_n = y_{n - 1}'
+\end{equation*}
+와 같이 정의하면, $n$계 상미분방정식은 다음과 같은 $n$원 연립 상미분방정식으로 바꿀 수 있다:
+\begin{equation*}
+    (y_1, y_2, \dots, y_n)' = \bigl(y_2, y_3, \dots, f(y_1, y_2, \dots, y_n, t)\bigr)
+\end{equation*}
+만약 위 방정식이 자율방정식
+\begin{equation*}
+    (y_1, y_2, \dots, y_n)' = \vec F \bigl(y_1, y_2, \dots, y_n\bigr)
+\end{equation*}
+의 꼴을 가진다면, 이들의 정확한 해 $y_1, \dots, y_n$을 구하는 것은 여전히 쉽지 않지만 대략적인 상평면은 그릴 수 있다.
+
+\begin{example}
+    2계 상미분방정식을 연립 상미분방정식으로 바꾸어 다음과 같은 상평면이 나왔다고 하자:\\
+    % TODO 동심원 상평면
+    이 경우, $y_1$의 독립변수 $t$에 대해서 다음과 같은 개형을 그릴 수 있다:\\
+    % TODO sin 형태의 y_1 -- t 그래프
+
+    만약 상평면이\\
+    % TODO 나선형 상평면
+    와 같은 형태였다면, $y_1$--$t$ 그래프 개형은 다음과 같을 것이다:\\
+    % TODO 감쇠 sin 형태의 y_1 -- t 그래프
+    이러한 방식을 양적 방법(qualitative method)이라고 부른다.
+\end{example}
+
+\begin{example}
+    갈릴레오 갈릴레이(Galileo Galilei, 1564\,\char`~1642)는 진자의 주기가 그 진폭에 관계없이 일정하다는 것을 관찰하였는데, 사실 이는 진폭이 작을 때만 성립한다.
+    이후 크리스티안 하위헌스(Christiaan Huygens, 1629\,\char`~1685)는 진자가 등시곡선(等時曲線, tautochrone) 궤적을 따를 때 그 주기가 일정하다는 것을 발견하고 다음과 같은 형태의 진자를 사용한 시계를 만들었다:
+    % TODO 직접 사이클로이드 진자 그리기
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{plots/cycloid_pendulum.png}
+        \label{fig:plots/cycloid_pendulum.png}
+    \end{figure}
+
+    각변위가 $\theta$이고 질량이 $m$, 길이가 $l$인 진자에 대해서 자유물체도(free-body diagram)를 그리면 아래와 같다:\\
+    % TODO 자유물체도 그리기
+    이때 운동방정식은
+    \begin{equation*}
+        mg \sin \theta + ml \theta'' = 0
+    \end{equation*}
+    이 되므로 $c = \dfrac gl$로 두고 정리하면
+    \begin{equation*}
+        \theta'' = -c \sin \theta
+    \end{equation*}
+    의 2계 비선형 상미분방정식을 구할 수 있다.
+    \begin{equation*}
+        y_1 = \theta, \quad y_2 = \theta'
+    \end{equation*}
+    와 같이 두면, 원 2계 상미분방정식을 다음의 2원 연립 상미분방정식으로 새로 쓸 수 있다:
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1' \\ y_2'
+        \end{pmatrix} = \vec F \begin{pmatrix}
+            y_1 \\ y_2
+        \end{pmatrix} = \begin{pmatrix}
+            y_2 \\ -c \sin y_1
+        \end{pmatrix}
+    \end{equation*}
+
+    이제 $\vec F(y_1, y_2) = \vecz$가 되는 임계점 $(y_1, y_2)$를 구하자.
+    $(y_1, y_2)$가 상수 함수라면 주어진 미분방정식을 만족한다.
+    나아가 해의 유일성에 따라서 어떤 초깃값이 주어졌을 때 그 점을 지나는 해는 상수 함수가 유일해야하고, 따라서 상평면에서 한 점으로 표현될 것이다.
+    즉
+    \begin{equation*}
+        \begin{pmatrix}
+            y_2 \\ -c \sin y_1
+        \end{pmatrix} = \begin{pmatrix}
+            0 \\ 0
+        \end{pmatrix}
+    \end{equation*}
+    을 만족하는 $(y_1, y_2)$는
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1 \\ y_2
+        \end{pmatrix} = \begin{pmatrix}
+            n\pi \\ 0
+        \end{pmatrix}, \qquad n \in \mathbb Z
+    \end{equation*}
+    로 유일하며, 상평면 상에서
+    \begin{equation*}
+        \dots, \quad  (-2\pi, 0), \quad (-\pi, 0),\quad (0, 0),\quad (\pi, 0),\quad (2\pi, 0),\ \dots
+    \end{equation*}
+    로 나타난다.
+    
+    주어진 미분방정식은 비선형이기 때문에, 임계점 $P$ 근방에서 선형화를 통해 해의 대략적인 모습을 파악해야 한다.
+    일반적으로 벡터함수 $\vec F$는 점 $P$ 근방에서 야코비 행렬 $\vec F'(P)$을 사용해
+    \begin{equation*}
+        \vec F(\vec x) \approx \vec F'(P) (\vec x - P) + \vec F(P)
+    \end{equation*}
+    와 같이 선형 근사할 수 있으므로,
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1' \\ y_2'
+        \end{pmatrix} = \vec F \begin{pmatrix}
+            y_1 \\ y_2
+        \end{pmatrix} \approx \begin{pmatrix}
+        0 & 1\\
+        -c \cos y_1 & 0
+    \end{pmatrix} \left( \begin{pmatrix}
+        y_1 \\ y_2
+    \end{pmatrix} - P \right) + \vec F(P)
+    \end{equation*}
+    로 근사할 수 있다.
+    위에서 임계점 $P$는 정수 $n$에 대해 $(n \pi, 0)$ 꼴을 가진다는 것을 확인했으므로, 행렬 $\vec F'(P) = \vec F'(n \pi, 0)$을 통해 $P$ 근방의 상평면을 묘사할 수 있다.
+    \begin{equation*}
+        \vec F' \begin{pmatrix}
+            n\pi \\ 0
+        \end{pmatrix} = \begin{pmatrix}
+        0 & 1 \\
+        -c \cos (n \pi) & 0
+        \end{pmatrix}
+    \end{equation*}
+    이므로 특성다항식 $\Char \vec F'(n \pi, 0)$은
+    \begin{equation*}
+        \Char \vec F' \begin{pmatrix}
+            n\pi \\ 0
+        \end{pmatrix} = \lambda^2 + c \cos (n \pi) = 0
+    \end{equation*}
+    에서 다음과 같이 특성값을 구할 수 있다:
+    \begin{equation*}
+        \lambda = \begin{cases}
+            \pm \sqrt c i &\text{if $n$ is even,}\\
+            \pm \sqrt c &\text{if $n$ is odd}.
+        \end{cases}
+    \end{equation*}
+    따라서 $n$이 짝수일 때 특성다행식은 서로 다른 순허수를 근으로 가지므로 중심점, $n$이 홀수일 때 부호가 반대인 두 실수를 근으로 가지므로 안장점의 형태를 가진다.
+    이를 바탕으로 상평면을 그리면 다음과 같다:\\
+    % TODO 상평면 그리기
+\end{example}
+
+\begin{example}
+    위 예시에서 감쇠 진동항이 추가된 미분방정식
+    \begin{equation*}
+        \theta'' = -k \sin \theta - c \theta' \qquad (k \gg c)
+    \end{equation*}
+    을 풀자.
+    마찬가지로 $y_1 = \theta$, $y_2 = \theta'$로 두고 풀면
+    \begin{equation*}
+        \begin{pmatrix}
+            y_1' \\ y_2'
+        \end{pmatrix} = \vec F \begin{pmatrix}
+            y_1 \\ y_2
+        \end{pmatrix} = \begin{pmatrix}
+            y_2 \\ -k \sin y_1 - c y_2
+        \end{pmatrix}
+    \end{equation*}
+    의 연립 상미분방정식을 구할 수 있다.
+    임계점을 구하면 마찬가지로 $(y_1, y_2) = (n\pi, 0)$이며, 선형화를 위해 야코비 행렬 $\vec F'(y_1, y_2)$를 구하면
+    \begin{equation*}
+        \vec F' \begin{pmatrix}
+            y_1 \\ y_2
+        \end{pmatrix} = \begin{pmatrix}
+        0 & 1\\
+        -k \cos y_1 & -c
+        \end{pmatrix}
+    \end{equation*}
+    이 되므로, 특성다항식 $\Char \vec F' (n \pi, 0)$은
+    \begin{equation*}
+        \Char \vec F' (n \pi, 0) = \begin{cases}
+            \lambda^2 + c \lambda + k = 0 &\text{if $n$ is even,}\\
+            \lambda^2 + c \lambda - k = 0 &\text{if $n$ is odd}.
+        \end{cases}
+    \end{equation*}
+    이 된다.
+    $n$이 짝수인 경우 $c \ll k$이어서 판별식 $D = c^2 - 4k$는 음수이다.
+    따라서 두 복소근을 가지고, 나선점의 형태를 띤다.
+    $n$이 홀수인 경우에는 부호가 다른 두 실근을 가져 안장점의 형태를 띤다.
+    이를 바탕으로 상평면을 그리면 다음과 같다:\\
+    % TODO 상평면 그리기
+\end{example}
+
+\begin{remark}
+    실제 물리 현상을 모델링한 미분방정식에서 특성방정식의 해가 순허수나 중근이 나온 경우, 이는 근사에 의한 것임을 유념해야 한다.
+\end{remark}
 \end{document}
