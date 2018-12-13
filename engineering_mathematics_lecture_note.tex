@@ -1,7 +1,11 @@
+\PassOptionsToPackage{no-math}{fontspec}
 \documentclass[
+    draft,
     oneside,
     a4paper,
+    microtype,
     adjustmath,
+    finemath,
     itemph,
     nonfrench,
     11pt,
@@ -12,6 +16,8 @@
 \usepackage{anyfontsize}
 
 \usepackage{mathtools,amssymb,amsthm,thmtools}
+
+\numberwithin{equation}{section}
 
 \theoremstyle{definition}
 \newtheorem{definition}{정의}[section]
@@ -64,6 +70,7 @@ numbered=no
 
 \usepackage{physics}
 \usepackage{xfrac}
+% \usepackage[Smaller]{cancel}
 
 \renewcommand{\vec}[1]{\bm{\mathit{#1}}}
 \newcommand{\vecz}{\bm{\mathrm{0}}}
@@ -121,5 +128,8 @@ numbered=no
 \setcounter{section}{3}
 \section{Systems of ODEs. Phase Plane. Qualitative Methods}
 \subfile{sections/section_4}
+
+\section{Series Solutions of ODEs. Special Functions}
+\subfile{sections/section_5}
 
 \end{document}
