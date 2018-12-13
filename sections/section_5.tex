@@ -115,7 +115,7 @@
         p(x) y'' + q(x) y' + r(x) = 0
     \end{equation*}
     에 대해서 $p, q, r$이 $x = 0$에서 해석적(analytic)이라고 하자.
-    $p(0) \neq 0$인 경우에는 $x = 0$에서 정칙점(regular point)이라고 한다.
+    $p(0) \neq 0$인 경우에는 $x = 0$에서 정상점(regular point)이라고 한다.
     반면 $p(0) = 0$인 경우에는 $x = 0$에서 특이점(singular point)이라고 한다.
 \end{definition}
 
@@ -162,7 +162,7 @@
     \begin{equation} \label{eq:legendre}
         (1 - x^2)y'' - 2xy' + \alpha(\alpha + 1)y = 0
     \end{equation}
-    이는 $x = 0$에서 정칙이기 때문에 $x = 0$에서 멱급수 전개를 할 수 있다.
+    이는 $x = 0$에서 정상점이기 때문에 $x = 0$에서 멱급수 전개를 할 수 있다.
     따라서 $y = \sum^{\infty}_{n = 0} a_n x^n$으로 놓으면,
     \begin{align*}
         \alpha (\alpha + 1) y &= \sum^{\infty}_{n = 0} \alpha (\alpha + 1) a_n x^n\\
@@ -301,4 +301,168 @@
     \end{equation*}
     이다.
 \end{remark}
+
+일반적으로\marginpar{\small 2018.11.14} 다음과 같은 정리가 성립한다:
+\begin{theorem}
+    2계 제차 선형 상미분방정식
+    \begin{equation*}
+        y'' + p(x) y' + q(x) y = 0
+    \end{equation*}
+    에 대해서 $p$와 $q$가 $x = 0$에서 해석적이면 초기 조건
+    \begin{equation*}
+        y(0) = a_0, \qquad y'(0) = a_1
+    \end{equation*}
+    을 만족하면서 $x = 0$에서 해석적인 해는 유일하게 존재한다.
+    나아가 $p$와 $q$가 $R > 0$일 때 $\abs{x} < R$에서 수렴하는 멱급수를 가질 때, $y$도 해당 구간에서 수렴하는 멱급수를 가진다.
+\end{theorem}
+
+하지만 오일러-코시 방정식의 경우에서 보았듯이 멱급수를 대입하여 푸는 방법이 항상 가능한 것은 아니다.
+그러나 오일러-코시 방정식과 같은 특수한 경우에는 아래에 주어진 프로베니우스 방법\footnote{독일의 수학자 페르디난트 게오르크 프로베니우스(Ferdinand Georg Frobenius, 1849\,\char`~1917)의 이름을 딴 방법이다.}으로 풀 수 있다:
+\begin{theorem} [프로베니우스(Frobenius) 방법]
+    2계 제차 선형 상미분방정식
+    \begin{equation} \label{eq:frobenius}
+        L[y] = x^2y''+ p(x) x y' + q(x) y = 0
+    \end{equation}
+    에 대해서 $p$와 $q$가 $x = 0$에서 해석적일 때, 적어도 한 해는 어떤 실수 $t$와 0이 아닌 실수 $a_0$에 대해
+    \begin{equation} \label{eq:frobenius_power}
+        y = x^t \sum^{\infty}_{m = 0} a_m x^m
+    \end{equation}
+    꼴을 가진다.
+\end{theorem}
+
+프로베니우스 방법에서 식~\ref{eq:frobenius_power}\을 다시 쓰면
+\begin{equation} \label{eq:frobenius_power_mod}
+    y = \sum^{\infty}_{m = 0} a_m x^{m + t}
+\end{equation}
+이 된다.
+식~\ref{eq:frobenius_power_mod}의 양변을 미분하고 $x$를 곱하면
+\begin{equation} \label{eq:frobenius_xy}
+    xy' = \sum^{\infty}_{m = 0} (m + t) a_m x^{m + t}
+\end{equation}
+가 된다.
+식~\ref{eq:frobenius_power_mod}의 양변을 두 번 미분하고 $x^2$을 곱하면
+\begin{equation} \label{eq:frobenius_x2y}
+    x^2 y'' = \sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t}
+\end{equation}
+이다.
+또한 $p$와 $q$는 $x = 0$에서 해석적이므로 다음과 같이 멱급수로 쓸 수 있다:
+\begin{align}
+    p(x) &= p_0 + p_1 x + p_2 x^2 + \dots\label{eq:frobenius_p}\\
+    q(x) &= q_0 + q_1 x + q_2 x^2 + \dots\label{eq:frobenius_q}
+\end{align}
+따라서 \crefrange{eq:frobenius_xy}{eq:frobenius_q}\를 식~\ref{eq:frobenius}에 대입하면
+\begin{alignat}{2}
+    &L \left[ \sum^{\infty}_{m = 0} a_m t^m \right]\nonumber\\
+    = &\sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t} &+ \left(\sum^{\infty}_{m = 0} p_m x^m \right) \sum^{\infty}_{m = 0} (m + t) a_m x^{m + t}\nonumber\\
+      &&+ \left(\sum^{\infty}_{m = 0} q_m x^m \right) \sum^{\infty}_{m = 0} a_m x^{m + t}\label{eq:frobenius_expand}\\
+    = & \sum^{\infty}_{m = 0} r_m(t, a_0, \dots, a_m) x^{m + t} = 0 \nonumber
+\end{alignat}
+꼴이 된다.
+이때 $m = 0, 1, \dots$에 대해 $r_m$은 $t, a_0, \dots, a_m$에 의존하는 함수들이며, $a_0$를 결정하면 $m = 1, 2, \dots$일 때 $a_m$은 $t$에 대한 함수이다.
+식~\ref{eq:frobenius_expand}에서 $m = 0$인 항을 따로 더하면
+\begin{equation*}
+    L \left[ \sum^{\infty}_{m = 0} a_m t^m \right] = \left( t(t - 1) + p_0 t + q_0 \right) a_0 x^t + \sum^{\infty}_{m = 1} r_m(t, a_0, \dots, a_m) x^{m + t} = 0
+\end{equation*}
+모든 $m$에 대해서 $r_m(t, a_0, \dots, a_m)$이 0이 되어야 하므로
+\begin{equation} \label{eq:frobenius_0}
+    \left( t(t - 1) + p_0 t + q_0 \right) a_0 = 0
+\end{equation}
+이어야 한다.
+$a_0 \neq 0$이므로 식~\ref{eq:frobenius_0}에서 $a_0$를 나눈 $t$에 대한 다항식을 $f(t)$라고 두면
+\begin{equation} \label{eq:indicial}
+    f(t) = t(t - 1) + p_0 t + q_0 = 0
+\end{equation}
+이다.
+이때 식~\ref{eq:indicial}을 미분방정식~\ref{eq:frobenius}의 결정 방정식(indicial equation)이라고 부른다.
+
+\begin{example}
+    2계 제차 선형 상미분방정식
+    \begin{equation} \label{eq:frobenius_ex}
+        L[y] = x(x - 1)y'' + (3x - 1) y' + y = 0
+    \end{equation}
+    에 프로베니우스 방법을 적용하기 위해 식~\ref{eq:frobenius}의 형태로 변형하면
+    \begin{equation*}
+        x^2 y'' + \frac{3x - 1}{x - 1} \cdot x y' + \frac{x}{x - 1} y = 0
+    \end{equation*}
+    이 된다.
+    이때 $\dfrac{3x - 1}{x - 1}$와 $\dfrac{x}{x - 1}$ 둘 다 $x = 0$에서 해석적이므로 프로베니우스 방법을 적용할 수 있다.
+    원래 식~\ref{eq:frobenius_ex}에 $y = \sum^{\infty}_{m = 0} a_m x^{m + t}$을 대입하기 위해 각 항을 계산하자.
+    먼저 $x(x - 1)y''$은
+    \begin{align}
+        & x(x - 1)y''\nonumber\\
+        =\ & x(x - 1) \sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t - 2}\nonumber\\
+                    =\ & \sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t} - \sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t - 1}\nonumber\\
+                    =\ & \sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t}- \sum^{\infty}_{m = 0} (m + t)(m + t + 1) a_{m + 1} x^{m + t}\nonumber\\
+                       &\ - (t - 1)t a_0 x^{t - 1} \label{eq:frobenius_ex_2}
+    \end{align}
+    이고 $(3x - 1)y'$은
+    \begin{align}
+        (3x - 1)y' &= (3x - 1) \sum^{\infty}_{m = 0} (m + t) a_m x^{m + t - 1}\nonumber\\
+                   &= \sum^{\infty}_{m = 0} 3 (m + t) a_m x^{m + t} - \sum^{\infty}_{m = 0} (m + t) a_m x^{m + t - 1}\nonumber\\
+                   &= \sum^{\infty}_{m = 0} 3 (m + t) a_m x^{m + t} - \sum^{\infty}_{m = 0} (m + t + 1) a_{m + 1} x^{m + t} - t a_0 x^{t - 1} \label{eq:frobenius_ex_1}
+    \end{align}
+    이다.
+    식~\ref{eq:frobenius_ex}에 $y = \sum^{\infty}_{m = 0} a_m x^{m + t}$와 식~\ref{eq:frobenius_ex_2}와 식~\ref{eq:frobenius_ex_1}를 대입하면
+    \begin{align*}
+        & L \left[ \sum^{\infty}_{m = 0} a_m x^{m + t} \right]\\
+        =& \left[\sum^{\infty}_{m = 0} (m + t - 1)(m + t) a_m x^{m + t}- \sum^{\infty}_{m = 0} (m + t)(m + t + 1) a_{m + 1} x^{m + t}\right.\\
+         &\quad \left.- (t - 1)t a_0 x^{t - 1}\vphantom{\sum^\infty_0}\right] + \left[\sum^{\infty}_{m = 0} 3 (m + t) a_m x^{m + t} - \sum^{\infty}_{m = 0} (m + t + 1) a_{m + 1} x^{m + t} \right.\\
+         &\quad \left.- t a_0 x^{t - 1}\vphantom{\sum^\infty_0}\right] + \sum^{\infty}_{m = 0} a_m x^{m + t}\\
+        =& \sum^{\infty}_{m = 0} \bigl[\bigl( (m + t - 1)(m + t) + 3(m + t) + 1 \bigr)a_m\\
+          &\qquad - \bigl( (m + t)(m + t + 1) + (m + t + 1) \bigr) a_{m + 1} \bigr] x^{m + t} - \bigl( (t - 1)t + t \bigr) a_0 x^{t - 1}\\
+            =&\ \sum^{\infty}_{m = 0} (m + t + 1)^2 (a_m - a_{m + 1})x^{m + t} - t^2 a_0 x^{t - 1} = 0
+    \end{align*}
+    이 된다.
+    따라서 결정방정식은 최저차항의 계수에서
+    \begin{equation} \label{eq:frobenius_ex_indicial}
+        t^2 = 0
+    \end{equation}
+    이 되고,\footnote{식~\ref{eq:indicial}에 주어진대로 풀어도 $t^2 = 0$이 나온다. 단, 이때는 최저차항의 차수가 $(t - 1)$차가 아니라 $t$차이다. 식~\ref{eq:frobenius_ex}에 주어진 형태를 식~\ref{eq:frobenius}의 형태로 바꿀 때 $\frac{x}{x - 1}$을 곱하는데, $\abs{x} < 1$의 범위에서 $\frac{x}{x - 1} = -x -x^2 - x^3 - \dots$로 표현되기 때문이다. 따라서 식~\ref{eq:indicial}의 최저차항이 $t^2 a_0 x^{t - 1}$이라면 변형된 형태에서는 $-x \cdot t^2 a_0 x^{t - 1} = - t^2 a_0 x^t$가 된다.} $t = 0$이어서 모든 계수들이 0이 되려면
+    \begin{equation*}
+        \forall m \in \mathbb N \cup \{0\} \qquad (m + t + 1)^2 (a_m - a_{m + 1}) = (m + 1)^2 (a_m - a_{m + 1}) = 0
+    \end{equation*}
+    이므로 모든 $m$에 대해 $a_m = a_{m + 1}$이다.
+    결국
+    \begin{equation*}
+        \forall m \in \mathbb N \cup \{0\} \qquad a_m = a_0
+    \end{equation*}
+    이다.
+    $a_0 = 1$을 고른다면 미분방정식~\ref{eq:frobenius_ex}의 한 해
+    \begin{equation*}
+        y_1 = \sum^{\infty}_{m = 0} x^m = \frac{1}{1 - x}
+    \end{equation*}
+    를 얻는다.
+    수렴 구간은 $\abs{x} < 1$이지만 이 경우에는 대입하면 $x \neq 1$인 모든 실수에 대해 성립한다는 것을 확인할 수 있다.
+
+    결정방정식~\ref{eq:frobenius_ex_indicial}에서 중근 $t = 0$이 나와 나머지 해는 계수 축소법으로 구해도 되지만, 식~\ref{eq:frobenius_ex}에 한 해 $y_1$를 대입한 후 $t$로 편미분하여 0을 대입해도 구할 수 있다.
+    식~\ref{eq:frobenius_ex}에서 $y_1 = \sum^{\infty}_{m = 0} a_m x^{m + t}$을 대입하면 $t$에 대한 항등식
+    \begin{equation*}
+        L \left[ \sum^{\infty}_{m = 0} a_m x^{m + t} \right] = t^2 a_0 x^{t - 1}
+    \end{equation*}
+    이 구해진다.
+    이 경우에는 $a_m = a_0$로 일정하지만, 일반적으로는 $a_m$이 $t$에 의존하는 함수라는 사실에 유의한다.
+    좌변을 $t$로 편미분하면
+    \begin{equation*}
+        \pdv{t} L \left[ \sum^{\infty}_{m = 0} a_m x^{m + t} \right] = L \left[ \pdv{t} \sum^{\infty}_{m = 0} a_m x^{m + t} \right] = L \left[ \sum^{\infty}_{m = 0} a'_m x^{m + t} + a_m x^{m + t} \ln x \right]
+    \end{equation*}
+    이고 우변을 $t$로 편미분하면
+    \begin{equation*}
+        \pdv{t} (t^2 a_0 x^{t - 1}) = 2t a_0 x^{t - 1} + t^2 a_0 x^{t - 1} \ln x
+    \end{equation*}
+    가 된다.
+    따라서
+    \begin{equation*}
+        L \left[ \sum^{\infty}_{m = 0} a'_m x^{m + t} + a_m x^{m + t} \ln x \right] = 2t a_0 x^{t - 1} + t^2 a_0 x^{t - 1} \ln x
+    \end{equation*}
+    가 되고, $a_m = a_0$와 $t = 0$을 대입하면
+    \begin{equation*}
+        L\left[ \sum^{\infty}_{m = 0} x^m \ln x \right] = L\left[ \sum^{\infty}_{m = 0} x^m \right]\ln x = y_1 \ln x = 0
+    \end{equation*}
+    이다.
+    따라서 두 번째 해는
+    \begin{equation*}
+        y_2 = y_1 \ln x = \frac{\ln x}{1 - x} 
+    \end{equation*}
+    이다.
+\end{example}
 \end{document}

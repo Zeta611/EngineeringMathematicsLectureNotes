@@ -6,18 +6,12 @@
 \end{equation*}
 의 해공간은 벡터공간을 이루는데, 차원이 2임을 뒤에서 보일 것이다.
 따라서, 일차독립인 두 해를 찾으면 그 일차결합이 해공간을 구성하게 된다.
-
-\begin{example}[라그랑주(Lagrange)의 계수 축소법(reduction of order)] \label{def:reduction}
-    2계 선형 상미분방정식
-    \begin{equation*}
-        L[y] = y'' + p(x) y' + q(x) y = 0
-    \end{equation*}
-    의 해 중 하나가 $y_1(x)$로 알려진 경우, $y_2(x) = u(x)y_1(x)$와 같이 함수 $u(x)$를 두면
-    \begin{equation*}
-        y_1 u'' + \left( p(x) y_1 + 2y_1' \right) u' = 0
-    \end{equation*}
-    의 $u'$에 대해 변수 가능한 1계 선형 상미분방정식이 구해진다.
-\end{example}
+특히 해 중 하나가 $y_1(x)$로 알려진 경우, $y_2(x) = u(x)y_1(x)$와 같이 함수 $u(x)$를 두면
+\begin{equation*}
+    y_1 u'' + \left( p(x) y_1 + 2y_1' \right) u' = 0
+\end{equation*}
+의 $u'$에 대해 변수 가능한 1계 선형 상미분방정식이 구해진다.
+이렇게 한 해가 알려져 있을 때 다른 해를 찾는 방법을 계수 축소법(reduction of order)이라고 한다.\footnote{수학자 조제프루이 라그랑주(Joseph-Louis Lagrange, 1736\,\char`~1813)가 제시하였다.}
 
 \begin{example}
     \begin{equation*}

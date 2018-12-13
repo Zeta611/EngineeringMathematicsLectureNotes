@@ -19,6 +19,8 @@
 
 \numberwithin{equation}{section}
 
+\allowdisplaybreaks
+
 \theoremstyle{definition}
 \newtheorem{definition}{정의}[section]
 
@@ -50,6 +52,11 @@ qed=$\blacksquare$,
 numbered=no
 ]{solstyle}
 \declaretheorem[style=solstyle,name=풀이]{solution}
+
+\usepackage{cleveref}
+\newcommand{\crefrangeconjunction}{--}
+\crefrangeformat{equation}{식~#3#1#4에서~#5#2#6}
+
 
 \renewcommand{\rmdefault}{zpltlf}
 \usepackage[vvarbb]{newpxmath}
